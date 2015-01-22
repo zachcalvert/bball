@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'players',
     'django_tables2',
     'kombu.transport.django',
+    'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (

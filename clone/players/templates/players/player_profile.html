@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'players/player_profile.css' %}" />
+
+{% if player %}
+	<h3>{{ player.name }}</h3>
+
+	{% if image_url %}
+		<img border="1" src={{ image_url }}>
+	{% endif %}
+    <br><br>
+    <table border="4" style="width:50%">
+    	<caption>Season averages</caption>
+  		<tr>
+  			<th>MPG</th>
+		    <th>PPG</th>
+		    <th>APG</th>		
+		    <th>RPG</th>
+		    <th>SPG</th>		
+		    <th>BPG</th>
+  		</tr>
+  		<tr>
+  			<td>{{ player.mpg }}</td>
+		    <td>{{ player.ppg }}</td>
+		    <td>{{ player.apg }}</td>		
+		    <td>{{ player.rpg }}</td>
+		    <td>{{ player.spg }}</td>		
+		    <td>{{ player.bpg }}</td>
+  		</tr>
+	</table>
+	<br><br>
+	<table border="4" style="width:50%">
+    	<caption>Season totals</caption>
+  		<tr>
+  			<th>Games</th>
+		    <th>Points</th>
+		    <th>Assists</th>		
+		    <th>Rebounds</th>
+		    <th>Steals</th>		
+		    <th>Blocks</th>
+  		</tr>
+  		<tr>
+  			<td>{{ player.games }}</td>
+		    <td>{{ player.points }}</td>
+		    <td>{{ player.assists }}</td>		
+		    <td>{{ player.rebounds }}</td>
+		    <td>{{ player.steals }}</td>		
+		    <td>{{ player.blocks }}</td>
+  		</tr>
+	</table>
+{% else %}
+    <p>Player not found.</p>
+{% endif %}
+

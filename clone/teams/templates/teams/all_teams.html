@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'teams/all_teams.css' %}" />
+
+<h3>All Teams</h3>
+<table>
+	<th>Name</th>
+	<th>Record</th>
+	<th>FG%</th>
+	<th>FT%</th>
+	<th>Threes</th>
+	<th>Points</th>
+	<th>Rebounds</th>
+	<th>Assists</th>
+	<th>Steals</th>
+	<th>Blocks</th>
+	<th>Turnovers</th>
+
+	{% for team in teams %}
+		<tr>
+			<td><a href="{% url 'team_profile' team.id %}">{{ team.name }}</a></td>
+			<td>{{ team.record }}</td>
+			<td>{{ team.fgpct }}</td>
+			<td>{{ team.ftpct }}</td>
+			<td>{{ team.threes }}</td>
+			<td>{{ team.points }}</td>
+			<td>{{ team.rebounds }}</td>
+			<td>{{ team.assists }}</td>
+			<td>{{ team.steals }}</td>
+			<td>{{ team.blocks }}</td>
+			<td>{{ team.turnovers }}</td>
+  		</tr>
+	{% endfor %}
+</table>

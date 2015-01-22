@@ -1,0 +1,34 @@
+pass in player instance with a timedelta
+
+how to store the days on which players played games? through nba team?
+
+# last 15 days stats
+player = Player.objects.get(name='Kevin Durant')
+
+stats = calculate_stats(player, 15)
+
+def calculate_stats(player, num_days)
+
+	now = datetime.now()
+	today = now.day
+	then = now - timedelta(days=num_days)
+	that_day - then.day
+
+	num_games_played = games_played_between(that_day,now)
+
+	for day in 
+
+
+
+def get_url_of_day(num_days_ago):
+	now = datetime.now()
+	month = now.month
+	yesterday = now - timedelta(days=1)
+	day = yesterday.day
+	year = now.year
+	url = """http://www.basketball-reference.com/friv/dailyleaders.cgi?month={0}&day={1}&year={2}""".format(month, day, year)
+	return url
+
+
+
+http://www.basketball-reference.com/friv/dailyleaders.cgi?month=11&day=2&year=2014

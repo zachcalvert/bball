@@ -1,0 +1,33 @@
+#Requires at least pip 1.4
+
+Django<1.8.0
+django-localflavor<2.0
+django-contact-form<2.0
+python-memcached<2.0
+distribute<7.0
+mock<2.0
+MySQL-python<2.0
+python-ldap<3.0
+pyasn1<1.0
+pycrypto<3.0
+Pillow<3.0
+django-compressor<2.0
+django-storages<2.0
+django-dbsettings<1.0
+django-passwords<1.0
+lxml<4.0
+python-dateutil<2.0
+celery<4.0
+django-celery<3.2
+django-model-utils<3.0
+numpy<2.0
+copper<1.0
+beautifulsoup4<4.3.3
+scipy<0.16
+nose<1.3.5
+requests<2.5.2
+django-tables2<0.16.0
+
+# fast moving, stable API: don't peg to a specific version
+gunicorn
+gevent

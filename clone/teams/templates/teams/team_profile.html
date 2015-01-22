@@ -1,0 +1,17 @@
+<h3>{{ team.name }}</h3>
+
+<h4>Record: {{team.record }}</h4>
+
+<table>
+	<th>SLOT</th>
+	<th>PLAYER, TEAM POS</th>
+	<th>ACTION</th>
+
+	{% for player in team.players %}
+		<tr>
+			<td>PG</td>
+			<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a>, {{ player.nba_team}} {{ player.position }}</td>
+			<td>MOVE</td>
+  		</tr>
+	{% endfor %}
+</table>

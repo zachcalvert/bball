@@ -34,8 +34,9 @@ class Game(models.Model):
 
 
 class BoxScore(models.Model):
-	game = models.OneToOneField(Game, db_index=True)
-	player = models.ForeignKey('players.Player', null=True, db_index=True)
+	# these need reworking
+	# game = models.ManyToManyField(Game, db_index=True)
+	# player = models.ManyToManyField('players.Player', null=True, db_index=True)
 	mp = models.CharField(max_length=5, null=True, blank=True)
 	fgm = models.IntegerField(default=0)
 	fga = models.IntegerField(default=0)
@@ -52,4 +53,8 @@ class BoxScore(models.Model):
 	tos = models.IntegerField(default=0)
 	pfs = models.IntegerField(default=0)
 	pts = models.IntegerField(default=0)
+
+	def __unicode__(self):
+		return "Box Score for {}".format(self.game)
+
 

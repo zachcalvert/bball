@@ -6,7 +6,6 @@ python-memcached<2.0
 distribute<7.0
 mock<2.0
 MySQL-python<2.0
-python-ldap<3.0
 pyasn1<1.0
 pycrypto<3.0
 Pillow<3.0
@@ -14,9 +13,7 @@ django-compressor<2.0
 django-storages<2.0
 django-dbsettings<1.0
 django-passwords<1.0
-lxml<4.0
 python-dateutil<2.0
-celery<4.0
 django-celery<3.2
 django-model-utils<3.0
 numpy<2.0

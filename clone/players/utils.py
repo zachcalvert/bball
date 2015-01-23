@@ -23,7 +23,7 @@ def create_players():
 	players = {"Austin Daye": "SF","""A.J. Price""": "PG","""Alex Kirk""": "C","""Brandon Davies""": "PF",
 	"""Chris Douglas-Roberts""":"SF","""Chris Johnson""":"C","""Francisco Garcia""":"SF","""Glen Rice""":"SG",
 	"""Jeff Adrien""":"C","""Jeffery Taylor""":"SF","""Jordan Farmar""":"PG","""Nate Robinson""":"PG",
-	"""Samuel Dalembert""":"C","""Sebastian Telfair""":"PG","""Shannon Brown""":"SG",}
+	"""Samuel Dalembert""":"C","""Sebastian Telfair""":"PG","""Shannon Brown""":"SG","Xavier Henry":"SF",}
 
 	for k, v in players.items():
 		player = Player.objects.get_or_create(name=k, position=v)

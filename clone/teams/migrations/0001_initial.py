@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(unique=True, max_length=30)),
                 ('wins', models.IntegerField(default=0)),
                 ('losses', models.IntegerField(default=0)),
+                ('ties', models.IntegerField(default=0)),
             ],
             options={
             },

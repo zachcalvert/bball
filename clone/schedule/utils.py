@@ -1,0 +1,24 @@
+from datetime import date
+
+months = {"Jan": '01', "Feb": '02', "Mar": '03', "Apr": '04', "Oct": '10', "Nov": '11', "Dec": '12'}
+
+def format_date(date_string):
+	date = date_string[5:]
+	date = date.replace(',','').replace(' ','-')
+	# get month
+	month_as_string = date[:3]
+	month = months.get(month_as_string)
+	# get day
+	date = date[4:]
+	day = date.rsplit('-', 1)[0]
+	x = int(day)
+	# prepend 0 if necessary
+	if x < 10:
+		day = '0' + day
+	# get year
+	date = date.replace('-',' ')
+	date.split()
+	year = date[2:]
+	year = year.replace(' ', '')
+
+	retval = year + month + day

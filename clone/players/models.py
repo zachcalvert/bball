@@ -1,19 +1,9 @@
 from __future__ import division
 from django.db import models
 import django_tables2 as tables
+from django.db.models import Q
 
-NBA_TEAMS = (
-	('ATL', 'Atlanta Hawks'),('BRK', 'Brooklyn Nets'),('BOS', 'Boston Celtics'),
-	('CHO', 'Charlotte Hornets'),('CHI', 'Chicago Bulls'),('CLE', 'Cleveland Cavaliers'),
-	('DAL', 'Dallas Mavericks'),('DEN', 'Denver Nuggets'),('DET', 'Detroit Pistons'),
-	('GSW', 'Golden State Warriors'),('HOU', 'Houston Rockets'),('IND', 'Indiana Pacers'),
-	('LAC', 'Los Angeles Clippers'),('LAL', 'Los Angeles Lakers'),('MEM', 'Memphis Grizzlies'),
-	('MIA', 'Miami Heat'),('MIN', 'Minnesota Timberwolves'),('MIL', 'Milwaukee Bucks'),
-	('NOP', 'New Orleans Pelicans'),('NYK', 'New York Knicks'),('OKC', 'Oklahoma City Thunder'),
-	('ORL', 'Orlando Magic'),('PHI', 'Philadelphia 76ers'),('PHO', 'Phoenix Suns'),
-	('POR', 'Portland TrailBlazers'),('SAS', 'San Antonio Spurs'),('SAC', 'Sacramento Kings'),
-	('TOR', 'Toronto Raptors'),('UTA', 'Utah Jazz'),('WAS', 'Washington Wizards'),('FA', 'Free Agent'),
-)
+from schedule.models import Game, NBA_TEAMS
 
 POSITIONS = (
 	('PG', 'Point Guard'),
@@ -34,7 +24,7 @@ class Player(models.Model):
 	nba_team = models.CharField(u'NBA Team', choices=NBA_TEAMS, default='FA', max_length=25)
 
 	#stats
-	games = models.IntegerField(default=0)
+	games_played = models.IntegerField(default=0)
 	minutes = models.IntegerField(default=0)
 	fgm = models.IntegerField(default=0)
 	fga = models.IntegerField(default=0)
@@ -50,51 +40,51 @@ class Player(models.Model):
 
 	@property
 	def ppg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		ppg = self.points/self.games
+		ppg = self.points/self.games_played
 		return round(ppg, 1)
 
 	@property
 	def apg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		apg = self.assists/self.games
+		apg = self.assists/self.games_played
 		return round(apg, 1)
 
 	@property
 	def rpg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		rpg = self.rebounds/self.games
+		rpg = self.rebounds/self.games_played
 		return round(rpg, 1)
 
 	@property
 	def bpg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		bpg = self.blocks/self.games
+		bpg = self.blocks/self.games_played
 		return round(bpg, 1)
 
 	@property
 	def spg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		spg = self.steals/self.games
+		spg = self.steals/self.games_played
 		return round(spg, 1)
 
 	@property
 	def threespg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		threespg = self.threes/self.games
+		threespg = self.threes/self.games_played
 		return round(threespg, 1)
 
 	@property
 	def mpg(self):
-		if self.games == 0:
+		if self.games_played == 0:
 			return 0
-		mpg = self.minutes/self.games
+		mpg = self.minutes/self.games_played
 		return round(mpg, 1)
 
 	@property
@@ -107,6 +97,10 @@ class Player(models.Model):
 		ftpct = self.ftm/self.fta
 		return round(ftpct, 4) * 100
 
+	@property
+	def games(self):
+		games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
+
 	def __unicode__(self):
 		return self.name
 
@@ -115,6 +109,6 @@ class PlayerTable(tables.Table):
 	class Meta:
 		model = Player
 		exclude = ("id","team",)
-		sequence = ("name", "position", "nba_team", "games", "minutes",)
+		sequence = ("name", "position", "nba_team", "games_played", "minutes",)
 		attrs = {"class": "paleblue"}
 

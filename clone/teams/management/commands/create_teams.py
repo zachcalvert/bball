@@ -47,8 +47,8 @@ class Command(BaseCommand):
     	team3 = Team.objects.create(name='Evil Twin Cliff Paul', wins=52, losses=56)
 
     	team3_players = ('Kyle Lowry', 'Lance Stephenson', 'Demar Derozan', 'Carlos Boozer',
-    		'Tristan Thompson', 'Isiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
-    		'Tyson Chandler', 'Tony Wroten', 'Kelly Olylnk', 'Nick Young',)
+    		'Tristan Thompson', 'Isaiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
+    		'Tyson Chandler', 'Tony Wroten', 'Kelly Olynyk', 'Nick Young',)
     	
     	for team3_player in team3_players:
     		try:

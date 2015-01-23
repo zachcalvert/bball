@@ -72,7 +72,7 @@ class Command(BaseCommand):
 			    		player.__setattr__(k,stat)
 
 			    	player.nba_team = team
-			    	player.games += 1
+			    	player.games_played += 1
 			    	player.save()
 
 		

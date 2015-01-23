@@ -7,6 +7,8 @@ player = Player.objects.get(name='Kevin Durant')
 
 stats = calculate_stats(player, 15)
 
+
+
 def calculate_stats(player, num_days)
 
 	now = datetime.now()
@@ -14,9 +16,13 @@ def calculate_stats(player, num_days)
 	then = now - timedelta(days=num_days)
 	that_day - then.day
 
-	num_games_played = games_played_between(that_day,now)
+	games = Game.objects.filter(Q(home_team=player.nba_team)| Q(away_team=player.nba_team) && Q(date__gte=then))
 
-	for day in 
+	games_played = 0
+	for game in games:
+		if game.boxscore.get(player):
+			games_played += 1
+			
 
 
 
@@ -29,6 +35,6 @@ def get_url_of_day(num_days_ago):
 	url = """http://www.basketball-reference.com/friv/dailyleaders.cgi?month={0}&day={1}&year={2}""".format(month, day, year)
 	return url
 
-
+games = Game.objects.filter(Q(home_team=player.nba_team)| Q(away_team=player.nba_team))
 
 http://www.basketball-reference.com/friv/dailyleaders.cgi?month=11&day=2&year=2014

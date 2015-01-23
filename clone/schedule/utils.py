@@ -2,7 +2,7 @@ from datetime import date
 
 months = {"Jan": '01', "Feb": '02', "Mar": '03', "Apr": '04', "Oct": '10', "Nov": '11', "Dec": '12'}
 
-def format_date(date_string):
+def format_date_for_box_score(date_string):
 	date = date_string[5:]
 	date = date.replace(',','').replace(' ','-')
 	# get month
@@ -21,4 +21,4 @@ def format_date(date_string):
 	year = date[2:]
 	year = year.replace(' ', '')
 
-	retval = year + month + day
+	return year + month + day

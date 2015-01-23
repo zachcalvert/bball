@@ -30,7 +30,7 @@ class Game(models.Model):
 		return ("{0} {1} - {2} {3}".format(self.away_team, self.away_points, self.home_points, self.home_team))
 
 	def __unicode__(self):
-		return "{0} @ {1}".format(self.away_team, self.home_team)
+		return "{0}: {1} @ {2}".format(self.date, self.away_team, self.home_team)
 
 
 class BoxScore(models.Model):

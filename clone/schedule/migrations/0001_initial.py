@@ -12,7 +12,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='BoxScore',
+            name='Game',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('date', models.DateField()),
+                ('tipoff', models.DateTimeField(auto_now=True)),
+                ('home_team', models.CharField(max_length=25, verbose_name='Home Team', choices=[(b'ATL', b'Atlanta Hawks'), (b'BRK', b'Brooklyn Nets'), (b'BOS', b'Boston Celtics'), (b'CHO', b'Charlotte Hornets'), (b'CHI', b'Chicago Bulls'), (b'CLE', b'Cleveland Cavaliers'), (b'DAL', b'Dallas Mavericks'), (b'DEN', b'Denver Nuggets'), (b'DET', b'Detroit Pistons'), (b'GSW', b'Golden State Warriors'), (b'HOU', b'Houston Rockets'), (b'IND', b'Indiana Pacers'), (b'LAC', b'Los Angeles Clippers'), (b'LAL', b'Los Angeles Lakers'), (b'MEM', b'Memphis Grizzlies'), (b'MIA', b'Miami Heat'), (b'MIN', b'Minnesota Timberwolves'), (b'MIL', b'Milwaukee Bucks'), (b'NOP', b'New Orleans Pelicans'), (b'NYK', b'New York Knicks'), (b'OKC', b'Oklahoma City Thunder'), (b'ORL', b'Orlando Magic'), (b'PHI', b'Philadelphia 76ers'), (b'PHO', b'Phoenix Suns'), (b'POR', b'Portland TrailBlazers'), (b'SAS', b'San Antonio Spurs'), (b'SAC', b'Sacramento Kings'), (b'TOR', b'Toronto Raptors'), (b'UTA', b'Utah Jazz'), (b'WAS', b'Washington Wizards'), (b'FA', b'Free Agent')])),
+                ('away_team', models.CharField(max_length=25, verbose_name='Away Team', choices=[(b'ATL', b'Atlanta Hawks'), (b'BRK', b'Brooklyn Nets'), (b'BOS', b'Boston Celtics'), (b'CHO', b'Charlotte Hornets'), (b'CHI', b'Chicago Bulls'), (b'CLE', b'Cleveland Cavaliers'), (b'DAL', b'Dallas Mavericks'), (b'DEN', b'Denver Nuggets'), (b'DET', b'Detroit Pistons'), (b'GSW', b'Golden State Warriors'), (b'HOU', b'Houston Rockets'), (b'IND', b'Indiana Pacers'), (b'LAC', b'Los Angeles Clippers'), (b'LAL', b'Los Angeles Lakers'), (b'MEM', b'Memphis Grizzlies'), (b'MIA', b'Miami Heat'), (b'MIN', b'Minnesota Timberwolves'), (b'MIL', b'Milwaukee Bucks'), (b'NOP', b'New Orleans Pelicans'), (b'NYK', b'New York Knicks'), (b'OKC', b'Oklahoma City Thunder'), (b'ORL', b'Orlando Magic'), (b'PHI', b'Philadelphia 76ers'), (b'PHO', b'Phoenix Suns'), (b'POR', b'Portland TrailBlazers'), (b'SAS', b'San Antonio Spurs'), (b'SAC', b'Sacramento Kings'), (b'TOR', b'Toronto Raptors'), (b'UTA', b'Utah Jazz'), (b'WAS', b'Washington Wizards'), (b'FA', b'Free Agent')])),
+                ('home_points', models.IntegerField(default=0)),
+                ('away_points', models.IntegerField(default=0)),
+                ('boxscore_link', models.URLField(max_length=255, null=True, blank=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Season',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='StatLine',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('mp', models.CharField(max_length=5, null=True, blank=True)),
@@ -31,46 +56,17 @@ class Migration(migrations.Migration):
                 ('tos', models.IntegerField(default=0)),
                 ('pfs', models.IntegerField(default=0)),
                 ('pts', models.IntegerField(default=0)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Game',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('date', models.DateField()),
-                ('tipoff', models.DateTimeField(auto_now=True)),
-                ('home_team', models.CharField(max_length=25, verbose_name='Home Team', choices=[(b'ATL', b'Atlanta Hawks'), (b'BRK', b'Brooklyn Nets'), (b'BOS', b'Boston Celtics'), (b'CHO', b'Charlotte Hornets'), (b'CHI', b'Chicago Bulls'), (b'CLE', b'Cleveland Cavaliers'), (b'DAL', b'Dallas Mavericks'), (b'DEN', b'Denver Nuggets'), (b'DET', b'Detroit Pistons'), (b'GSW', b'Golden State Warriors'), (b'HOU', b'Houston Rockets'), (b'IND', b'Indiana Pacers'), (b'LAC', b'Los Angeles Clippers'), (b'LAL', b'Los Angeles Lakers'), (b'MEM', b'Memphis Grizzlies'), (b'MIA', b'Miami Heat'), (b'MIN', b'Minnesota Timberwolves'), (b'MIL', b'Milwaukee Bucks'), (b'NOP', b'New Orleans Pelicans'), (b'NYK', b'New York Knicks'), (b'OKC', b'Oklahoma City Thunder'), (b'ORL', b'Orlando Magic'), (b'PHI', b'Philadelphia 76ers'), (b'PHO', b'Phoenix Suns'), (b'POR', b'Portland TrailBlazers'), (b'SAS', b'San Antonio Spurs'), (b'SAC', b'Sacramento Kings'), (b'TOR', b'Toronto Raptors'), (b'UTA', b'Utah Jazz'), (b'WAS', b'Washington Wizards'), (b'FA', b'Free Agent')])),
-                ('away_team', models.CharField(max_length=25, verbose_name='Away Team', choices=[(b'ATL', b'Atlanta Hawks'), (b'BRK', b'Brooklyn Nets'), (b'BOS', b'Boston Celtics'), (b'CHO', b'Charlotte Hornets'), (b'CHI', b'Chicago Bulls'), (b'CLE', b'Cleveland Cavaliers'), (b'DAL', b'Dallas Mavericks'), (b'DEN', b'Denver Nuggets'), (b'DET', b'Detroit Pistons'), (b'GSW', b'Golden State Warriors'), (b'HOU', b'Houston Rockets'), (b'IND', b'Indiana Pacers'), (b'LAC', b'Los Angeles Clippers'), (b'LAL', b'Los Angeles Lakers'), (b'MEM', b'Memphis Grizzlies'), (b'MIA', b'Miami Heat'), (b'MIN', b'Minnesota Timberwolves'), (b'MIL', b'Milwaukee Bucks'), (b'NOP', b'New Orleans Pelicans'), (b'NYK', b'New York Knicks'), (b'OKC', b'Oklahoma City Thunder'), (b'ORL', b'Orlando Magic'), (b'PHI', b'Philadelphia 76ers'), (b'PHO', b'Phoenix Suns'), (b'POR', b'Portland TrailBlazers'), (b'SAS', b'San Antonio Spurs'), (b'SAC', b'Sacramento Kings'), (b'TOR', b'Toronto Raptors'), (b'UTA', b'Utah Jazz'), (b'WAS', b'Washington Wizards'), (b'FA', b'Free Agent')])),
-                ('home_points', models.IntegerField(default=0)),
-                ('away_points', models.IntegerField(default=0)),
-                ('box_score_link', models.URLField(max_length=50, null=True, blank=True)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Season',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('game', models.ForeignKey(to='schedule.Game')),
+                ('player', models.ForeignKey(to='players.Player')),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='boxscore',
-            name='game',
-            field=models.OneToOneField(to='schedule.Game'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='boxscore',
-            name='player',
-            field=models.ForeignKey(to='players.Player', null=True),
+            model_name='game',
+            name='stat_lines',
+            field=models.ManyToManyField(to='players.Player', through='schedule.StatLine'),
             preserve_default=True,
         ),
     ]

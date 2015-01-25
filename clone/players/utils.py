@@ -1,15 +1,13 @@
 from datetime import datetime, timedelta
 from players.models import Player
 
-def get_yesterdays_url():
-	now = datetime.now()
-	month = now.month
-	yesterday = now - timedelta(days=1)
-	day = yesterday.day
-	year = now.year
-	url = """http://www.basketball-reference.com/friv/dailyleaders.cgi?month={0}&day={1}&year={2}""".format(month, day, year)
-	return url
 
+ROOT_IMAGE_URL = """http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/"""
+
+
+def get_image_url(player_name):
+	name = player_name.replace(' ','_').lower()
+	return "{0}{1}.png".format(ROOT_IMAGE_URL,name)
 
 def remove_created_teams():
 	non_players = ('Atlanta Hawks', 'Charlotte Hornets', 'Dallas Mavericks', 'Golden State Warriors',

@@ -69,7 +69,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bball',
+        'NAME': 'basketball',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',

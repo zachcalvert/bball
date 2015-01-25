@@ -23,7 +23,8 @@ class Game(models.Model):
 	away_team = models.CharField(u'Away Team', max_length=25, choices=NBA_TEAMS)
 	home_points = models.IntegerField(default=0)
 	away_points = models.IntegerField(default=0)
-	box_score_link = models.URLField(max_length=255, null=True, blank=True)
+	boxscore_link = models.URLField(max_length=255, null=True, blank=True)
+	stat_lines = models.ManyToManyField('players.Player', through="StatLine")
 
 	@property
 	def result(self):
@@ -33,10 +34,9 @@ class Game(models.Model):
 		return "{0}: {1} @ {2}".format(self.date, self.away_team, self.home_team)
 
 
-class BoxScore(models.Model):
-	# these need reworking
-	# game = models.ManyToManyField(Game, db_index=True)
-	# player = models.ManyToManyField('players.Player', null=True, db_index=True)
+class StatLine(models.Model):
+	game = models.ForeignKey(Game, db_index=True)
+	player = models.ForeignKey('players.Player', db_index=True)
 	mp = models.CharField(max_length=5, null=True, blank=True)
 	fgm = models.IntegerField(default=0)
 	fga = models.IntegerField(default=0)

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 from datetime import date
 
-from schedule.models import Game, BoxScore
+from schedule.models import Game, StatLine
 from players.models import Player
 
 from django.core.management.base import BaseCommand
@@ -23,7 +23,7 @@ class Command(BaseCommand):
 			if date.today() <= game.date:
 				continue
 			else:
-				url = "{0}{1}".format(ROOT_URL, game.box_score_link)
+				url = "{0}{1}".format(ROOT_URL, game.boxscore_link)
 				r = requests.get(url)
 				bs = BeautifulSoup(r.text)
 				away_table = bs.find(lambda tag: tag.name=='table' and tag.has_attr('id') and tag['id']=="{}_basic".format(game.away_team))
@@ -35,7 +35,15 @@ class Command(BaseCommand):
 					for cell in cells:
 						if i == 0:
 							player_name = cell.text
-							player = Player.objects.get(name=player_name)
+							try:
+								player = Player.objects.get(name=player_name)
+							except Player.DoesNotExist:
+								print("could not find player: {}".format(player_name))
+								continue
+							if player.nba_team == 'FA':
+								player.nba_team = game.away_team
+								player.save()
+								print("added {0} to {1} roster".format(player.name, game.away_team))
 						elif i == 1:
 							mp = cell.text
 						elif i == 2:
@@ -79,11 +87,14 @@ class Command(BaseCommand):
 
 
 					if row.find('td'):
-						away_boxscore = BoxScore.objects.create(game=game, player=player,
-							mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
-							orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
-							pfs=pfs,pts=pts)
-						print('Loaded box score for {0} in game {1}'.format(game.away_team, game))
+						if mp == 'Did Not Play' or mp == 'Player Suspended':
+								continue
+						else:
+							away_statline = StatLine.objects.create(game=game, player=player,
+								mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
+								orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
+								pfs=pfs,pts=pts)
+							print('Loaded statline for {0} in game {1}'.format(player.name, game))
 
 				home_table = bs.find(lambda tag: tag.name=='table' and tag.has_attr('id') and tag['id']=="{}_basic".format(game.home_team))
 				home_rows = home_table.findAll(lambda tag: tag.name=='tr')
@@ -94,7 +105,10 @@ class Command(BaseCommand):
 					for cell in cells:
 						if i == 0:
 							player_name = cell.text
-							player = Player.objects.get(name=player_name)
+							try:
+								player = Player.objects.get(name=player_name)
+							except Player.DoesNotExist:
+								print("could not find player: {}".format(player_name))
 						elif i == 1:
 							mp = cell.text
 						elif i == 2:
@@ -138,10 +152,15 @@ class Command(BaseCommand):
 
 
 					if row.find('td'):
-						home_boxscore = BoxScore.objects.create(game_id=game.id, player_id=player.id,
-							mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
-							orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
-							pfs=pfs,pts=pts)
-						print('Loaded box score for {0} in game {1}'.format(game.home_team, game))
+						if mp == 'Did Not Play' or mp == 'Player Suspended' or mp == 240 or mp == 265:
+								continue
+						else:
+							home_statline = StatLine.objects.create(game_id=game.id, player_id=player.id,
+								mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
+								orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
+								pfs=pfs,pts=pts)
+							print('Loaded box score for {0} in game {1}'.format(player.name, game))
+
+
 
 

@@ -31,7 +31,7 @@ class Command(BaseCommand):
 					date_object = datetime.strptime(date, '%b %d %Y')
 				elif i == 1:
 					link = str(cell.a)
-					box_score_link = link[10:37]
+					boxscore_link = link[10:37]
 				elif i == 2:
 					link = str(cell.a)
 					away_team = link[16:19]
@@ -53,7 +53,7 @@ class Command(BaseCommand):
 
 
 			if row.find('td'):
-				game = Game.objects.create(date=date_object, box_score_link=box_score_link,
+				game = Game.objects.create(date=date_object, boxscore_link=boxscore_link,
 					away_team=away_team, away_points=away_points, home_team=home_team, 
 					home_points=home_points)
 				print('Loaded game: {}'.format(game))

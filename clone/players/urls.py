@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from teams import urls
 from players import views
 
 urlpatterns = patterns('',

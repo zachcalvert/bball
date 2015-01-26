@@ -92,9 +92,13 @@ class Command(BaseCommand):
 
 
 				if row.find('td'):
-					if mp == 'Did Not Play' or mp == 'Player Suspended' or mp == 240 or mp == 265:
+					if mp == 'Did Not Play' or mp == 'Player Suspended':
 							continue
 					else:
+						# account for trades
+						if player.nba_team != game.away_team:
+							player.nba_team = game.away_team
+							player.save()
 						away_statline = StatLine.objects.create(game=game, player=player,
 							mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
 							orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
@@ -157,9 +161,13 @@ class Command(BaseCommand):
 
 
 				if row.find('td'):
-					if mp == 'Did Not Play' or mp == 'Player Suspended' or mp == 240 or mp == 265:
+					if mp == 'Did Not Play' or mp == 'Player Suspended':
 							continue
 					else:
+						if player.nba_team != game.home_team:
+							player.nba_team = game.home_team
+							player.save()
+
 						home_statline = StatLine.objects.create(game_id=game.id, player_id=player.id,
 							mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
 							orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,

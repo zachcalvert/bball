@@ -1,0 +1,25 @@
+{% load staticfiles stat_filters %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'players/player_profile.css' %}" />
+
+<h3>Season averages</h3>
+<table>
+	<th>Name</th>
+	<th>MPG</th>
+	<th>PPG</th>
+	<th>APG</th>
+	<th>RPG</th>
+	<th>SPG</th>
+	<th>BPG</th>
+	{% for statline in statlines %}
+		<tr>
+			<td>{{ player.name }}</td>
+			<td>{{ player.mpg }}</td>
+		    <td>{{ player.ppg }}</td>
+		    <td>{{ player.apg }}</td>		
+		    <td>{{ player.rpg }}</td>
+		    <td>{{ player.spg }}</td>		
+		    <td>{{ player.bpg }}</td>
+  		</tr>
+	{% endfor %}
+</table>

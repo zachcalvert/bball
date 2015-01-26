@@ -26,11 +26,13 @@ def all_averages(request):
 def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)
 	url = get_image_url(player.name)
-	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url})
+	now = datetime.now()
+	date = now.date()
+	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'date': date})
 
 def get_recent_stats(request, player_id, days):
 	delta = timedelta(days=days)
-	start_day = delta.day()
+	start_day = today - delta
 	statlines = StatLine.objects.filter(player_id=player_id, game__date__gte=start_day)
-
-	return render(request, '')
+	stats = stringify_stats(statlines)
+	return render(request, 'players/last_fifteen/averages.html', stats) 

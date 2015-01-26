@@ -1,17 +1,57 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'teams/all_teams.css' %}" />
+
 <h3>{{ team.name }}</h3>
 
-<h4>Record: {{team.record }}</h4>
+<h4>Record: {{ team.record }}</h4>
 
-<table>
-	<th>SLOT</th>
-	<th>PLAYER, TEAM POS</th>
-	<th>ACTION</th>
+<table class="team_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0">
+	<tbody>
+		<tr class="pure-table">
+			<th colspan="3" class="team_table_section_header_first">STARTERS</th>
+			<th colspan="2">{{ date }}</th>
+			<th colspan="12">{{ date }} STATS</th>
+		</tr>
+		<tr class="team_table_sub_head">
+			<td width="85px">SLOT</td>
+			<td>PLAYER, TEAM POS</td>
+			<td width="88px">ACTION</td>
+			<td class="section_leading_spacer" title="Opponent">OPP</td>
+			<td title="Game Status">STATUS ET</td>
+			<td class="team_table_stat"><span title="Minutes">MIN</span></td>
+			<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+			<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+			<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+			<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+			<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+			<td class="team_table_stat"><span title="Rebounds">REB</span></td>
+			<td class="team_table_stat"><span title="Assists">AST</span></td>
+			<td class="team_table_stat"><span title="Steals">STL</span></td>
+			<td class="team_table_stat"><span title="Blocks">BLK</span></td>
+			<td class="team_table_stat"><span title="Turnovers">TO</span></td>
+			<td class="team_table_stat"><span title="Points">PTS</span></td>
+		</tr>
 
 	{% for player in team.players %}
-		<tr>
+		<tr class="player_row">
 			<td>PG</td>
 			<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a>, {{ player.nba_team}} {{ player.position }}</td>
 			<td>MOVE</td>
+			<td>Opponent here</td>
+			<td>Game status here</td>
+			<td class="player_table_stat">{{ player.mpg }}</td>
+			<td class="player_table_stat"><span>{{ player.fgm }}</span>/<span>{{ player.fga }}</span></td>
+			<td class="player_table_stat">{{ player.fgpct }}</td>
+			<td class="player_table_stat"><span>{{ player.ftm }}</span>/<span>{{ player.fta }}</span></td>
+			<td class="player_table_stat">{{ player.ftpct }}</td>
+			<td class="player_table_stat">{{ player.threespg }}</td>
+			<td class="player_table_stat">{{ player.rpg }}</td>
+			<td class="player_table_stat">{{ player.apg }}</td>
+			<td class="player_table_stat">{{ player.spg }}</td>
+			<td class="player_table_stat">{{ player.bpg }}</td>
+			<td class="player_table_stat">{{ player.topg }}</td>
+			<td class="player_table_stat">{{ player.ppg }}</td>
   		</tr>
 	{% endfor %}
 </table>

@@ -98,6 +98,13 @@ class Player(models.Model):
 		return round(ftpct, 4) * 100
 
 	@property
+	def topg(self):
+		if self.games_played == 0:
+			return 0
+		topg = self.turnovers/self.games_played
+		return round(topg, 1)
+
+	@property
 	def games(self):
 		games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
 

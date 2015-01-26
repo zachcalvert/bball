@@ -7,6 +7,7 @@ from schedule.models import Game
 
 from django.core.management.base import BaseCommand
 
+
 class Command(BaseCommand):
 	"""
 	Scrapes the basketball reference schedule page for dates, games and teams playing

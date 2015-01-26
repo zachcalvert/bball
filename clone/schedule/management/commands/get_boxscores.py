@@ -161,6 +161,12 @@ class Command(BaseCommand):
 							pfs=pfs,pts=pts)
 						print('Loaded box score for {0} in game {1}'.format(player.name, game))
 
+		StatLine.objects.filter(mp=240).delete()
+		StatLine.objects.filter(mp=265).delete()
+		StatLine.objects.filter(mp=290).delete()
+		StatLine.objects.filter(mp=315).delete()
+
+
 
 
 

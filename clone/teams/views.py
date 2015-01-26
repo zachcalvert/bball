@@ -17,6 +17,5 @@ def all_teams(request):
 
 def team_profile(request, team_id):
 	team = Team.objects.get(id=team_id)
-
 	return render(request, "teams/team_profile.html", {'team': team, 'date': date})
 

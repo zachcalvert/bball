@@ -10,16 +10,17 @@ th,td {
 }
 */
 body {
-	font-family: Arial, Verdana, sans-serif;
-	color: #111111;}
+	font-family: Verdana;
+	color: #111111;
+	font-size:10px;}
 table {
-	width: 80%;
+	width: 95%;
 	border-collapse: collapse;
 }
 th {
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	font-size: 70%;
+	font-size: 90%;
 	border-bottom: 2px solid #111111;
 	border-top: 1px solid #999;
 	text-align: center;
@@ -30,7 +31,7 @@ tr {
 }
 tr.even {
 	background-color: #efefef;}
-tr:hover {
+/*tr:hover {
 	background-color: #c3e6e5;}
 .money {
-	text-align: right;}
+	text-align: right;}*/

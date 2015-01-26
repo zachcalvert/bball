@@ -2,6 +2,7 @@ from __future__ import division
 from django.db import models
 import django_tables2 as tables
 from django.db.models import Q
+from datetime import datetime
 
 from schedule.models import Game, NBA_TEAMS
 
@@ -107,6 +108,7 @@ class Player(models.Model):
 	@property
 	def games(self):
 		games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
+
 
 	def __unicode__(self):
 		return self.name

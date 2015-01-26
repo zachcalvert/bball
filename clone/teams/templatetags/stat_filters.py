@@ -1,6 +1,8 @@
-from__future__ import division
 from django import template
 from datetime import date, timedelta
+
+from players.models import Player
+from players.utils import todays_opponent
 
 register = template.Library()
 
@@ -10,3 +12,11 @@ def get_average(value):
 	total = int(arg_list[0])
 	games = int(arg_list[1])
 	return total/games
+
+@register.filter(name='get_todays_opponent')
+def get_todays_opponent(value):
+	r = todays_opponent(value) 
+	if r is not None:
+		return r
+	else:
+		return ''

@@ -7,8 +7,8 @@
 	</div>
 	<div id="nav">
 		<ul>
-			<li><a href="#">Option 1</a></li>
-			<li><a href="#">Option 2</a></li>	
+			<li><a href="#">League Home</a></li>
+			<li><a href="#">Team Home</a></li>	
 		</ul>
 	</div>
 
@@ -21,8 +21,14 @@
 
 	<div id="sidebar">
 		{% block averages %}
+			<ul>
+				<li><a href="#">Season</a></li>
+				<li><a href="#">Last 30</a></li>
+				<li><a href="#">Last 15</a></li>
+				<li><a href="#">Last 7</a></li>	
+			</ul>
 			<table class="season_averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
-				<caption>Season averages</caption>
+				<caption>averages</caption>
 					<tr>
 						<th>MPG</th>
 					    <th>PPG</th>
@@ -46,7 +52,7 @@
 		<br><br>
 		{% block totals %}
 			<table class="season_totals" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
-				<caption>Season totals</caption>
+				<caption>totals</caption>
 					<tr>
 						<th>Games</th>
 				    	<th>Points</th>

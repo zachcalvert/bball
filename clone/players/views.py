@@ -30,9 +30,25 @@ def player_profile(request, player_id):
 	date = now.date()
 	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'date': date})
 
+def last_month(request, player_id):
+	num_days=30
+	player = Player.objects.get(id=player_id)
+	url = get_image_url(player.name)
+	stats = calculate_average_stats(player, num_days)
+	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+
 def last_fifteen(request, player_id):
 	num_days=15
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
 	stats = calculate_average_stats(player, num_days)
-	return render(request, 'players/last_fifteen/averages.html', {'player':player, 'image_url': url, 'stats': stats}) 
+	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+
+def last_week(request, player_id):
+	num_days=7
+	player = Player.objects.get(id=player_id)
+	url = get_image_url(player.name)
+	stats = calculate_average_stats(player, num_days)
+	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+
+

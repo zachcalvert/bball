@@ -13,20 +13,22 @@
 	</div>
 
 	<div id="main">
-		<h2>Column 1</h2>
-		{% if image_url %}
-			<img border="1" src={{ image_url }}>
-		{% endif %}
+		{% block photo %}
+			<h2>Column 1</h2>
+			{% if image_url %}
+				<img border="1" src={{ image_url }}>
+			{% endif %}
+		{% endblock %}
 	</div>
 
 	<div id="sidebar">
-		{% block averages %}
 			<ul>
-				<li><a href="#">Season</a></li>
-				<li><a href="#">Last 30</a></li>
-				<li><a href="#">Last 15</a></li>
-				<li><a href="#">Last 7</a></li>	
+				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
+				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
+				<li><a href={% url 'player_last_fifteen' player.id %}>Last 15</a></li>
+				<li><a href={% url 'player_last_week' player.id %}>Last 7</a></li>	
 			</ul>
+		{% block averages %}
 			<table class="season_averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
 				<caption>averages</caption>
 					<tr>

@@ -1,0 +1,60 @@
+{% extends 'players/player_profile.html' %}
+{% load staticfiles stat_filters %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'players/player_profile.css' %}" />
+
+{% block photo %}
+	<h2>Column 1</h2>
+	{% if image_url %}
+		<img border="1" src={{ image_url }}>
+	{% endif %}
+{% endblock %}
+
+{% block averages %}
+	<table class="recent_averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
+		<caption>averages</caption>
+			<tr>
+				<th>MPG</th>
+			    <th>PPG</th>
+			    <th>3PG</th>
+			    <th>APG</th>		
+			    <th>RPG</th>
+			    <th>SPG</th>		
+			    <th>BPG</th>
+			</tr>
+			<tr>
+				<td>{{ stats.minutes }}</td>
+			    <td>{{ stats.points }}</td>
+			    <td>{{ stats.threes }}</td>
+			    <td>{{ stats.assists }}</td>		
+			    <td>{{ stats.rebounds }}</td>
+			    <td>{{ stats.steals }}</td>		
+			    <td>{{ stats.blocks }}</td>
+			</tr>
+	</table>
+{% endblock averages %}
+
+{% block totals %}
+	<table class="recent_totals" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
+		<caption>totals</caption>
+			<tr>
+				<th>Games</th>
+		    	<th>Points</th>
+		    	<th>Threes</th>
+		    	<th>Assists</th>		
+		    	<th>Rebounds</th>
+		    	<th>Steals</th>		
+		    	<th>Blocks</th>
+			</tr>
+			<tr>
+				<td>{{ player.games_played }}</td>
+		    	<td>{{ player.points }}</td>
+		    	<td>{{ player.threes }}</td>
+		    	<td>{{ player.assists }}</td>		
+		    	<td>{{ player.rebounds }}</td>
+		    	<td>{{ player.steals }}</td>		
+		    	<td>{{ player.blocks }}</td>
+			</tr>
+	</table>
+{% endblock totals %}

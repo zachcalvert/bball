@@ -53,6 +53,7 @@ class StatLine(models.Model):
 	tos = models.IntegerField(default=0)
 	pfs = models.IntegerField(default=0)
 	pts = models.IntegerField(default=0)
+	added_to_player = models.BooleanField(default=False)
 
 	def __unicode__(self):
 		return "Box Score for {}".format(self.game)

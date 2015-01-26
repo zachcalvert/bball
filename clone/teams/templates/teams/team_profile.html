@@ -34,7 +34,6 @@
 		</tr>
 
 	{% for player in team.players %}
-		{% with game=player.game_today %} 
 		<tr class="player_row">
 			<td>PG</td>
 			<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a>, {{ player.nba_team}} {{ player.position }}</td>
@@ -54,6 +53,5 @@
 			<td class="player_table_stat">{{ player.topg }}</td>
 			<td class="player_table_stat">{{ player.ppg }}</td>
   		</tr>
-  		{% endwith %}
 	{% endfor %}
 </table>

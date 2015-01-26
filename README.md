@@ -12,7 +12,7 @@ pip install -r pip-requirements.txt
 ./manage.py syncdb
 ./manage.py scrape_players
 ./manage.py get_schedule
-./manage.py generate_boxscore_links
+./manage.py get_tipoffs
 ./manage.py get_boxscores
 ./manage.py populate_stats
 ./manage.py create_teams

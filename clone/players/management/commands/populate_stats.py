@@ -29,7 +29,7 @@ class Command(BaseCommand):
             day = the_day.date()
 
             # get statlines for that day
-            sls = StatLine.objects.filter(game__date=day)
+            sls = StatLine.objects.filter(game__date=day, added_to_player=False)
             for sl in sls:
                 try:
                     player = Player.objects.get(id=sl.player_id)
@@ -51,6 +51,8 @@ class Command(BaseCommand):
                 player.blocks += sl.blks
                 player.turnovers += sl.tos
                 player.save()
+                sl.added_to_player = True
+                sl.save()
                 print("loaded stats for player {0} on {1}".format(player.name, day))
 
             days_to_calculate = days_to_calculate - 1

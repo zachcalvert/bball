@@ -56,6 +56,7 @@ class Migration(migrations.Migration):
                 ('tos', models.IntegerField(default=0)),
                 ('pfs', models.IntegerField(default=0)),
                 ('pts', models.IntegerField(default=0)),
+                ('added_to_player', models.BooleanField(default=False)),
                 ('game', models.ForeignKey(to='schedule.Game')),
                 ('player', models.ForeignKey(to='players.Player')),
             ],

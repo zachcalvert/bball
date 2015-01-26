@@ -23,6 +23,11 @@ class Command(BaseCommand):
 		games = Game.objects.filter(date__lt=today)
 
 		for game in games:
+			# don't add game stats twice
+			sls = StatLine.objects.filter(game_id=game.id)
+			if sls.count() > 0:
+				continue
+
 			url = "{0}{1}".format(ROOT_URL, game.boxscore_link)
 			r = requests.get(url)
 			bs = BeautifulSoup(r.text)

@@ -18,7 +18,7 @@ class Season(models.Model):
 
 class Game(models.Model):
 	date = models.DateField(auto_now=False)
-	tipoff = models.DateTimeField(auto_now=True)
+	tipoff = models.CharField(max_length=8, null=True, blank=True)
 	home_team = models.CharField(u'Home Team', max_length=25, choices=NBA_TEAMS)
 	away_team = models.CharField(u'Away Team', max_length=25, choices=NBA_TEAMS)
 	home_points = models.IntegerField(default=0)

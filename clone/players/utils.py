@@ -3,9 +3,7 @@ from players.models import Player
 from schedule.models import Game
 from django.db.models import Q
 
-
 ROOT_IMAGE_URL = """http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/"""
-
 
 def get_image_url(player_name):
 	name = player_name.replace(' ','_').lower()
@@ -22,6 +20,14 @@ def todays_opponent(player_id):
 				return '@{}'.format(game.home_team)
 			elif game.home_team == player.nba_team:
 				return game.away_team
+
+def todays_game_status(player_id):
+	player = Player.objects.get(id=player_id)
+	now = datetime.now()
+	games = Game.objects.filter(Q(home_team=player.nba_team)| Q(away_team=player.nba_team))
+	for game in games:
+		if game.date == now.date():
+			return game.tipoff
 
 
 def remove_created_teams():

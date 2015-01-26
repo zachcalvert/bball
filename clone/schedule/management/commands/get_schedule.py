@@ -54,7 +54,21 @@ class Command(BaseCommand):
 
 
 			if row.find('td'):
-				game = Game.objects.create(date=date_object, boxscore_link=boxscore_link,
-					away_team=away_team, away_points=away_points, home_team=home_team, 
-					home_points=home_points)
+				game = Game.objects.create(date=date_object,away_team=away_team, 
+					away_points=away_points, home_team=home_team, home_points=home_points)
 				print('Loaded game: {}'.format(game))
+
+		now = datetime.now()
+		today = now.date()
+
+		games = Game.objects.all()
+
+		for game in games:
+			string = game.date.strftime('%m/%d/%Y')
+			year = string[6:]
+			day = string[3:5]
+			month = string[:2]
+			url = "boxscores/{0}{1}{2}0{3}.html".format(year, month, day, game.home_team)
+			game.boxscore_link = url
+			game.save()
+			print("added boxcore_link for game: {}".format(game))

@@ -33,7 +33,7 @@ def todays_game_status(player_id):
 
 def calculate_recent_totals(player, num_days):
 	"""
-	Returns a nested dictiionary with average stats and total stats for the given time period.
+	Returns a dictionary with average stats and total stats for the given time period.
 	"""
 	now = datetime.now()
 	today = now.day
@@ -54,7 +54,8 @@ def calculate_recent_totals(player, num_days):
 			continue
 		if sl:
 			total_stats['games_played'] += 1
-			total_stats['minutes'] += int(sl.mp[:2])
+			minutes = sl.mp[:2].replace(':','')
+			total_stats['minutes'] += int(minutes)
 			total_stats['fgm'] += int(sl.fgm)
 			total_stats['fga'] += int(sl.fga)
 			total_stats['ftm'] += int(sl.ftm)
@@ -75,6 +76,7 @@ def calculate_recent_avgs(total_stats):
 	for k, v in total_stats.items():
 		avg = v/games_played
 		avg_stats[k] = round(avg, 1)
+	total_stats['games_played'] = games_played
 	return avg_stats
 
 

@@ -6,6 +6,13 @@
 
 <h4>Record: {{ team.record }}</h4>
 
+<ul>
+	<li><a href={% url 'team_profile' team.id %}>Season</a></li>
+	<li><a href={% url 'team_last_month' team.id %}>Last 30</a></li>
+	<li><a href={% url 'team_last_fifteen' team.id %}>Last 15</a></li>
+	<li><a href={% url 'team_last_week' team.id %}>Last 7</a></li>	
+</ul>
+
 <table class="team_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
 	<tbody>
 		<tr class="pure-table">
@@ -33,25 +40,26 @@
 			<td class="team_table_stat"><span title="Points">PTS</span></td>
 		</tr>
 
-	{% for player in team.players %}
+	{% for player in avg_stats.iteritems %}
 		<tr class="player_row">
 			<td>PG</td>
-			<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a>, {{ player.nba_team}} {{ player.position }}</td>
+			<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+				{{ player.1.position }}</td>
 			<td>MOVE</td>
-			<td>{{ player.id|get_todays_opponent }}</td>
-			<td>{{ player.id| get_tipoff }}</td>
-			<td class="player_table_stat">{{ player.mpg }}</td>
-			<td class="player_table_stat"><span>{{ player.fgm }}</span>/<span>{{ player.fga }}</span></td>
-			<td class="player_table_stat">{{ player.fgpct }}</td>
-			<td class="player_table_stat"><span>{{ player.ftm }}</span>/<span>{{ player.fta }}</span></td>
-			<td class="player_table_stat">{{ player.ftpct }}</td>
-			<td class="player_table_stat">{{ player.threespg }}</td>
-			<td class="player_table_stat">{{ player.rpg }}</td>
-			<td class="player_table_stat">{{ player.apg }}</td>
-			<td class="player_table_stat">{{ player.spg }}</td>
-			<td class="player_table_stat">{{ player.bpg }}</td>
-			<td class="player_table_stat">{{ player.topg }}</td>
-			<td class="player_table_stat">{{ player.ppg }}</td>
+			<td>{{ player.0|get_todays_opponent }}</td>
+			<td>{{ player.0|get_tipoff }}</td>
+			<td class="player_table_stat">{{ player.1.minutes }}</td>
+			<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
+			<td class="player_table_stat">{{ player.1.fgpct }}</td>
+			<td class="player_table_stat"><span>{{ player.1.ftm }}</span>/<span>{{ player.1.fta }}</span></td>
+			<td class="player_table_stat">{{ player.1.ftpct }}</td>
+			<td class="player_table_stat">{{ player.1.threes }}</td>
+			<td class="player_table_stat">{{ player.1.rebounds }}</td>
+			<td class="player_table_stat">{{ player.1.assists }}</td>
+			<td class="player_table_stat">{{ player.1.steals }}</td>
+			<td class="player_table_stat">{{ player.1.blocks }}</td>
+			<td class="player_table_stat">{{ player.1.turnovers }}</td>
+			<td class="player_table_stat">{{ player.1.points }}</td>
   		</tr>
 	{% endfor %}
 </table>

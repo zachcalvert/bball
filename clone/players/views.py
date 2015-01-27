@@ -8,8 +8,10 @@ from players.models import Player, PlayerTable
 from datetime import datetime, timedelta, date
 from players.utils import get_image_url, calculate_average_stats
 
-now = datetime.now()
-today = now.date()
+today = datetime.today()
+season_start = datetime(2014, 10, 28)
+delta = today - season_start
+days_since_season_start = delta.days
 
 def index(request):
 	return render(request, "teams/index.html")
@@ -17,7 +19,7 @@ def index(request):
 def all_totals(request):
 	table = PlayerTable(Player.objects.all())
 	RequestConfig(request, paginate=False).configure(table)
-	return render(request, "players/all/totals.html", {"table": table})
+	return render(request, "players/all/all_totals.html", {"table": table})
 
 def all_averages(request):
 	players = Player.objects.all()
@@ -26,29 +28,28 @@ def all_averages(request):
 def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)
 	url = get_image_url(player.name)
-	now = datetime.now()
-	date = now.date()
-	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'date': date})
+	stats = calculate_average_stats(player, days_since_season_start)
+	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'stats': stats})
 
 def last_month(request, player_id):
 	num_days=30
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
 	stats = calculate_average_stats(player, num_days)
-	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'stats': stats})
 
 def last_fifteen(request, player_id):
 	num_days=15
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
 	stats = calculate_average_stats(player, num_days)
-	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'stats': stats})
 
 def last_week(request, player_id):
 	num_days=7
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
 	stats = calculate_average_stats(player, num_days)
-	return render(request, 'players/recent/averages.html', {'player':player, 'image_url': url, 'stats': stats})
+	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'stats': stats})
 
 

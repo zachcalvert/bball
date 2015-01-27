@@ -9,7 +9,7 @@ now = datetime.now()
 date = now.date()
 
 def home(request):
-	return render(request, "teams/index.html")
+	return render(request, "teams/site_base.html")
 
 def all_teams(request):
 	teams = Team.objects.all()

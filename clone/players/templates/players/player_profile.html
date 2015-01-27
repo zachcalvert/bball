@@ -1,36 +1,28 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'players/player_profile.css' %}" />
 
-<div id="wrap">
-	<div id="header">
+<link rel="stylesheet" type="text/css" href="{% static "base/base.css" %}"/>
+
+	{% block header %}
+		Fantasy Basketball
+	{% endblock %}
+
+	{% block main-content %}
 		<h3>{{ player.name }}</h3>
-	</div>
-	<div id="nav">
-		<ul>
-			<li><a href={% 'teams:site_home' %}>Fantasy Basketball</a></li>
-			<li><a href={% 'teams:all_teams' %}>League</a></li>
-			<li><a href={% 'teams:team_profile' %}>My Team</a></li>	
-		</ul>
-	</div>
+		{% if image_url %}
+			<img border="1" src={{ image_url }}>
+		{% endif %}
+	{% endblock %}
 
-	<div id="main">
-		{% block photo %}
-			<h2>Column 1</h2>
-			{% if image_url %}
-				<img border="1" src={{ image_url }}>
-			{% endif %}
-		{% endblock %}
-	</div>
-
-	<div id="sidebar">
+	{% block sidebar %}
+		<div id="sidebar-content">
 			<ul>
 				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
 				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
 				<li><a href={% url 'player_last_fifteen' player.id %}>Last 15</a></li>
 				<li><a href={% url 'player_last_week' player.id %}>Last 7</a></li>	
 			</ul>
-		{% block averages %}
-			<table class="season_averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
+			<table class="averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
 				<caption>averages</caption>
 					<tr>
 						<th>MPG</th>
@@ -40,20 +32,20 @@
 					    <th>RPG</th>
 					    <th>SPG</th>		
 					    <th>BPG</th>
+					    <th>TOPG</th>
 					</tr>
 					<tr>
-						<td>{{ player.mpg }}</td>
-					    <td>{{ player.ppg }}</td>
-					    <td>{{ player.threespg }}</td>
-					    <td>{{ player.apg }}</td>		
-					    <td>{{ player.rpg }}</td>
-					    <td>{{ player.spg }}</td>		
-					    <td>{{ player.bpg }}</td>
+						<td>{{ stats.minutes }}</td>
+					    <td>{{ stats.points }}</td>
+					    <td>{{ stats.threes }}</td>
+					    <td>{{ stats.assists }}</td>		
+					    <td>{{ stats.rebounds }}</td>
+					    <td>{{ stats.steals }}</td>		
+					    <td>{{ stats.blocks }}</td>
+					    <td>{{ stats.turnovers }}</td>
 					</tr>
 			</table>
-		{% endblock averages %}
-		<br><br>
-		{% block totals %}
+
 			<table class="season_totals" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
 				<caption>totals</caption>
 					<tr>
@@ -75,11 +67,7 @@
 				    	<td>{{ player.blocks }}</td>
 					</tr>
 			</table>
-		{% endblock totals %}
-
-	</div>
-	<div id="footer">
-		<p>Footer</p>
-	</div>
-</div>
+		</div>
+		<!-- end stat tables -->
+	{% endblock %}
 

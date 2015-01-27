@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<head>
+	<title> 
+        {% block page_title %} 
+            Fantasy Basketball
+        {% endblock %}
+    </title>
+	<link rel="stylesheet" type="text/css" href="{% static "base/base.css" %}"/>
+</head>
+
+<body>
+	{% block header %}
+        <div id="header">
+            <div id="main-logo">
+                <a href="{% url 'site_home' %}">
+                    <img src="" alt="Fantasy Basketball Home" />
+                </a>
+            </div>
+        </div>
+    	<!-- end header -->
+	{% endblock %}
+
+    {% block navigation %}
+		<div id="navigation">
+			<ul>
+				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
+				<li><a href={% url 'all_teams' %}>League Home</a></li>
+			</ul>
+		</div>
+		<!-- end navigation -->
+	{% endblock %}
+
+	{% block main-content %}
+		<div id="main-content">
+			{% block page-content %}
+				<div id="page-content">
+					{% block inner-page-content %}Main Content{% endblock %}
+				</div>
+			{% endblock %}
+		</div>
+	{% endblock %}	
+
+	{% block sidebar %}
+		<div id="sidebar-content">
+			<p>test testerson</p>
+		</div>
+	{% endblock %}
+
+	{% block footer %}
+        <div id="footer">
+            <div id="footer-inner">
+
+                <div class="footer-block">
+                    <h3>Support</h3>
+                    <ul role="navigation">
+                        <li><a href="/faq/">FAQ</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="{% url 'contact_form'">Contact the Developer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <h3>Account</h3>
+                    <ul role="navigation">
+                        <li><a href="{% url 'manage_account'">My Account</a></li>
+                        <li><a href="{% url 'redeem_code'">Redeem code</a></li>
+                        <li><a href="/privacy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <h3>Inspirations</h3>
+                    <ul>
+                        <li><a href="http://games.espn.go.com/frontpage/basketball">ESPN Fantasy Basketball</a></li>
+						<li><a href="http://basketball.fantasysports.yahoo.com/">Yahoo Fantasy Basketball</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end #footer-inner -->
+        </div>
+        <!-- end #footer -->
+    {% endblock %}
+</body>

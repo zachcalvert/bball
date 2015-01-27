@@ -42,6 +42,8 @@ def calculate_recent_avgs(team_stats):
 					team_averages[k]['name'] = v.get('name')
 					team_averages[k]['nba_team'] = v.get('nba_team')
 					team_averages[k]['position'] = v.get('position')
+					team_averages[k]['fgpct'] = round((v.get('fgm')/v.get('fga')), 3)
+					team_averages[k]['ftpct'] = round((v.get('ftm')/v.get('fta')), 3)
 				v['games_played'] = games_played
 
 	return team_averages

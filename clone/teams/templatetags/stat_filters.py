@@ -22,3 +22,8 @@ def get_tipoff(value):
 	else:
 		return ''
 
+@register.filter(name='format_pct')
+def format_pct(value):
+	retval = str(value)
+	retval = retval.replace('0','')
+	return retval

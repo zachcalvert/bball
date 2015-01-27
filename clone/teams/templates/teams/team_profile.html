@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block main-content %}
-	<ul>
+	<ul class="stat_filter_links">
 		<li><a href={% url 'team_profile' team.id %}>Season</a></li>
 		<li><a href={% url 'team_last_month' team.id %}>Last 30</a></li>
 		<li><a href={% url 'team_last_fifteen' team.id %}>Last 15</a></li>
@@ -54,9 +54,9 @@
 				<td>{{ player.0|get_tipoff }}</td>
 				<td class="player_table_stat">{{ player.1.minutes }}</td>
 				<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
-				<td class="player_table_stat">{{ player.1.fgpct }}</td>
+				<td class="player_table_stat">{{ player.1.fgpct|format_pct }}</td>
 				<td class="player_table_stat"><span>{{ player.1.ftm }}</span>/<span>{{ player.1.fta }}</span></td>
-				<td class="player_table_stat">{{ player.1.ftpct }}</td>
+				<td class="player_table_stat">{{ player.1.ftpct|format_pct }}</td>
 				<td class="player_table_stat">{{ player.1.threes }}</td>
 				<td class="player_table_stat">{{ player.1.rebounds }}</td>
 				<td class="player_table_stat">{{ player.1.assists }}</td>

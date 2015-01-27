@@ -30,10 +30,13 @@ html {
 	margin:0;
 	padding:20px;
 }
-#main {
+#main-content {
 	float:left;
 	width:40%;
 	background:#9c9;
+}
+#main-content img {
+	padding-left: 10px;
 }
 #sidebar {
 	float:right;

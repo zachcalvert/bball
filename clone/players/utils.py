@@ -31,15 +31,18 @@ def todays_game_status(player_id):
 			return game.tipoff
 
 
-def calculate_average_stats(player, num_days):
-
+def calculate_recent_totals(player, num_days):
+	"""
+	Returns a nested dictiionary with average stats and total stats for the given time period.
+	"""
 	now = datetime.now()
 	today = now.day
 	then = now - timedelta(days=num_days)
 	that_day = then.date()
 
 	games_played = 0
-	stats = {"minutes": 0, "fgm": 0, "fga": 0, "ftm": 0, "fta": 0, "threes": 0, "rebounds": 0, "assists": 0, "steals": 0, "blocks": 0, "turnovers": 0, "points": 0} 
+	total_stats = {"games_played": 0, "minutes": 0, "fgm": 0, "fga": 0, "ftm": 0, "fta": 0, 
+		"threes": 0, "rebounds": 0, "assists": 0, "steals": 0, "blocks": 0, "turnovers": 0, "points": 0} 
 
 	games = Game.objects.filter(Q(home_team=player.nba_team)| Q(away_team=player.nba_team))
 	games = games.filter(date__gte=that_day)
@@ -50,25 +53,29 @@ def calculate_average_stats(player, num_days):
 		except StatLine.DoesNotExist:
 			continue
 		if sl:
-			games_played += 1
-			stats['minutes'] += int(sl.mp[:2])
-			stats['fgm'] += int(sl.fgm)
-			stats['fga'] += int(sl.fga)
-			stats['ftm'] += int(sl.ftm)
-			stats['fta'] += int(sl.fta)
-			stats['threes'] += int(sl.threesm)
-			stats['rebounds'] += int(sl.trbs)
-			stats['assists'] += int(sl.asts)
-			stats['steals'] += int(sl.stls)
-			stats['blocks'] += int(sl.blks)
-			stats['turnovers'] += int(sl.tos)
-			stats['points'] += int(sl.pts)
+			total_stats['games_played'] += 1
+			total_stats['minutes'] += int(sl.mp[:2])
+			total_stats['fgm'] += int(sl.fgm)
+			total_stats['fga'] += int(sl.fga)
+			total_stats['ftm'] += int(sl.ftm)
+			total_stats['fta'] += int(sl.fta)
+			total_stats['threes'] += int(sl.threesm)
+			total_stats['rebounds'] += int(sl.trbs)
+			total_stats['assists'] += int(sl.asts)
+			total_stats['steals'] += int(sl.stls)
+			total_stats['blocks'] += int(sl.blks)
+			total_stats['turnovers'] += int(sl.tos)
+			total_stats['points'] += int(sl.pts)
 
-	for k, v in stats.items():
+	return total_stats
+
+def calculate_recent_avgs(total_stats):
+	games_played = total_stats.pop('games_played')
+	avg_stats = {}
+	for k, v in total_stats.items():
 		avg = v/games_played
-		stats[k] = round(avg, 1)
-
-	return stats
+		avg_stats[k] = round(avg, 1)
+	return avg_stats
 
 
 def remove_created_teams():

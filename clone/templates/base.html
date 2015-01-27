@@ -38,44 +38,42 @@
 				</div>
 			{% endblock %}
 		</div>
+        <!-- end main-content -->
 	{% endblock %}	
 
 	{% block sidebar %}
 		<div id="sidebar-content">
 			<p>test testerson</p>
 		</div>
+        <!-- end sidebar -->
 	{% endblock %}
 
 	{% block footer %}
         <div id="footer">
-            <div id="footer-inner">
-
-                <div class="footer-block">
-                    <h3>Support</h3>
-                    <ul role="navigation">
-                        <li><a href="/faq/">FAQ</a></li>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="{% url 'contact_form'">Contact the Developer</a></li>
-                    </ul>
-                </div>
-                <div class="footer-block">
-                    <h3>Account</h3>
-                    <ul role="navigation">
-                        <li><a href="{% url 'manage_account'">My Account</a></li>
-                        <li><a href="{% url 'redeem_code'">Redeem code</a></li>
-                        <li><a href="/privacy/">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service/">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-block">
-                    <h3>Inspirations</h3>
-                    <ul>
-                        <li><a href="http://games.espn.go.com/frontpage/basketball">ESPN Fantasy Basketball</a></li>
-						<li><a href="http://basketball.fantasysports.yahoo.com/">Yahoo Fantasy Basketball</a></li>
-                    </ul>
-                </div>
+            <div class="footer-block">
+                <h3>Support</h3>
+                <ul role="navigation">
+                    <li><a href="/faq/">FAQ</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="{% url 'contact_form'">Contact the Developer</a></li>
+                </ul>
             </div>
-            <!-- end #footer-inner -->
+            <div class="footer-block">
+                <h3>Account</h3>
+                <ul role="navigation">
+                    <li><a href="{% url 'manage_account'">My Account</a></li>
+                    <li><a href="{% url 'redeem_code'">Redeem code</a></li>
+                    <li><a href="/privacy/">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <h3>Inspirations</h3>
+                <ul>
+                    <li><a href="http://games.espn.go.com/frontpage/basketball">ESPN Fantasy Basketball</a></li>
+					<li><a href="http://basketball.fantasysports.yahoo.com/">Yahoo Fantasy Basketball</a></li>
+                </ul>
+            </div>
         </div>
         <!-- end #footer -->
     {% endblock %}

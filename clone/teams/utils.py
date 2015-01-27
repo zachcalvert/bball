@@ -2,7 +2,6 @@ from __future__ import division
 from datetime import datetime, timedelta
 from players.models import Player
 from schedule.models import Game, StatLine
-from pprint import pprint
 
 from players import utils
 
@@ -20,10 +19,7 @@ def calculate_recent_totals(team, num_days):
 		player_stats['position'] = player.position
 		team_stats[player.id] = player_stats
 
-	print(team_stats)
-
 	return team_stats
-
 
 def calculate_recent_avgs(team_stats):
 	team_averages = {}
@@ -34,6 +30,10 @@ def calculate_recent_avgs(team_stats):
 				games_played = v.pop('games_played')
 			except KeyError:
 				continue
+			if games_played == 0:
+				team_averages[k]['name'] = v.get('name')
+				team_averages[k]['nba_team'] = v.get('nba_team')
+				team_averages[k]['position'] = v.get('position')
 			if games_played > 0:
 				for key, value in v.iteritems():
 					if key not in IGNORE_KEYS:
@@ -43,7 +43,5 @@ def calculate_recent_avgs(team_stats):
 					team_averages[k]['nba_team'] = v.get('nba_team')
 					team_averages[k]['position'] = v.get('position')
 				v['games_played'] = games_played
-
-	# print(team_averages)
 
 	return team_averages

@@ -74,7 +74,10 @@ def calculate_recent_avgs(total_stats):
 	games_played = total_stats.pop('games_played')
 	avg_stats = {}
 	for k, v in total_stats.items():
-		avg = v/games_played
+		if games_played == 0:
+			avg = 0
+		else:
+			avg = v/games_played
 		avg_stats[k] = round(avg, 1)
 	total_stats['games_played'] = games_played
 	return avg_stats

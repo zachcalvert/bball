@@ -26,4 +26,6 @@ def get_tipoff(value):
 def format_pct(value):
 	retval = str(value)
 	retval = retval.replace('0','')
+	while len(retval) < 4:
+		retval += '0'
 	return retval

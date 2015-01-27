@@ -1,8 +1,14 @@
 from __future__ import division
 from django.db import models
 import django_tables2 as tables
+from datetime import datetime, date
 
 from players.models import Player
+
+ROSTER_SPOTS = (
+	('PG', 1),('SG', 2),('SF', 3), ('PF', 4), ('C', 5),('G', 6),('F', 7),
+	('UTIL', 8), ('UTIL', 9), ('UTIL', 10), ('BN', 11), ('BN', 12), ('BN', 13),
+)
 
 class Team(models.Model):
 	name = models.CharField(max_length=30, unique=True)
@@ -112,5 +118,18 @@ class Team(models.Model):
 		ftpct = self.ftm/self.fta
 		return round(ftpct, 4) * 100
 
+class LineUp(models.Model):
+	team = models.ForeignKey(Team)
+	date = models.DateField(default=datetime.today())
+	positions = models.ManyToManyField('players.Player', through=SpotInLineup)
+
+	# @property
+	# def roster(self):
+	# 	return 
+
+class SpotInLineup(models.Model):
+	game = models.ForeignKey(Game, db_index=True)
+	player = models.ForeignKey('players.Player', db_index=True)
+	position = models.CharField(u'position', max_length=12, choices=ROSTER_SPOTS)
 
 

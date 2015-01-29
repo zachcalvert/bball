@@ -18,31 +18,22 @@ th {
 tr {
 	text-align: center;
 }
-tr.even {
-	background-color: #efefef;}
 
-#main-content {
+#main-content-table {
 	padding:5px 10px;
 	background:#c99;
 	float:left;
-	width:40%;
-	background:#9c9;
+	width:100%;
+	background:#fff;
 }
-.stat_filter_links ul {
+#main-content-table ul {
 	margin:0;
-	padding:0;
+	padding-top:20px;
 	list-style:none;
+	text-align: center;
 }
-#main-content li {
+#main-content-table li {
 	display:inline;
 	margin:0;
 	padding:20px;
 }
-/*#main-content {
-	float:left;
-	width:40%;
-	background:#9c9;
-}
-#main-content img {
-	padding-left: 10px;
-}*/

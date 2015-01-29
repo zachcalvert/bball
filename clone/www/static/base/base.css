@@ -26,7 +26,7 @@ html {
 }
 #main-content {
 	float:left;
-	width:40%;
+	width:50%;
 	background:#9c9;
 }
 #main-content h3 {
@@ -47,10 +47,18 @@ html {
 	margin:0;
 	padding:20px;
 }
+#main-content table {
+	width:90%;
+	text-align: center;
+}
 #sidebar-content {
 	float:right;
-	width:60%;
+	width:50%;
 	background:#99c;
+}
+#sidebar-content table {
+	width:90%;
+	text-align: center;
 }
 #sidebar-content ul {
 	margin:0;
@@ -91,7 +99,12 @@ html {
     font-size: 12px;
     line-height: 19px;
 }
-
+textarea {
+	float:right;
+	margin-right:7%;
+	resize: none;
+	overflow-y: scroll;
+}
 table {
 	width: 95%;
 	border-collapse: collapse;

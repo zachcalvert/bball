@@ -12,10 +12,11 @@
 
 	{% block main-content %}
 	<div id="main-content">
-		<h3>{{ player.name }} {{ player.nba_team }} - {{ player.position }}</h3>
+		<h3>{{ player.name }} ({{ player.nba_team }} - {{ player.position }})</h3>
 		{% if image_url %}
 			<img border="1" src={{ image_url }}>
 		{% endif %}
+		<textarea disabled rows="14" cols="35">Player notes here.</textarea>
 			<ul>
 				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
 				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
@@ -74,7 +75,7 @@
 	{% block sidebar %}
 		<div id="sidebar-content">
 			{% block recent_games %}
-			<table class="player_recent_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_0" align="left">
+			<table class="player_recent_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_0" align="center">
 				<caption>Recent Games</caption>
 					<tr>
 						<th>Date</th>

@@ -9,19 +9,23 @@
 
 <h3>All Teams</h3>
 <table id="all_teams" class="tablesorter">
-	<th>Name</th>
-	<th>Record</th>
-	<th>FG%</th>
-	<th>FT%</th>
-	<th>Threes</th>
-	<th>Points</th>
-	<th>Rebounds</th>
-	<th>Assists</th>
-	<th>Steals</th>
-	<th>Blocks</th>
-	<th>Turnovers</th>
-
-	{% for team in teams %}
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Record</th>
+			<th>FG%</th>
+			<th>FT%</th>
+			<th>Threes</th>
+			<th>Points</th>
+			<th>Rebounds</th>
+			<th>Assists</th>
+			<th>Steals</th>
+			<th>Blocks</th>
+			<th>Turnovers</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for team in teams %}
 		<tr>
 			<td><a href="{% url 'team_profile' team.id %}">{{ team.name }}</a></td>
 			<td>{{ team.record }}</td>
@@ -36,6 +40,7 @@
 			<td>{{ team.turnovers }}</td>
   		</tr>
 	{% endfor %}
+	</tbody>
 </table>
 
 

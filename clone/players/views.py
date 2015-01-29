@@ -23,7 +23,7 @@ def all_totals(request):
 
 def all_averages(request):
 	players = Player.objects.all()
-	return render(request, "players/all/all_averages.html", {"players": players})
+	return render(request, "players/all/all_averages.html", {"today": today, "players": players})
 
 def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)

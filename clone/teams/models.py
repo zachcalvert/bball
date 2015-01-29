@@ -30,6 +30,10 @@ class Team(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	@property 
+	def todays_lineup(self):
+		return LineUp.objects.get(team=self, date=datetime.today())
+
 
 	@property
 	def points(self):
@@ -121,14 +125,14 @@ class Team(models.Model):
 class LineUp(models.Model):
 	team = models.ForeignKey(Team)
 	date = models.DateField(default=datetime.today())
-	positions = models.ManyToManyField('players.Player', through=SpotInLineup)
+	positions = models.ManyToManyField('players.Player', through="SpotInLineup")
 
 	# @property
 	# def roster(self):
 	# 	return 
 
 class SpotInLineup(models.Model):
-	game = models.ForeignKey(Game, db_index=True)
+	lineup = models.ForeignKey(LineUp)
 	player = models.ForeignKey('players.Player', db_index=True)
 	position = models.CharField(u'position', max_length=12, choices=ROSTER_SPOTS)
 

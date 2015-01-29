@@ -30,18 +30,19 @@ def calculate_recent_avgs(team_stats):
 				games_played = v.pop('games_played')
 			except KeyError:
 				continue
-			if games_played == 0:
-				team_averages[k]['name'] = v.get('name')
-				team_averages[k]['nba_team'] = v.get('nba_team')
-				team_averages[k]['position'] = v.get('position')
+			team_averages[k]['name'] = v.get('name')
+			team_averages[k]['nba_team'] = v.get('nba_team')
+			team_averages[k]['position'] = v.get('position')
+			# still need these fields even if 
+			# if games_played == 0:
+			# 	team_averages[k]['name'] = v.get('name')
+			# 	team_averages[k]['nba_team'] = v.get('nba_team')
+			# 	team_averages[k]['position'] = v.get('position')
 			if games_played > 0:
 				for key, value in v.iteritems():
 					if key not in IGNORE_KEYS:
 						avg = value/games_played
 						team_averages[k][key] = round(avg, 1)
-					team_averages[k]['name'] = v.get('name')
-					team_averages[k]['nba_team'] = v.get('nba_team')
-					team_averages[k]['position'] = v.get('position')
 					team_averages[k]['fgpct'] = round((v.get('fgm')/v.get('fga')), 3)
 					team_averages[k]['ftpct'] = round((v.get('ftm')/v.get('fta')), 3)
 				v['games_played'] = games_played

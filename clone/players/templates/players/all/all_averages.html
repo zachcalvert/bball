@@ -1,16 +1,23 @@
 {% load staticfiles %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'players/player_profile.css' %}" />
+<head>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
+</head>
 
 <h3>Season averages</h3>
-<table>
-	<th>Name</th>
-	<th>MPG</th>
-	<th>PPG</th>
-	<th>APG</th>
-	<th>RPG</th>
-	<th>SPG</th>
-	<th>BPG</th>
+<table id="averages_table" class="tablesorter">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>MPG</th>
+			<th>Points</th>
+			<th>Assists</th>
+			<th>Rebounds</th>
+			<th>Steals</th>
+			<th>Blocks</th>
+		</tr>
+	</thead>
+	<tbody>
 	{% for player in players %}
 		<tr>
 			<td>{{ player.name }}</td>
@@ -21,5 +28,16 @@
 		    <td>{{ player.spg }}</td>		
 		    <td>{{ player.bpg }}</td>
   		</tr>
-	{% endfor %}
+  	{% endfor %}
+  	</tbody>
 </table>
+
+<script>
+	$(document).ready(function() 
+	    { 
+	        $("#averages_table").tablesorter(); 
+	    } 
+	); 
+    
+ // {sortList: [3,0]]} 
+</script>

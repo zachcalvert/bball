@@ -29,6 +29,24 @@ html {
 	width:40%;
 	background:#9c9;
 }
+#main-content h3 {
+	margin-left:20px;
+}
+#main-content img {
+	margin-left:20px;
+	background:#fff;
+}
+#main-content ul {
+	margin:0;
+	padding-top:20px;
+	list-style:none;
+	text-align: center;
+}
+#main-content li {
+	display:inline;
+	margin:0;
+	padding:20px;
+}
 #sidebar-content {
 	float:right;
 	width:60%;

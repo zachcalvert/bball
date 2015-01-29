@@ -1,52 +1,21 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load stat_filters %}
 
-<link rel="stylesheet" type="text/css" href="{% static "base/playerprofile.css" %}"/>
+<link rel="stylesheet" type="text/css" href="{% static "base/base.css" %}"/>
 
 	{% block header %}
+	<div id="header">
 		Fantasy Basketball
+	</div>
 	{% endblock %}
 
 	{% block main-content %}
-		<h3>{{ player.name }}</h3>
+	<div id="main-content">
+		<h3>{{ player.name }} {{ player.nba_team }} - {{ player.position }}</h3>
 		{% if image_url %}
 			<img border="1" src={{ image_url }}>
 		{% endif %}
-		{% block recent_games %}
-			<table class="averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
-				<caption>Recent Games</caption>
-					<tr>
-						<th>Date</th>
-					    <th>Opponent</th>
-					    <th class="team_table_stat"><span title="Minutes">MIN</span></td>
-						<th class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
-						<th class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
-						<th class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
-						<th class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
-						<th class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
-						<th class="team_table_stat"><span title="Rebounds">REB</span></td>
-						<th class="team_table_stat"><span title="Assists">AST</span></td>
-						<th class="team_table_stat"><span title="Steals">STL</span></td>
-						<th class="team_table_stat"><span title="Blocks">BLK</span></td>
-						<th class="team_table_stat"><span title="Turnovers">TO</span></td>
-						<th class="team_table_stat"><span title="Points">PTS</span></td>
-					</tr>
-					<tr>
-						<td>{{ avg_stats.minutes }}</td>
-					    <td>{{ avg_stats.points }}</td>
-					    <td>{{ avg_stats.threes }}</td>
-					    <td>{{ avg_stats.assists }}</td>		
-					    <td>{{ avg_stats.rebounds }}</td>
-					    <td>{{ avg_stats.steals }}</td>		
-					    <td>{{ avg_stats.blocks }}</td>
-					    <td>{{ avg_stats.turnovers }}</td>
-					</tr>
-			</table>
-		{% endblock %}
-	{% endblock %}
-
-	{% block sidebar %}
-		<div id="sidebar-content">
 			<ul>
 				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
 				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
@@ -98,6 +67,52 @@
 				    	<td>{{ total_stats.blocks }}</td>
 					</tr>
 			</table>
+
+	</div>
+	{% endblock %}
+
+	{% block sidebar %}
+		<div id="sidebar-content">
+			{% block recent_games %}
+			<table class="player_recent_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_0" align="left">
+				<caption>Recent Games</caption>
+					<tr>
+						<th>Date</th>
+					    <th>Game</th>
+					    <th class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<th class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<th class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<th class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<th class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<th class="team_table_stat"><span title="Assists">AST</span></td>
+						<th class="team_table_stat"><span title="Steals">STL</span></td>
+						<th class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<th class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<th class="team_table_stat"><span title="Points">PTS</span></td>
+					</tr>
+					{% for statline in player.recent_statlines %}
+						<tr>
+							<td>{{ statline.game.date }}</td>
+						    <td>{% if statline.game.away_team == player.nba_team%}
+						    		@{{ statline.game.home_team }}
+						    	{% else %}
+						    		{{ statline.game.away_team }}
+						    	{% endif %}
+						    </td>
+						    <td>{{ statline.mp }}</td>
+							<td><span>{{ statline.fgm }}</span>/<span>{{ statline.fga }}</span></td>
+							<td><span>{{ statline.ftm }}</span>/<span>{{ statline.fta }}</span></td>
+						    <td>{{ statline.threesm }}</td>		
+						    <td>{{ statline.trbs }}</td>
+						    <td>{{ statline.asts }}</td>
+						    <td>{{ statline.stls }}</td>		
+						    <td>{{ statline.blks }}</td>
+						    <td>{{ statline.tos }}</td>
+						    <td>{{ statline.pts }}</td>
+						</tr>
+					{% endfor %}
+			</table>
+		{% endblock %}
 		</div>
 		<!-- end stat tables -->
 	{% endblock %}

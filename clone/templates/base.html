@@ -25,6 +25,7 @@
 			<ul>
 				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
 				<li><a href={% url 'all_teams' %}>League Home</a></li>
+                <li><a href={% url 'all_averages' %}>Players</a></li>
 			</ul>
 		</div>
 		<!-- end navigation -->
@@ -50,7 +51,7 @@
 
 	{% block footer %}
         <div id="footer">
-            <div class="footer-block">
+            <div id="footer-block" class="footer-block">
                 <h3>Support</h3>
                 <ul role="navigation">
                     <li><a href="/faq/">FAQ</a></li>
@@ -58,7 +59,7 @@
                     <li><a href="{% url 'contact_form'">Contact the Developer</a></li>
                 </ul>
             </div>
-            <div class="footer-block">
+            <div id="footer-block" class="footer-block">
                 <h3>Account</h3>
                 <ul role="navigation">
                     <li><a href="{% url 'manage_account'">My Account</a></li>
@@ -67,7 +68,7 @@
                     <li><a href="/terms-of-service/">Terms of Service</a></li>
                 </ul>
             </div>
-            <div class="footer-block">
+            <div id="footer-block" class="footer-block">
                 <h3>Inspirations</h3>
                 <ul>
                     <li><a href="http://games.espn.go.com/frontpage/basketball">ESPN Fantasy Basketball</a></li>

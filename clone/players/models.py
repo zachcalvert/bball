@@ -2,9 +2,9 @@ from __future__ import division
 from django.db import models
 import django_tables2 as tables
 from django.db.models import Q
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from schedule.models import Game, NBA_TEAMS
+from schedule.models import Game, StatLine, NBA_TEAMS
 
 POSITIONS = (
 	('PG', 'Point Guard'),
@@ -38,6 +38,14 @@ class Player(models.Model):
 	steals = models.IntegerField(default = 0)
 	blocks = models.IntegerField(default = 0)
 	turnovers = models.IntegerField(default = 0)
+
+	@property
+	def recent_statlines(self):
+		now = datetime.now()
+		today = now.date()
+		delta = timedelta(days=10)
+		timespan = today - delta
+		return StatLine.objects.filter(player_id=self.id, game__date__gte=timespan)
 
 	@property
 	def ppg(self):

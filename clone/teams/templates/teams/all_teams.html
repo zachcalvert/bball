@@ -1,9 +1,14 @@
 {% load staticfiles %}
+<head>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
+</head>
+
 
 <link rel="stylesheet" type="text/css" href="{% static 'base/allteams.css' %}" />
 
 <h3>All Teams</h3>
-<table>
+<table id="all_teams" class="tablesorter">
 	<th>Name</th>
 	<th>Record</th>
 	<th>FG%</th>
@@ -32,3 +37,12 @@
   		</tr>
 	{% endfor %}
 </table>
+
+
+<script>
+	$(document).ready(function() 
+	    { 
+	        $("#all_teams").tablesorter(); 
+	} ); 
+
+</script>

@@ -16,7 +16,7 @@
 		{% if image_url %}
 			<img border="1" src={{ image_url }}>
 		{% endif %}
-		<textarea disabled rows="14" cols="35">Player notes here.</textarea>
+		<textarea disabled>{{ player.recent_notes }}</textarea>
 			<ul>
 				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
 				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
@@ -57,6 +57,7 @@
 				    	<th>Rebounds</th>
 				    	<th>Steals</th>		
 				    	<th>Blocks</th>
+				    	<th>Turnovers</th>
 					</tr>
 					<tr>
 						<td>{{ total_stats.games_played }}</td>
@@ -66,6 +67,7 @@
 				    	<td>{{ total_stats.rebounds }}</td>
 				    	<td>{{ total_stats.steals }}</td>		
 				    	<td>{{ total_stats.blocks }}</td>
+				    	<td>{{ total_stats.turnovers }}</td>
 					</tr>
 			</table>
 

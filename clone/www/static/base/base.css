@@ -5,7 +5,13 @@ html {
 	color:#000;
 	background:#D8D8D8;
 }
-
+#grad1 {
+    height: 300px;
+    background: -webkit-linear-gradient(orange, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(orange, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(orange, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(orange, white); /* Standard syntax (must be last) */
+}
 #header {
 	padding:5px 10px;
 	background:#ddd;
@@ -35,6 +41,7 @@ html {
 #main-content img {
 	margin-left:20px;
 	background:#fff;
+	width: 35%;
 }
 #main-content ul {
 	margin:0;
@@ -99,11 +106,13 @@ html {
     font-size: 12px;
     line-height: 19px;
 }
-textarea {
+#main-content textarea {
 	float:right;
 	margin-right:7%;
 	resize: none;
 	overflow-y: scroll;
+	width: 50%;
+	height: 50%;
 }
 table {
 	width: 95%;

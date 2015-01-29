@@ -18,13 +18,13 @@ class Player(models.Model):
 	"""
 	A simple model describing an NBA player that may be on one Team.
 	"""
-	#attributes
+	# attributes
 	name = models.CharField(max_length=35)
 	team = models.ForeignKey('teams.Team', null=True, blank=True)
 	position = models.CharField(u'Position', choices=POSITIONS, default='PG', max_length=15)
 	nba_team = models.CharField(u'NBA Team', choices=NBA_TEAMS, default='FA', max_length=25)
 
-	#stats
+	# stats
 	games_played = models.IntegerField(default=0)
 	minutes = models.IntegerField(default=0)
 	fgm = models.IntegerField(default=0)
@@ -38,6 +38,9 @@ class Player(models.Model):
 	steals = models.IntegerField(default = 0)
 	blocks = models.IntegerField(default = 0)
 	turnovers = models.IntegerField(default = 0)
+
+	# notes
+	recent_notes = models.CharField(max_length=500, default='No recent notes.')
 
 	@property
 	def recent_statlines(self):

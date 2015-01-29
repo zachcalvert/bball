@@ -14,7 +14,7 @@ delta = today - season_start
 days_since_season_start = delta.days
 
 def index(request):
-	return render(request, "teams/index.html")
+	return render(request, "players/index.html")
 
 def all_totals(request):
 	table = PlayerTable(Player.objects.all())

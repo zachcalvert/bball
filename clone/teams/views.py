@@ -46,5 +46,4 @@ def team_last_week(request, team_id):
 	total_stats = calculate_recent_totals(team, num_days)
 	avg_stats = calculate_recent_avgs(total_stats)
 	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'avg_stats': avg_stats, 'date': date})
-
-
+	

@@ -14,6 +14,7 @@ def calculate_recent_totals(team, num_days):
 	team_stats = {}
 	for player in team.players:
 		player_stats = utils.calculate_recent_totals(player, num_days)
+		# we need to render these 'non-stat' attributes 
 		player_stats['name'] = player.name
 		player_stats['nba_team'] = player.nba_team
 		player_stats['position'] = player.position
@@ -33,11 +34,7 @@ def calculate_recent_avgs(team_stats):
 			team_averages[k]['name'] = v.get('name')
 			team_averages[k]['nba_team'] = v.get('nba_team')
 			team_averages[k]['position'] = v.get('position')
-			# still need these fields even if 
-			# if games_played == 0:
-			# 	team_averages[k]['name'] = v.get('name')
-			# 	team_averages[k]['nba_team'] = v.get('nba_team')
-			# 	team_averages[k]['position'] = v.get('position')
+
 			if games_played > 0:
 				for key, value in v.iteritems():
 					if key not in IGNORE_KEYS:

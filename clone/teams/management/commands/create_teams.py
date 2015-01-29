@@ -10,8 +10,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     """
-    Scrapes the rotoworld player page to import current NBA players into the app.
-    TODO: does not pull in the team they play for currently
+    Create some mock fantasy teams to aid with development
     """
     def handle(self, *args, **options):
     	team1 = Team.objects.create(name='Stairway to Kevin', wins=73, losses=35)

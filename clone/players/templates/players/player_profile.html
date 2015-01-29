@@ -12,6 +12,37 @@
 		{% if image_url %}
 			<img border="1" src={{ image_url }}>
 		{% endif %}
+		{% block recent_games %}
+			<table class="averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
+				<caption>Recent Games</caption>
+					<tr>
+						<th>Date</th>
+					    <th>Opponent</th>
+					    <th class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<th class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<th class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+						<th class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<th class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+						<th class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<th class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<th class="team_table_stat"><span title="Assists">AST</span></td>
+						<th class="team_table_stat"><span title="Steals">STL</span></td>
+						<th class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<th class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<th class="team_table_stat"><span title="Points">PTS</span></td>
+					</tr>
+					<tr>
+						<td>{{ avg_stats.minutes }}</td>
+					    <td>{{ avg_stats.points }}</td>
+					    <td>{{ avg_stats.threes }}</td>
+					    <td>{{ avg_stats.assists }}</td>		
+					    <td>{{ avg_stats.rebounds }}</td>
+					    <td>{{ avg_stats.steals }}</td>		
+					    <td>{{ avg_stats.blocks }}</td>
+					    <td>{{ avg_stats.turnovers }}</td>
+					</tr>
+			</table>
+		{% endblock %}
 	{% endblock %}
 
 	{% block sidebar %}

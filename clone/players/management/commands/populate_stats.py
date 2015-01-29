@@ -16,6 +16,10 @@ class Command(BaseCommand):
     Retrieves stats from the previous day. Runs daily at 2:00am PST.
     """
     def handle(self, *args, **options):
+        StatLine.objects.filter(mp=240).delete()
+        StatLine.objects.filter(mp=265).delete()
+        StatLine.objects.filter(mp=290).delete()
+        StatLine.objects.filter(mp=315).delete()
 
     	# calculate days since start of season
     	today = datetime.today()

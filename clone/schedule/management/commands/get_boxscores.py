@@ -32,10 +32,16 @@ class Command(BaseCommand):
 			r = requests.get(url)
 			bs = BeautifulSoup(r.text)
 			away_table = bs.find(lambda tag: tag.name=='table' and tag.has_attr('id') and tag['id']=="{}_basic".format(game.away_team))
-			away_rows = away_table.findAll(lambda tag: tag.name=='tr')
+			try:
+				away_rows = away_table.findAll(lambda tag: tag.name=='tr')
+			except Exception:
+				continue
 
 			for row in away_rows:
-				cells = row.findAll('td')
+				try:
+					cells = row.findAll('td')
+				except Exception:
+					continue
 				i = 0
 				for cell in cells:
 					if i == 0:
@@ -43,8 +49,7 @@ class Command(BaseCommand):
 						try:
 							player = Player.objects.get(name=player_name)
 						except Player.DoesNotExist:
-							print("could not find player: {}".format(player_name))
-							continue
+							player=Player.objects.create(name=player_name)
 						if player.nba_team == 'FA':
 							player.nba_team = game.away_team
 							player.save()
@@ -106,10 +111,16 @@ class Command(BaseCommand):
 						print('Loaded statline for {0} in game {1}'.format(player.name, game))
 
 			home_table = bs.find(lambda tag: tag.name=='table' and tag.has_attr('id') and tag['id']=="{}_basic".format(game.home_team))
-			home_rows = home_table.findAll(lambda tag: tag.name=='tr')
+			try:
+				home_rows = home_table.findAll(lambda tag: tag.name=='tr')
+			except Exception:
+				continue
 
 			for row in home_rows:
-				cells = row.findAll('td')
+				try:
+					cells = row.findAll('td')
+				except Exception:
+					continue
 				i = 0
 				for cell in cells:
 					if i == 0:
@@ -117,7 +128,7 @@ class Command(BaseCommand):
 						try:
 							player = Player.objects.get(name=player_name)
 						except Player.DoesNotExist:
-							print("could not find player: {}".format(player_name))
+							player = Player.objects.create(name=player_name)
 					elif i == 1:
 						mp = cell.text
 					elif i == 2:
@@ -172,12 +183,7 @@ class Command(BaseCommand):
 							mp=mp, fgm=fgm, fga=fga,ftm=ftm, fta=fta, threesm=threesm, threesa=threesa,
 							orbs=orbs, drbs=drbs, trbs=trbs, asts=asts, stls=stls, blks=blks, tos=tos,
 							pfs=pfs,pts=pts)
-						print('Loaded box score for {0} in game {1}'.format(player.name, game))
-
-		StatLine.objects.filter(mp=240).delete()
-		StatLine.objects.filter(mp=265).delete()
-		StatLine.objects.filter(mp=290).delete()
-		StatLine.objects.filter(mp=315).delete()
+						print('Loaded statline for {0} in game {1}'.format(player.name, game))
 
 
 

@@ -127,9 +127,9 @@ class LineUp(models.Model):
 	date = models.DateField(default=datetime.today())
 	positions = models.ManyToManyField('players.Player', through="SpotInLineup")
 
-	# @property
-	# def roster(self):
-	# 	return 
+	@property
+	def roster(self):
+		return 
 
 class SpotInLineup(models.Model):
 	lineup = models.ForeignKey(LineUp)

@@ -41,6 +41,7 @@ class Player(models.Model):
 
 	# notes
 	recent_notes = models.CharField(max_length=500, default='No recent notes.')
+	roto_id = models.IntegerField(default=0)
 
 	@property
 	def recent_statlines(self):

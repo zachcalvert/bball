@@ -1,29 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles stat_filters %}
 
-<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}" />
 
 {% block header %}
 	<h3>{{ team.name }}</h3>
-
 	<h4>Record: {{ team.record }}</h4>
 {% endblock %}
 
 {% block main-content %}
 	<div id="main-content">
 		<ul class="stat_filter_links">
-			<li><a href={% url 'team_profile' team.id %}>Season</a></li>
-			<li><a href={% url 'team_last_month' team.id %}>Last 30</a></li>
+			<li><a href={% url 'team_last_week' team.id %}>Last 7</a></li>
 			<li><a href={% url 'team_last_fifteen' team.id %}>Last 15</a></li>
-			<li><a href={% url 'team_last_week' team.id %}>Last 7</a></li>	
+			<li><a href={% url 'team_last_month' team.id %}>Last 30</a></li>	
+			<li><a href={% url 'team_profile' team.id %}>Season</a></li>
 		</ul>
 
 		<table class="team_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
 			<tbody>
 				<tr class="pure-table">
-					<th colspan="3" class="team_table_section_header_first">STARTERS</th>
-					<th colspan="2">{{ date }}</th>
-					<th colspan="12">{{ date }} STATS</th>
+					<th colspan="3" class="team_table_section_header">STARTERS</th>
+					<th colspan="2" class="team_table_section_header">{{ date }}</th>
+					<th colspan="12" class="team_table_section_header">{{ date }} STATS</th>
 				</tr>
 				<tr class="team_table_sub_head">
 					<td width="85px">SLOT</td>
@@ -70,4 +69,3 @@
 		</table>
 	</div>
 {% endblock %}
-{% block sidebar %}{% endblock %}

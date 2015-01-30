@@ -53,7 +53,7 @@ html {
 	padding:20px;
 }
 #main-content table {
-	width:90%;
+	width:100%;
 	text-align: center;
 	background: #F0F0F5;
 }
@@ -61,26 +61,8 @@ html {
 	float:right;
 	margin-right: 20px;
 	margin-top: 20px;
-	width:48%;
+	width:0%;
 }
-#sidebar-content table {
-	width:90%;
-	text-align: center;
-	background: #F0F0F5;
-}
-#sidebar-content ul {
-	margin:0;
-	padding:0;
-	list-style:none;
-	text-align:center;
-}
-
-#sidebar-content li {
-	display:inline;
-	margin:0;
-	padding:20px;
-}
-
 #footer {
     font-family: "Neue Helvetica W01", Helvetica, Arial, sans-serif;
     display: inline-block;

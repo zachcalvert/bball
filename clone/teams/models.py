@@ -1,6 +1,5 @@
 from __future__ import division
 from django.db import models
-import django_tables2 as tables
 from datetime import datetime, date
 
 from players.models import Player

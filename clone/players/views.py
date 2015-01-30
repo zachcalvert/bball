@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django_tables2   import RequestConfig
 from django.conf import settings
 
-from players.models import Player, PlayerTable
+from players.models import Player
 from datetime import datetime, timedelta, date
 from players.utils import get_image_url, calculate_recent_totals, calculate_recent_avgs
 
@@ -15,11 +14,6 @@ days_since_season_start = delta.days
 
 def index(request):
 	return render(request, "players/index.html")
-
-def all_totals(request):
-	table = PlayerTable(Player.objects.all())
-	RequestConfig(request, paginate=False).configure(table)
-	return render(request, "players/all/all_totals.html", {"table": table})
 
 def all_averages(request):
 	players = Player.objects.all()

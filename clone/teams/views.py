@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render
-from django_tables2   import RequestConfig
 from django.conf import settings
 from datetime import datetime
 

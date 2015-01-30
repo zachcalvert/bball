@@ -10,18 +10,16 @@ class Command(BaseCommand):
     Retrieves recent notes from the player's roto page
     """
     def handle(self, *args, **options):
-        player = Player.objects.get(name='Kevin Martin')
-        url = 'http://www.rotoworld.com/player/nba/{}'.format(player.roto_id)
-        r = requests.get(url)
-        soup = BeautifulSoup(r.text)
-        news = soup.find_all('div', class_='playernews')
-
-        player_notes = ''
-        t = 0
-        for div in news:
-            if t > 1500:
-                continue
-            else:
+        players = Player.objects.all()
+        for player in players:
+            url = 'http://www.rotoworld.com/player/nba/{}'.format(player.roto_id)
+            r = requests.get(url)
+            soup = BeautifulSoup(r.text)
+            news = soup.find_all('div', class_='playernews')
+            player.notes = ''
+            
+            player_notes = ''
+            for div in news:
                 report = div.find_all("div", {"class":"report"})
                 r = str(report).strip("""[<div class="report">""")
                 r = r.strip("</div>]") 
@@ -31,18 +29,21 @@ class Command(BaseCommand):
                 split = i.split("<")
                 impact = split[0] 
                 pre_date = split[1].split(">")
-                date = pre_date[1].split("-")
+                date = pre_date[1].split(">")
                 date = date[0]
 
                 d = "date: {}\n".format(date)
                 r = "report: {}\n".format(r)
                 i = "impact: {}\n".format(impact)
 
-                player_notes += d
-                player_notes += r 
-                player_notes += i 
-                player_notes+= '\n'
-                t = len(player_notes)
+                if len(r) + len(d) + len(i) + len(player_notes) > 2000:
+                    continue
 
-        print(len(player_notes))
-        print(player_notes)
+                player_notes += r 
+                player_notes += i
+                player_notes += d 
+                player_notes+= '\n'
+
+            player.recent_notes = player_notes
+            player.save()
+            print('saved most recent notes for {}'.format(player.name))

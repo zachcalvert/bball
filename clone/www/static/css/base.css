@@ -6,7 +6,7 @@ html {
 	background:#D8D8D8;
 }
 #grad1 {
-    height: 300px;
+    height: 100%;
     background: -webkit-linear-gradient(orange, white); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(orange, white); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(orange, white); /* For Firefox 3.6 to 15 */
@@ -33,14 +33,12 @@ html {
 #main-content {
 	float:left;
 	width:50%;
-	background:#9c9;
 }
 #main-content h3 {
 	margin-left:20px;
 }
 #main-content img {
 	margin-left:20px;
-	background:#fff;
 	width: 35%;
 }
 #main-content ul {
@@ -57,15 +55,18 @@ html {
 #main-content table {
 	width:90%;
 	text-align: center;
+	background: #F0F0F5;
 }
 #sidebar-content {
 	float:right;
-	width:50%;
-	background:#99c;
+	margin-right: 20px;
+	margin-top: 20px;
+	width:48%;
 }
 #sidebar-content table {
 	width:90%;
 	text-align: center;
+	background: #F0F0F5;
 }
 #sidebar-content ul {
 	margin:0;
@@ -81,7 +82,6 @@ html {
 }
 
 #footer {
-    background-color: #cccccc;
     font-family: "Neue Helvetica W01", Helvetica, Arial, sans-serif;
     display: inline-block;
     width: 100%;
@@ -90,7 +90,6 @@ html {
 #footer .footer-block {
     width: 160px;
     margin: 45px 15px;
-    color: #406EBE;
     float: left;
 }
 
@@ -105,6 +104,7 @@ html {
     padding: 0px;
     font-size: 12px;
     line-height: 19px;
+    list-style-type: none;
 }
 #main-content textarea {
 	float:right;
@@ -112,7 +112,9 @@ html {
 	resize: none;
 	overflow-y: scroll;
 	width: 50%;
-	height: 50%;
+	height: 150px;
+	background: none;
+	border: 0;
 }
 table {
 	width: 95%;

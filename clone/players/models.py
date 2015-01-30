@@ -1,6 +1,5 @@
 from __future__ import division
 from django.db import models
-import django_tables2 as tables
 from django.db.models import Q
 from datetime import datetime, timedelta
 
@@ -124,12 +123,4 @@ class Player(models.Model):
 
 	def __unicode__(self):
 		return self.name
-
-
-class PlayerTable(tables.Table):
-	class Meta:
-		model = Player
-		exclude = ("id","team",)
-		sequence = ("name", "position", "nba_team", "games_played", "minutes",)
-		attrs = {"class": "paleblue"}
 

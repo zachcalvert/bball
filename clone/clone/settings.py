@@ -39,8 +39,6 @@ INSTALLED_APPS = (
     'teams',
     'players',
     'schedule',
-    'django_tables2',
-    'kombu.transport.django',
     'django_extensions'
 )
 

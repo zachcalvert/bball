@@ -85,6 +85,8 @@ html {
     font-family: "Neue Helvetica W01", Helvetica, Arial, sans-serif;
     display: inline-block;
     width: 100%;
+	margin-left:20%;
+	margin-right:20%;
 }
 
 #footer .footer-block {

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles stat_filters %}
 
-<link rel="stylesheet" type="text/css" href="{% static "base/teamprofile.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}" />
 
 {% block header %}
 	<h3>{{ team.name }}</h3>
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block main-content %}
-	<div id="main-content-table">
+	<div id="main-content">
 		<ul class="stat_filter_links">
 			<li><a href={% url 'team_profile' team.id %}>Season</a></li>
 			<li><a href={% url 'team_last_month' team.id %}>Last 30</a></li>

@@ -10,11 +10,12 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     """
+    This has a running time of over 20 minutes, preferable to load the .sql file which contains the respective ids.
     Gets the ids of players to fetch their notes. Brute forces the rotoworld urls since they are formatted with ids
     """
     def handle(self, *args, **options):
-        i = 2361
-        while i < 2420:
+        i = 357
+        while i < 2430:
             url = 'http://www.rotoworld.com/player/nba/{}/'.format(i)
             r = requests.get(url)
             soup = BeautifulSoup(r.text)

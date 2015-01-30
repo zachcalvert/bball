@@ -124,7 +124,7 @@ class Team(models.Model):
 
 class LineUp(models.Model):
 	team = models.ForeignKey(Team)
-	date = models.DateField(default=datetime.today())
+	date = models.DateField(default='2014-10-28')
 	positions = models.ManyToManyField('players.Player', through="SpotInLineup")
 
 	@property

@@ -2,13 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import datetime
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('players', '0001_initial'),
+        ('players', '0004_auto_20150130_0102'),
         ('teams', '0001_initial'),
     ]
 
@@ -17,7 +16,7 @@ class Migration(migrations.Migration):
             name='LineUp',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('date', models.DateField(default=datetime.datetime(2015, 1, 28, 18, 51, 18, 992415))),
+                ('date', models.DateField(default=b'2014-10-28')),
             ],
             options={
             },

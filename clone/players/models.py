@@ -40,8 +40,8 @@ class Player(models.Model):
 	turnovers = models.IntegerField(default = 0)
 
 	# notes
-	recent_notes = models.CharField(max_length=500, default='No recent notes.')
 	roto_id = models.IntegerField(default=0)
+	recent_notes = models.CharField(max_length=2000, default='No recent notes.')
 
 	@property
 	def recent_statlines(self):

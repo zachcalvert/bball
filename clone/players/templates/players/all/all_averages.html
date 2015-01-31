@@ -35,7 +35,11 @@
 <script>
 	$(document).ready(function() 
 	    { 
-	        $("#averages_table").tablesorter(); 
+	        $("#averages_table").tablesorter({ 
+            	sortInitialOrder: 'desc',
+            	sortList: [[2,1]] // etc.
+
+    }); 
 	} ); 
 
 </script>

@@ -118,6 +118,9 @@ html {
 	background: none;
 	border: 0;
 }
+#player_upcoming_games {
+	width: 50%;
+}
 .team_table_section_header {
 	background:#E65C00;
 	color: #fff;

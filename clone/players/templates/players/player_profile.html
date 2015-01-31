@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load stat_filters %}
+{% load stat_filters player_filters %}
 
 <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}"/>
 
@@ -17,49 +17,6 @@
 			<img border="0" src={{ image_url }}>
 		{% endif %}
 		<textarea disabled>{{ player.recent_notes }}</textarea>
-		<table class="player_recent_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_0" align="center">
-			<caption>Recent Games</caption>
-				<tr>
-					<th>Date</th>
-				    <th>Game</th>
-				    <th class="team_table_stat"><span title="Minutes">MIN</span></td>
-					<th class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
-					<th class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
-					<th class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
-					<th class="team_table_stat"><span title="Rebounds">REB</span></td>
-					<th class="team_table_stat"><span title="Assists">AST</span></td>
-					<th class="team_table_stat"><span title="Steals">STL</span></td>
-					<th class="team_table_stat"><span title="Blocks">BLK</span></td>
-					<th class="team_table_stat"><span title="Turnovers">TO</span></td>
-					<th class="team_table_stat"><span title="Points">PTS</span></td>
-				</tr>
-				{% for statline in player.recent_statlines %}
-					<tr>
-						<td>{{ statline.game.date }}</td>
-					    <td>{% if statline.game.away_team == player.nba_team%}
-					    		@{{ statline.game.home_team }}
-					    	{% else %}
-					    		{{ statline.game.away_team }}
-					    	{% endif %}
-					    </td>
-					    <td>{{ statline.mp }}</td>
-						<td><span>{{ statline.fgm }}</span>/<span>{{ statline.fga }}</span></td>
-						<td><span>{{ statline.ftm }}</span>/<span>{{ statline.fta }}</span></td>
-					    <td>{{ statline.threesm }}</td>		
-					    <td>{{ statline.trbs }}</td>
-					    <td>{{ statline.asts }}</td>
-					    <td>{{ statline.stls }}</td>		
-					    <td>{{ statline.blks }}</td>
-					    <td>{{ statline.tos }}</td>
-					    <td>{{ statline.pts }}</td>
-					</tr>
-				{% endfor %}
-		</table>
-	</div>
-	{% endblock %}
-
-	{% block sidebar %}
-		<div id="sidebar-content">
 		{% block recent_games %}
 			<ul>
 				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
@@ -121,6 +78,69 @@
 			</table>
 
 		{% endblock %}
+	</div>
+	{% endblock %}
+
+	{% block sidebar %}
+		<div id="sidebar-content">
+			<table class="player_recent_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_0" align="center">
+				<caption>Recent Games</caption>
+					<tr>
+						<th>Date</th>
+					    <th>Game</th>
+					    <th class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<th class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<th class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<th class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<th class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<th class="team_table_stat"><span title="Assists">AST</span></td>
+						<th class="team_table_stat"><span title="Steals">STL</span></td>
+						<th class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<th class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<th class="team_table_stat"><span title="Points">PTS</span></td>
+					</tr>
+					{% for statline in player.recent_statlines %}
+						<tr>
+							<td>{{ statline.game.date }}</td>
+						    <td>{% if statline.game.away_team == player.nba_team%}
+						    		@{{ statline.game.home_team }}
+						    	{% else %}
+						    		{{ statline.game.away_team }}
+						    	{% endif %}
+						    </td>
+						    <td>{{ statline.mp }}</td>
+							<td><span>{{ statline.fgm }}</span>/<span>{{ statline.fga }}</span></td>
+							<td><span>{{ statline.ftm }}</span>/<span>{{ statline.fta }}</span></td>
+						    <td>{{ statline.threesm }}</td>		
+						    <td>{{ statline.trbs }}</td>
+						    <td>{{ statline.asts }}</td>
+						    <td>{{ statline.stls }}</td>		
+						    <td>{{ statline.blks }}</td>
+						    <td>{{ statline.tos }}</td>
+						    <td>{{ statline.pts }}</td>
+						</tr>
+					{% endfor %}
+			</table>
+			<br><br>
+			<table class="player_upcoming_games" cellpadding="2" cellspacing="2" width="40%" border="1" id="teamtable_1" align="center">
+				<caption>Upcoming Games</caption>
+					<tr>
+						<th>Date</th>
+					    <th>Game</th>
+					</tr>
+					{% for game in player.upcoming_games %}
+						<tr>
+							<td>{{ game | format_date }}</td>
+						    <td>{% if game.away_team == player.nba_team%}
+						    		@{{ game.home_team }}
+						    	{% else %}
+						    		{{ game.away_team }}
+						    	{% endif %}
+						    </td>
+						</tr>
+					{% endfor %}
+			</table>
+		
 		</div>
 		<!-- end stat tables -->
 	{% endblock %}

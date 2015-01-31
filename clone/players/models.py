@@ -50,6 +50,15 @@ class Player(models.Model):
 		timespan = today - delta
 		return StatLine.objects.filter(player_id=self.id, game__date__gte=timespan)
 
+	@property 
+	def upcoming_games(self):
+		now = datetime.now()
+		today = now.date()
+		delta = timedelta(days=10)
+		timespan = today + delta
+		games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team), date__gte=today, date__lte=timespan)
+		return games
+
 	@property
 	def ppg(self):
 		if self.games_played == 0:

@@ -1,10 +1,12 @@
 from django import template
-from datetime import date, timedelta
-
-from players.models import Player
-from players.utils import todays_opponent, todays_game_status
 
 register = template.Library()
 
-@register.filter(name='get_todays_opponent')
-def get_todays_opponent(value):
+@register.filter(name='get_percentage')
+def get_percentage(value):
+	tfgs = value
+	print('tfgs {}'.format(tfgs))
+	r = value.split(',')
+	made = r[0]
+	attempted = r[1]
+	return round(made/attempted, 3)

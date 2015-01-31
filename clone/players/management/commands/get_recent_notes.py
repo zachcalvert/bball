@@ -39,9 +39,9 @@ class Command(BaseCommand):
                 if len(r) + len(d) + len(i) + len(player_notes) > 2000:
                     continue
 
-                player_notes += r 
-                player_notes += i
                 player_notes += d 
+                player_notes += r
+                player_notes += i 
                 player_notes+= '\n'
 
             player.recent_notes = player_notes

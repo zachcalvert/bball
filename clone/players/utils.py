@@ -67,11 +67,23 @@ def calculate_recent_totals(player, num_days):
 			total_stats['blocks'] += int(sl.blks)
 			total_stats['turnovers'] += int(sl.tos)
 			total_stats['points'] += int(sl.pts)
+	
+	if total_stats.get('fga') == 0:
+		total_stats['fgpct'] = 0.00	
+	else:
+		total_stats['fgpct'] = round((total_stats.get('fgm')/total_stats.get('fga')), 3)
+	
+	if total_stats.get('fta') == 0:
+		total_stats['ftpct'] = 0.00
+	else:
+		total_stats['ftpct'] = round((total_stats.get('ftm')/total_stats.get('fta')), 3)
 
 	return total_stats
 
 def calculate_recent_avgs(total_stats):
 	games_played = total_stats.pop('games_played')
+	fgpct = total_stats.pop('fgpct')
+	ftpct = total_stats.pop('ftpct')
 	avg_stats = {}
 	for k, v in total_stats.items():
 		if games_played == 0:
@@ -79,7 +91,9 @@ def calculate_recent_avgs(total_stats):
 		else:
 			avg = v/games_played
 		avg_stats[k] = round(avg, 1)
-	total_stats['games_played'] = games_played
+	avg_stats['games_played'] = games_played
+	avg_stats['fgpct'] = fgpct
+	avg_stats['ftpct'] = ftpct
 	return avg_stats
 
 

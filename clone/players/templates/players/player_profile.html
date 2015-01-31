@@ -72,20 +72,24 @@
 				<caption>averages</caption>
 					<tr>
 						<th>MPG</th>
-					    <th>PPG</th>
+					    <th>FG%</th>
+					    <th>FT%</th>
 					    <th>3PG</th>
-					    <th>APG</th>		
-					    <th>RPG</th>
+					    <th>PPG</th>
+					    <th>RPG</th>		
+					    <th>APG</th>
 					    <th>SPG</th>		
 					    <th>BPG</th>
 					    <th>TOPG</th>
 					</tr>
 					<tr>
 						<td>{{ avg_stats.minutes }}</td>
+					    <td>{{ avg_stats.fgpct | format_pct }}</td>
+					    <td>{{ avg_stats.ftpct | format_pct }}</td>
+					    <td>{{ avg_stats.threes }}</td>		
 					    <td>{{ avg_stats.points }}</td>
-					    <td>{{ avg_stats.threes }}</td>
-					    <td>{{ avg_stats.assists }}</td>		
 					    <td>{{ avg_stats.rebounds }}</td>
+					    <td>{{ avg_stats.assists }}</td>
 					    <td>{{ avg_stats.steals }}</td>		
 					    <td>{{ avg_stats.blocks }}</td>
 					    <td>{{ avg_stats.turnovers }}</td>
@@ -105,7 +109,7 @@
 				    	<th>Turnovers</th>
 					</tr>
 					<tr>
-						<td>{{ total_stats.games_played }}</td>
+						<td>{{ avg_stats.games_played }}</td>
 				    	<td>{{ total_stats.points }}</td>
 				    	<td>{{ total_stats.threes }}</td>
 				    	<td>{{ total_stats.assists }}</td>		

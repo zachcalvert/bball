@@ -15,7 +15,7 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **options):
         i = 357
-        while i < 2430:
+        while i < 2440:
             url = 'http://www.rotoworld.com/player/nba/{}/'.format(i)
             r = requests.get(url)
             soup = BeautifulSoup(r.text)

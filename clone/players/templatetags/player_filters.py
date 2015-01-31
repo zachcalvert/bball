@@ -16,7 +16,7 @@ def format_date(value):
 	tup = days[weekday]
 	day = tup[1]
 
-	return '{0} {1} - {2}'.format(day, date_object, value.tipoff)
+	return '{0} {1} - {2}'.format(day, date_object.strftime('%b %d, %Y'), value.tipoff)
 
 
 

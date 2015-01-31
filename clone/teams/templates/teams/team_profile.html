@@ -1,4 +1,3 @@
-{% extends 'base.html' %}
 {% load staticfiles stat_filters %}
 
 <link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}" />
@@ -22,7 +21,13 @@
 				<tr class="pure-table">
 					<th colspan="3" class="team_table_section_header">STARTERS</th>
 					<th colspan="2" class="team_table_section_header">{{ date }}</th>
-					<th colspan="12" class="team_table_section_header">{{ date }} STATS</th>
+					<th colspan="12" class="team_table_section_header">
+						{% if num_days %}
+							LAST {{ num_days }} DAYS STATS
+						{% else %}
+							2015 SEASON STATS
+						{% endif %}
+					</th>
 				</tr>
 				<tr class="team_table_sub_head">
 					<td width="85px">SLOT</td>

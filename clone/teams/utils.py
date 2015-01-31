@@ -40,8 +40,8 @@ def calculate_recent_avgs(team_stats):
 					if key not in IGNORE_KEYS:
 						avg = value/games_played
 						team_averages[k][key] = round(avg, 1)
-					team_averages[k]['fgpct'] = round((v.get('fgm')/v.get('fga')), 3)
-					team_averages[k]['ftpct'] = round((v.get('ftm')/v.get('fta')), 3)
+					team_averages[k]['fgpct'] = v.get('fgpct')
+					team_averages[k]['ftpct'] = v.get('ftpct')
 				v['games_played'] = games_played
 
 	return team_averages

@@ -3,14 +3,15 @@ html {
 	margin:0;
 	padding:0;
 	color:#000;
-	background:#D8D8D8;
+	height: 100%;
+    background: -webkit-linear-gradient(#D8D8D8, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#D8D8D8, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D8D8D8, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D8D8D8, white); /* Standard syntax (must be last) */
 }
-#grad1 {
-    height: 100%;
-    background: -webkit-linear-gradient(orange, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(orange, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(orange, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(orange, white); /* Standard syntax (must be last) */
+body,
+html {
+
 }
 #header {
 	padding:5px 10px;
@@ -32,7 +33,7 @@ html {
 }
 #main-content {
 	float:left;
-	width:50%;
+	width:100%;
 }
 #main-content h3 {
 	margin-left:20px;
@@ -53,7 +54,7 @@ html {
 	padding:20px;
 }
 #main-content table {
-	width:100%;
+	width:80%;
 	text-align: center;
 	background: #F0F0F5;
 }

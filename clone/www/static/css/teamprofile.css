@@ -57,12 +57,7 @@ html {
 	text-align: center;
 	background: #F0F0F5;
 }
-#sidebar-content {
-	float:right;
-	margin-right: 20px;
-	margin-top: 20px;
-	width:0;
-}
+
 #footer {
     font-family: "Neue Helvetica W01", Helvetica, Arial, sans-serif;
     display: inline-block;

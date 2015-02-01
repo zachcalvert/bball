@@ -16,11 +16,53 @@
 			<li><a href={% url 'team_profile' team.id %}>Season</a></li>
 		</ul>
 
-		<table class="team_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">
+		<table class="starters_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="left">
 			<tbody>
 				<tr class="pure-table">
 					<th colspan="3" class="team_table_section_header">STARTERS</th>
+				</tr>
+				<tr class="team_table_sub_head">
+					<td width="85px">SLOT</td>
+					<td>PLAYER, TEAM POS</td>
+					<td width="88px">ACTION</td>
+				</tr>
+
+			{% for player in avg_stats.iteritems %}
+				<tr class="player_row">
+					<td>PG</td>
+					<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+						{{ player.1.position }}</td>
+					<td>MOVE</td>
+		  		</tr>
+			{% endfor %}
+		</table>
+
+		<table class="game_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_1" align="left">
+			<tbody>
+				<tr class="pure-table">
 					<th colspan="2" class="team_table_section_header">{{ date }}</th>
+				</tr>
+				<tr class="team_table_sub_head">
+					<td class="section_leading_spacer" title="Opponent">OPP</td>
+					<td title="Game Status">STATUS ET</td>
+				</tr>
+
+			{% for player in avg_stats.iteritems %}
+				<tr class="player_row">
+					<td>
+						{% if player.0|get_todays_opponent %}
+							{{ player.0|get_todays_opponent }}</td>
+						{% else %}
+							&nbsp;
+						{% endif %}
+					<td>{{ player.0|get_tipoff }}</td>
+		  		</tr>
+			{% endfor %}
+		</table>
+
+		<table class="stats_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_2" align="left">
+			<tbody>
+				<tr class="pure-table">
 					<th colspan="12" class="team_table_section_header">
 						{% if num_days %}
 							LAST {{ num_days }} DAYS STATS
@@ -30,11 +72,6 @@
 					</th>
 				</tr>
 				<tr class="team_table_sub_head">
-					<td width="85px">SLOT</td>
-					<td>PLAYER, TEAM POS</td>
-					<td width="88px">ACTION</td>
-					<td class="section_leading_spacer" title="Opponent">OPP</td>
-					<td title="Game Status">STATUS ET</td>
 					<td class="team_table_stat"><span title="Minutes">MIN</span></td>
 					<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
 					<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
@@ -50,13 +87,6 @@
 				</tr>
 
 			{% for player in avg_stats.iteritems %}
-				<tr class="player_row">
-					<td>PG</td>
-					<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
-						{{ player.1.position }}</td>
-					<td>MOVE</td>
-					<td>{{ player.0|get_todays_opponent }}</td>
-					<td>{{ player.0|get_tipoff }}</td>
 					<td class="player_table_stat">{{ player.1.minutes }}</td>
 					<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
 					<td class="player_table_stat">{{ player.1.fgpct|format_pct }}</td>

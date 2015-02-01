@@ -54,8 +54,6 @@ html {
 	padding:20px;
 }
 #main-content table {
-	width:80%;
-	text-align: center;
 	background: #F0F0F5;
 }
 
@@ -103,6 +101,19 @@ html {
 .team_table_sub_head {
 	background:#FFB56C;
 }
+#teamtable_0 {
+	width: 25%;
+	margin-left: 5%;
+	text-align: left;
+}
+#teamtable_1 {
+	width: 10%;
+	margin-left: 10px;
+}
+#teamtable_2 {
+	width: 40%;
+	margin-left: 10px;
+}
 tr:nth-child(even) {
     background-color: #ffffff;
 }
@@ -113,6 +124,7 @@ tr:nth-child(odd) {
 table {
 	width: 95%;
 	border-collapse: collapse;
+	empty-cells: show;
 }
 th {
 	text-transform: uppercase;

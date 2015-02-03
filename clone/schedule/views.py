@@ -9,4 +9,6 @@ this_weeks_matchups = Matchup.objects.filter(start_date__lte=today, end_date__gt
 def current_matcup(request, team_id):
 	team = get_object_or_404(Team, pk=team_id)
 	matchup = this_weeks_matchups.filter(Q(home_team=team) | Q(away_team=team))
+	if matchup.count() > 1:
+		
 

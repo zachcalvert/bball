@@ -1,7 +1,9 @@
 from __future__ import division
 from django.db import models
 from datetime import datetime, date
+from django.db.models import Q
 
+from schedule.models import Matchup
 from players.models import Player
 
 ROSTER_SPOTS = (
@@ -33,6 +35,9 @@ class Team(models.Model):
 	def todays_lineup(self):
 		return LineUp.objects.get(team=self, date=datetime.today())
 
+	@property
+	def matchups(self):
+		return Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
 
 	@property
 	def points(self):

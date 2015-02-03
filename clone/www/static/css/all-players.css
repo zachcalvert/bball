@@ -1,0 +1,61 @@
+body,
+html {
+	margin:0;
+	padding:0;
+	color:#000;
+	height: 100%;
+    background: -webkit-linear-gradient(#D8D8D8, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#D8D8D8, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D8D8D8, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D8D8D8, white); /* Standard syntax (must be last) */
+}
+
+#navigation {
+	padding:5px 10px;
+	background:#c99;
+}
+#navigation ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#navigation li {
+	display:inline;
+	margin:0;
+	padding:20px;
+}
+
+#main-content ul {
+	margin:0;
+	padding-top:20px;
+	padding-bottom:10px;
+	list-style:none;
+	text-align: left;
+}
+#main-content li {
+	display:inline;
+	margin:0;
+	padding:20px;
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+tr:nth-child(odd) {
+    background-color: #FFF0D1;
+}
+
+table {
+	width: 95%;
+	border-collapse: collapse;
+	empty-cells: show;
+}
+th {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 90%;
+	border-bottom: 2px solid #111111;
+	border-top: 1px solid #999;
+	text-align: center;
+	width: auto ;
+}

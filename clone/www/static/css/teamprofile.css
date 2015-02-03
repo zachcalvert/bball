@@ -9,10 +9,7 @@ html {
     background: -moz-linear-gradient(#D8D8D8, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#D8D8D8, white); /* Standard syntax (must be last) */
 }
-body,
-html {
 
-}
 #header {
 	padding:5px 10px;
 	background:#ddd;
@@ -102,12 +99,14 @@ html {
 	background:#FFB56C;
 }
 #teamtable_0 {
-	width: 25%;
+	width: 29%;
 	margin-left: 5%;
-	text-align: left;
-}
+	text-align: left; 
+	resize: none;
+	}
+
 #teamtable_1 {
-	width: 10%;
+	width: 12%;
 	margin-left: 10px;
 }
 #teamtable_2 {

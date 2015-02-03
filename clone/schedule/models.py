@@ -58,4 +58,10 @@ class StatLine(models.Model):
 	def __unicode__(self):
 		return "Box Score for {}".format(self.game)
 
+class Matchup(models.Model):
+	home_team = models.ForeignKey('teams.Team', related_name='home team')
+	away_team = models.ForeignKey('teams.Team', related_name='away team')
+	start_date = models.DateField(auto_now=False)
+	end_date = models.DateField(auto_now=False)
+
 

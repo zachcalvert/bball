@@ -2,35 +2,55 @@
 <head>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
+	<link rel="stylesheet" type="text/css" href="{% static "css/all-players.css" %}" />
 </head>
 
 <h3>Season averages as of {{ today }}</h3>
-<table id="averages_table" class="tablesorter">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>MPG</th>
-			<th>Points</th>
-			<th>Assists</th>
-			<th>Rebounds</th>
-			<th>Steals</th>
-			<th>Blocks</th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for player in players %}
-		<tr>
-			<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a></td>
-			<td>{{ player.mpg }}</td>
-		    <td>{{ player.ppg }}</td>
-		    <td>{{ player.apg }}</td>		
-		    <td>{{ player.rpg }}</td>
-		    <td>{{ player.spg }}</td>		
-		    <td>{{ player.bpg }}</td>
-  		</tr>
-  	{% endfor %}
-  	</tbody>
-</table>
+    {% block navigation %}
+		<div id="navigation">
+			<ul>
+				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
+				<li><a href={% url 'all_teams' %}>League Home</a></li>
+                <li><a href={% url 'all_averages' %}>Players</a></li>
+			</ul>
+		</div>
+		<!-- end navigation -->
+	{% endblock %}
+	{% block main-content %}
+		<div id="main-content">
+			<ul class="stat_filter_links">
+				<li><a href={% url 'all_averages' %}>All Players</a></li>
+				<li><a href={% url 'free_agents' %}>Free Agents</a></li>
+			</ul>
+
+		<table id="averages_table" class="tablesorter">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>MPG</th>
+					<th>Points</th>
+					<th>Assists</th>
+					<th>Rebounds</th>
+					<th>Steals</th>
+					<th>Blocks</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for player in players %}
+				<tr>
+					<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a></td>
+					<td>{{ player.mpg }}</td>
+				    <td>{{ player.ppg }}</td>
+				    <td>{{ player.apg }}</td>		
+				    <td>{{ player.rpg }}</td>
+				    <td>{{ player.spg }}</td>		
+				    <td>{{ player.bpg }}</td>
+		  		</tr>
+		  	{% endfor %}
+		  	</tbody>
+		</table>
+		</div>
+	{% endblock %}
 
 <script>
 	$(document).ready(function() 

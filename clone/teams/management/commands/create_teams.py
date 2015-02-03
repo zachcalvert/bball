@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
     	team1_players = ('Kevin Durant', 'Rajon Rondo', 'Eric Gordon', 'Dirk Nowitzki',
     		'Andrew Bogut', 'Mo Williams', 'Kyle Korver', 'Roy Hibbert', 'Draymond Green',
-    		'Hassan Whiteside', 'Mike Conley', 'Kevin Martin',)
+    		'Hassan Whiteside', 'Mike Conley', 'Kevin Martin', 'Pau Gasol',)
 
     	for team1_player in team1_players:
     		try:
@@ -135,64 +135,64 @@ class Command(BaseCommand):
             player.team = team8
             player.save()
 
-        # team9 = Team.objects.create(name='Evil Twin Cliff Paul', wins=52, losses=56)
+        team9 = Team.objects.create(name='Kroog Sauce', wins=34, losses=91)
 
-        # team9_players = ('Kyle Lowry', 'Lance Stephenson', 'Demar Derozan', 'Carlos Boozer',
-        #     'Tristan Thompson', 'Isiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
-        #     'Tyson Chandler', 'Tony Wroten', 'Kelly Olylnk', 'Nick Young',)
+        team9_players = ('Aaron Brooks', 'Jarrett Jack', 'Wesley Matthews', 'Larry Sanders',
+            'Kevin Garnett', 'Tony Parker', 'Marreese Speights', 'LeBron James', 'Shabazz Napier',
+            'Kobe Bryant', 'Kenneth Faried', 'Robin Lopez', 'Mike Dunleavy',)
         
-        # for team9_player in team9_players:
-        #     try:
-        #         player = Player.objects.get(name=team9_player)
-        #     except Player.DoesNotExist:
-        #         print('could not find player: {}'.format(team9_player))
-        #         pass
-        #     player.team = team9
-        #     player.save()
+        for team9_player in team9_players:
+            try:
+                player = Player.objects.get(name=team9_player)
+            except Player.DoesNotExist:
+                print('could not find player: {}'.format(team9_player))
+                pass
+            player.team = team9
+            player.save()
 
-        # team10 = Team.objects.create(name='Evil Twin Cliff Paul', wins=52, losses=56)
+        team10 = Team.objects.create(name='Team Kaza', wins=52, losses=56)
 
-        # team10_players = ('Kyle Lowry', 'Lance Stephenson', 'Demar Derozan', 'Carlos Boozer',
-        #     'Tristan Thompson', 'Isiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
-        #     'Tyson Chandler', 'Tony Wroten', 'Kelly Olylnk', 'Nick Young',)
+        team10_players = ('Marcus Smart', 'Andrew Wiggins', 'Carmelo Anthony', 'Kevin Love',
+            'Dwight Howard', 'Elfrid Payton', 'K.J. McDaniels', 'Kemba Walker', 'Giannis Antetokoumpo',
+            'J.J. Redick', 'Zach Randolph', 'Jonas Valaniunas', 'Patrick Beverley',)
         
-        # for team10_player in team10_players:
-        #     try:
-        #         player = Player.objects.get(name=team10_player)
-        #     except Player.DoesNotExist:
-        #         print('could not find player: {}'.format(team10_player))
-        #         pass
-        #     player.team = team10
-        #     player.save()
+        for team10_player in team10_players:
+            try:
+                player = Player.objects.get(name=team10_player)
+            except Player.DoesNotExist:
+                print('could not find player: {}'.format(team10_player))
+                pass
+            player.team = team10
+            player.save()
 
 
-        # team11 = Team.objects.create(name='Evil Twin Cliff Paul', wins=52, losses=56)
+        team11 = Team.objects.create(name='Team Belfatto', wins=51, losses=74, ties=1)
 
-        # team11_players = ('Kyle Lowry', 'Lance Stephenson', 'Demar Derozan', 'Carlos Boozer',
-        #     'Tristan Thompson', 'Isiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
-        #     'Tyson Chandler', 'Tony Wroten', 'Kelly Olylnk', 'Nick Young',)
+        team11_players = ('Monta Ellis', 'Eric Bledsoe', 'Michael Kidd-Gilchrist', 'Blake Griffin',
+            'Lamarcus Aldridge', 'Devin Harris', 'David Lee', 'Taj Gibson', 'Manu Ginobili',
+            'Chris Kaman', 'Jamal Crawford', 'Jared Sullinger', 'Tim Hardaway',)
         
-        # for team11_player in team11_players:
-        #     try:
-        #         player = Player.objects.get(name=team11_player)
-        #     except Player.DoesNotExist:
-        #         print('could not find player: {}'.format(team11_player))
-        #         pass
-        #     player.team = team11
-        #     player.save()
+        for team11_player in team11_players:
+            try:
+                player = Player.objects.get(name=team11_player)
+            except Player.DoesNotExist:
+                print('could not find player: {}'.format(team11_player))
+                pass
+            player.team = team11
+            player.save()
 
-        # team12 = Team.objects.create(name='Evil Twin Cliff Paul', wins=52, losses=56)
+        team12 = Team.objects.create(name='Team Lee', wins=58, losses=68)
 
-        # team12_players = ('Kyle Lowry', 'Lance Stephenson', 'Demar Derozan', 'Carlos Boozer',
-        #     'Tristan Thompson', 'Isiah Thomas', 'Greg Monroe', 'Chris Paul', 'Jeff Teague',
-        #     'Tyson Chandler', 'Tony Wroten', 'Kelly Olylnk', 'Nick Young',)
+        team12_players = ('Derrick Rose', 'Kawhi Leonard', 'Luol Deng', 'Amir Johnson',
+            'Marcin Gortat', 'Danny Green', 'Serge Ibaka', 'Gordon Hayward', 'Enes Kanter',
+            'Harrison Barnes', 'Victor Oladipo', 'Darren Collison', 'Danilo Gallinari',)
         
-        # for team12_player in team12_players:
-        #     try:
-        #         player = Player.objects.get(name=team12_player)
-        #     except Player.DoesNotExist:
-        #         print('could not find player: {}'.format(team12_player))
-        #         pass
-        #     player.team = team12
-        #     player.save()
+        for team12_player in team12_players:
+            try:
+                player = Player.objects.get(name=team12_player)
+            except Player.DoesNotExist:
+                print('could not find player: {}'.format(team12_player))
+                pass
+            player.team = team12
+            player.save()
 

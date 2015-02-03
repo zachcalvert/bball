@@ -44,6 +44,10 @@ class Command(BaseCommand):
                 player_notes += i 
                 player_notes+= '\n'
 
+            if len(player_notes) >= 2000:  
+                player_notes = player_notes[-1999:]  
+                
             player.recent_notes = player_notes
             player.save()
             print('saved most recent notes for {}'.format(player.name))
+                

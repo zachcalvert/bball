@@ -7,6 +7,17 @@
 	<h4>Record: {{ team.record }}</h4>
 {% endblock %}
 
+    {% block navigation %}
+		<div id="navigation">
+			<ul>
+				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
+				<li><a href={% url 'all_teams' %}>League Home</a></li>
+                <li><a href={% url 'all_averages' %}>Players</a></li>
+			</ul>
+		</div>
+		<!-- end navigation -->
+	{% endblock %}
+
 {% block main-content %}
 	<div id="main-content">
 		<ul class="stat_filter_links">
@@ -39,10 +50,10 @@
 
 		<table class="game_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_1" align="left">
 			<tbody>
-				<tr class="pure-table">
+				<tr class="player_row">
 					<th colspan="2" class="team_table_section_header">{{ date }}</th>
 				</tr>
-				<tr class="team_table_sub_head">
+				<tr class="player_row">
 					<td class="section_leading_spacer" title="Opponent">OPP</td>
 					<td title="Game Status">STATUS ET</td>
 				</tr>
@@ -62,7 +73,7 @@
 
 		<table class="stats_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_2" align="left">
 			<tbody>
-				<tr class="pure-table">
+				<tr class="player_row">
 					<th colspan="12" class="team_table_section_header">
 						{% if num_days %}
 							LAST {{ num_days }} DAYS STATS
@@ -71,7 +82,7 @@
 						{% endif %}
 					</th>
 				</tr>
-				<tr class="team_table_sub_head">
+				<tr class="player_row">
 					<td class="team_table_stat"><span title="Minutes">MIN</span></td>
 					<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
 					<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>

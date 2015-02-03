@@ -8,6 +8,8 @@ html {
     background: -o-linear-gradient(#D8D8D8, white); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#D8D8D8, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#D8D8D8, white); /* Standard syntax (must be last) */
+    font-family: Verdana;
+	font-size: 10px;
 }
 
 #navigation {
@@ -46,7 +48,8 @@ tr:nth-child(odd) {
 }
 
 table {
-	width: 95%;
+	margin-left:5%;
+	width: 90%;
 	border-collapse: collapse;
 	empty-cells: show;
 }

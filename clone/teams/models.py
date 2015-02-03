@@ -99,6 +99,8 @@ class Team(models.Model):
 
 	@property
 	def fgpct(self):
+		if self.fga == 0:
+			return 0.00
 		fgpct = self.fgm/self.fga
 		return round(fgpct, 4) * 100
 
@@ -118,6 +120,8 @@ class Team(models.Model):
 
 	@property
 	def ftpct(self):
+		if self.fta == 0:
+			return 0.00
 		ftpct = self.ftm/self.fta
 		return round(ftpct, 4) * 100
 

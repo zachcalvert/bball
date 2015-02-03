@@ -23,14 +23,18 @@ class Command(BaseCommand):
 			end_date = dt + one_week
 			print('generating matchups for {}'.format(dt))
 			#randomize the teams in the league
-			teams = Team.objects.order_by('?')
+			teams = Team.objects.all()
+			d = {}
+			i = 1
 			for team in teams:
-				home = list(teams).pop()
-				print('home team: {}'.format(home))
-				away = list(teams).pop()
-				print('away team: {}'.format(away))
-				matchup = Matchup.objects.create(home_team=home, away_team=away, start_date=dt, end_date=end_date)
+				d[i] = team.name
+				i += 1
 
+			pprint(d)
 
+			# while j < len(teams) - 1
+			# 	home = d.pop(j)
+			# 	away = d.pop(-j)
+			# 	print('away team: {}'.format(away))
+			# 	matchup = Matchup.objects.create(home_team=home, away_team=away, start_date=dt, end_date=end_date)
 
-		# teams = Team.objects.all()

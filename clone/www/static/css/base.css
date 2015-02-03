@@ -4,6 +4,7 @@ html {
 	padding:0;
 	color:#000;
 	background:#D8D8D8;
+	font-family: Verdana;
 }
 #grad1 {
     height: 100%;
@@ -56,6 +57,7 @@ html {
 	width:90%;
 	text-align: center;
 	background: #F0F0F5;
+	font-size: 10px;
 }
 #sidebar-content {
 	float:right;
@@ -67,6 +69,7 @@ html {
 	width:90%;
 	text-align: center;
 	background: #F0F0F5;
+	font-size: 10px;
 }
 #sidebar-content ul {
 	margin:0;

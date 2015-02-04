@@ -30,6 +30,10 @@ html {
 	margin:0;
 	padding:20px;
 }
+#current-matchup {
+	padding:20px;
+	font-size: 10px;
+}
 #main-content {
 	float:left;
 	width:100%;

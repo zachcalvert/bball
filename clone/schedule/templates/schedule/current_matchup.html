@@ -1,0 +1,70 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}" />
+
+{% block header %}
+	<h3>{{ matchup.away_team.name }}({{ matchup.away_team.record }}) at {{ matchup.home_team.name }}({{ matchup.home_team.record }})</h3>
+	<h4>Record: {{ team.record }}</h4>
+{% endblock %}
+
+{% block main-content %}
+	<div id="main-content">
+		<table class="starters_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="left">
+			<tbody>
+				<tr class="pure-table">
+					<th colspan="1" class="team_table_section_header">TEAM</th>
+				</tr>
+				<tr class="team_table_sub_head">
+					<td id="starters_table_slot">NAME</td>
+				</tr>
+
+				<td id="starters_table_slot">{{ matchup.home_team.name }}</td>
+				<td id="starters_table_slot">{{ matchup.away_team.name }}</td>
+		</table>
+
+		<table class="game_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_1" align="left">
+			<tbody>
+				<tr class="matchup_row">
+					<th colspan="9" class="team_table_section_header">STATISTICS</th>
+				</tr>
+				<tr class="matchup_row">
+					<td class="section_leading_spacer">FG%</td>
+					<td class="section_leading_spacer">FT%</td>
+					<td class="section_leading_spacer">3PM</td>
+					<td class="section_leading_spacer">REB</td>
+					<td class="section_leading_spacer">AST</td>
+					<td class="section_leading_spacer">STL</td>
+					<td class="section_leading_spacer">BLK</td>
+					<td class="section_leading_spacer">TO</td>
+					<td class="section_leading_spacer">PTS</td>
+				</tr>
+
+				<tr class="matchup_row">
+					<td>{{ matchup.home_stats.FGPCT }}</td>
+					<td>{{ matchup.home_stats.FTPCT }}</td>
+					<td>{{ matchup.home_stats.3PM }}</td>
+					<td>{{ matchup.home_stats.REB }}</td>
+					<td>{{ matchup.home_stats.AST }}</td>
+					<td>{{ matchup.home_stats.STL }}</td>
+					<td>{{ matchup.home_stats.BLK }}</td>
+					<td>{{ matchup.home_stats.TO }}</td>
+					<td>{{ matchup.home_stats.PTS }}</td>
+		  		</tr>
+
+		</table>
+
+		<table class="total_table" cellpadding="2" cellspacing="2" border="1" id="teamtable_2" align="left">
+			<tbody>
+				<tr class="matchup_row">
+					<th colspan="1" class="team_table_section_header">TOTAL</th>
+				</tr>
+				<tr class="matchup_row">
+					<td class="team_table_stat">SCORE</td>
+				</tr>
+
+				<td class="player_table_stat">{{ matchup.score }}</td>
+
+		</table>
+	</div>
+{% endblock %}
+

@@ -18,6 +18,12 @@
 		</div>
 		<!-- end navigation -->
 	{% endblock %}
+		
+	{% block current-matchup %}
+		<div id="current-matchup">
+            <a href={% url 'current_matchup' team.id %}>Current Matchup</a>
+		</div>
+	{% endblock %}
 
 {% block main-content %}
 	<div id="main-content">

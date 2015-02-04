@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from schedule.models import Matchup
 from teams.models import Team
+from django.db.models import Q
 
 from datetime import datetime
 
@@ -25,6 +26,7 @@ def all_matchups(request):
 def current_matchup(request, team_id):
 	team = get_object_or_404(Team, pk=team_id)
 	matchup = this_weeks_matchups.filter(Q(home_team=team) | Q(away_team=team))
+	matchup = matchup[0]
 	return render(request, "schedule/current_matchup.html", {"matchup": matchup})
 
 def all_team_matchups(request, team_id):

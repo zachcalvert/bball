@@ -12,3 +12,4 @@ class Command(BaseCommand):
     	management.call_command('get_boxscores')
     	management.call_command('populate_stats')
     	management.call_command('create_teams')
+        management.call_command('generate_matchups')

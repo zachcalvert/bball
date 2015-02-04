@@ -1,7 +1,0 @@
-{% for matchups in matchups_by_date.iteritems %}
-	<div id='matchup-week'>
-		{% for matchup in matchups.iteritems %}
-			{{ matchup.start_date}}: {{ matchup.home_team.id }}{{ matchup.home_team }} vs {{ matchup.away_team.id }}{{ matchup.away_team }} <p></p>
-		{% endfor %}
-	</div>
-{% endfor %}

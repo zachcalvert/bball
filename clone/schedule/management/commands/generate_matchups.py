@@ -34,14 +34,14 @@ class Command(BaseCommand):
 	"""
 	def handle(self, *args, **options):
 		
-		season_start = datetime(2014, 10, 28)
+		season_start = datetime(2014, 10, 27)
 		season_end = datetime(2015, 4, 15)
 
 		for team in Team.objects.all():
 
 			for dt in rrule.rrule(rrule.WEEKLY, dtstart=season_start, until=season_end):
 				print('week {}'.format(dt))
-				one_week = timedelta(days=7)
+				one_week = timedelta(days=6)
 				end_date = dt + one_week
 
 				try:
@@ -61,7 +61,9 @@ class Command(BaseCommand):
 				print("{0} already has a matchup this week, onto next week!".format(team))
 				continue
 			continue
-		sleep(1)
-
-
+	
+		matchups = Matchup.objects.filter(start_date=datetime(2014, 10, 27))
+		for matchup in matchups:
+			matchup.start_date = datetime(2014, 10, 28)
+			matchup.save()
 

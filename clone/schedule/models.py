@@ -64,4 +64,10 @@ class Matchup(models.Model):
 	start_date = models.DateField(auto_now=False)
 	end_date = models.DateField(auto_now=False)
 
+	@property
+	def home_stats(self):
+		return True
 
+	@property
+	def away_stats(self):
+		return True

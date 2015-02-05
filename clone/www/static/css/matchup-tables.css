@@ -1,8 +1,37 @@
+html,
+body {
+	background: #fff;
+}
 #teamtable_0 {
 	width:90%;
 }
-
+#table_row_head_0 {
+	background:#BA4F00;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+#table_subrow_head_0 {
+	background:#DF8F41;
+	font-weight: bold;
+}
+#table_subrow_head_1 {
+	background:#EEC49A;
+	font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: ##F8F8F2;
+}
+tr:nth-child(odd) {
+    background-color: #F2F2E8;
+}
 td.sectionLeadingSpacer {
 	width: 11px;
 	height: 24px;
+	background:#fff;
 }
+ #team_stats_total_row {
+ 	background: #D1D1BB;
+ 	font-weight: bold;
+ }

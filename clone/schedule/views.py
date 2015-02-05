@@ -37,17 +37,19 @@ def current_matchup(request, team_id):
 	matchup = matchup[0]
 	home_stats = calculate_totals(matchup.home_team, start_day=matchup.start_date, end_day=matchup.end_date)
 	away_stats = calculate_totals(matchup.away_team, start_day=matchup.start_date, end_day=matchup.end_date)
+	home_totals = home_stats.pop('totals')
+	away_totals = away_stats.pop('totals')
 
 	return render(request, "schedule/matchup.html", {"matchup": matchup, "home_stats": home_stats, 
-		"away_stats": away_stats, "date": date})
+		"away_stats": away_stats, "date": date, "home_totals": home_totals, "away_totals": away_totals})
 
 def matchup(request, matchup_id):
 	matchup = get_object_or_404(Matchup, pk=matchup_id)
 	home_stats = calculate_totals(matchup.home_team, start_day=matchup.start_date, end_day=matchup.end_date)
 	away_stats = calculate_totals(matchup.away_team, start_day=matchup.start_date, end_day=matchup.end_date)
-
-	# print(home_stats)
+	home_totals = home_stats.pop('totals')
+	away_totals = away_stats.pop('totals')
 
 	return render(request, "schedule/matchup.html", {"matchup": matchup, "home_stats": home_stats, 
-		"away_stats": away_stats, "date": date})	
+		"away_stats": away_stats, "date": date, "home_totals": home_totals, "away_totals": away_totals})	
 

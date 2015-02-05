@@ -12,13 +12,21 @@ def calculate_totals(team, start_day, end_day):
 	Returns a dictionary with average stats and total stats for the given time period.
 	"""
 	team_stats = {}
+	team_stats['totals'] = {"games_played": 0, "minutes": 0, "fgm": 0, "fga": 0, "ftm": 0, "fta": 0, 
+		"threes": 0, "rebounds": 0, "assists": 0, "steals": 0, "blocks": 0, "turnovers": 0, "points": 0,
+		"fgpct": .0, "ftpct": .0} 
 	for player in team.players:
 		player_stats = utils.calculate_totals(player, start_day, end_day)
+		for k, v in player_stats.iteritems():
+			team_stats['totals'][k] += v
 		# we need to render these 'non-stat' attributes 
 		player_stats['name'] = player.name
 		player_stats['nba_team'] = player.nba_team
 		player_stats['position'] = player.position
 		team_stats[player.id] = player_stats
+
+	team_stats['totals']['fgpct'] = round(team_stats['totals'].get('fgm')/team_stats['totals'].get('fga'), 3)
+	team_stats['totals']['ftpct'] = round(team_stats['totals'].get('ftm')/team_stats['totals'].get('fta'), 3)
 
 	return team_stats
 

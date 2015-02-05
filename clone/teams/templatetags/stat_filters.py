@@ -1,3 +1,4 @@
+from __future__ import division
 from django import template
 from datetime import date, timedelta
 
@@ -29,21 +30,3 @@ def format_pct(value):
 	while len(retval) < 4:
 		retval += '0'
 	return retval
-
-
-@register.filter(name='total_team_games')
-def total_team_games(value):
-	total_games = 0
-	for player_id in value.iteritems():
-		player_games = player_id[1].get('games_played')
-		total_games += player_games
-	return total_games
-
-
-@register.filter(name='total_team_minutes')
-def total_team_minutes(value):
-	total_minutes = 0
-	for player_id in value.iteritems():
-		player_minutes = player_id[1].get('minutes')
-		total_minutes += player_minutes
-	return total_minutes

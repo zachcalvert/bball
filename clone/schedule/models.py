@@ -64,6 +64,7 @@ class Matchup(models.Model):
 	away_team = models.ForeignKey('teams.Team', related_name='away team')
 	start_date = models.DateField(auto_now=False)
 	end_date = models.DateField(auto_now=False)
+	week = models.IntegerField(default=22)
 
 	@property
 	def home_stats(self):

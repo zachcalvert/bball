@@ -1,0 +1,13 @@
+{% load staticfiles stat_filters %}
+
+<link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}" />
+
+{% block header %}
+	<h3>{{ matchup.away_team.name }}({{ matchup.away_team.record }}) at {{ matchup.home_team.name }}({{ matchup.home_team.record }})</h3>
+	<h4>Record: {{ team.record }}</h4>
+{% endblock %}
+
+{% block main-content %}
+	{% include 'matchup_tables_2.html' %}
+{% endblock %}
+

@@ -38,7 +38,7 @@ class Command(BaseCommand):
 		season_end = datetime(2015, 4, 15)
 
 		for team in Team.objects.all():
-
+			z = 1
 			for dt in rrule.rrule(rrule.WEEKLY, dtstart=season_start, until=season_end):
 				print('week {}'.format(dt))
 				one_week = timedelta(days=6)
@@ -54,11 +54,12 @@ class Command(BaseCommand):
 					opponent = find_next_opponent(dt, opponents)
 					home = team
 					away = opponent
-					matchup = Matchup.objects.create(home_team=home, away_team=away, start_date=dt, end_date=end_date)
+					matchup = Matchup.objects.create(home_team=home, away_team=away, start_date=dt, end_date=end_date, week=z)
 
 					print('created matchup between {0} and {1}'.format(home, away))
 
 				print("{0} already has a matchup this week, onto next week!".format(team))
+				z += 1
 				continue
 			continue
 	

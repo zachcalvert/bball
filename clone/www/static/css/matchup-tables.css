@@ -1,6 +1,8 @@
 html,
 body {
 	background: #fff;
+	font-family: Verdana;
+	font-size: 10px;
 }
 #teamtable_0 {
 	width:90%;
@@ -20,8 +22,12 @@ body {
 	background:#EEC49A;
 	font-weight: bold;
 }
+#team_stats_total_row {
+	background: #D1D1BB;
+	font-weight: bold;
+}
 tr:nth-child(even) {
-    background-color: ##F8F8F2;
+    background-color: #F8F8F2;
 }
 tr:nth-child(odd) {
     background-color: #F2F2E8;
@@ -31,7 +37,6 @@ td.sectionLeadingSpacer {
 	height: 24px;
 	background:#fff;
 }
- #team_stats_total_row {
- 	background: #D1D1BB;
- 	font-weight: bold;
- }
+td {
+	padding: 5px;
+}

@@ -24,8 +24,7 @@ def team_profile(request, team_id):
 	team = Team.objects.get(id=team_id)
 	total_stats = calculate_totals(team, start_day=season_start, end_day=today)
 	stats = calculate_avgs(total_stats)
-
-	print("stats: {}".format(stats))
+	stats.pop('totals')
 	return render(request, "teams/team_profile.html", {'team': team, 'total_stats': total_stats, 'stats': stats, 
 		'date': today_day})
 
@@ -34,6 +33,7 @@ def team_last_month(request, team_id):
 	start_day = today - thirty
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
+	stats.pop('totals')
 	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
 		'date': today_day})
 
@@ -42,6 +42,7 @@ def team_last_fifteen(request, team_id):
 	start_day = today - fifteen
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
+	stats.pop('totals')
 	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
 		'date': today_day})
 
@@ -50,6 +51,7 @@ def team_last_week(request, team_id):
 	start_day = today - seven
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
+	stats.pop('totals')
 	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
 		'date': today_day})
 	

@@ -7,13 +7,13 @@ from players import utils
 
 IGNORE_KEYS = ('name', 'nba_team', 'position')
 
-def calculate_recent_totals(team, num_days):
+def calculate_totals(team, start_day, end_day):
 	"""
 	Returns a dictionary with average stats and total stats for the given time period.
 	"""
 	team_stats = {}
 	for player in team.players:
-		player_stats = utils.calculate_recent_totals(player, num_days)
+		player_stats = utils.calculate_totals(player, start_day, end_day)
 		# we need to render these 'non-stat' attributes 
 		player_stats['name'] = player.name
 		player_stats['nba_team'] = player.nba_team
@@ -22,7 +22,7 @@ def calculate_recent_totals(team, num_days):
 
 	return team_stats
 
-def calculate_recent_avgs(team_stats):
+def calculate_avgs(team_stats):
 	team_averages = {}
 	for k,v in team_stats.iteritems():
 		if isinstance(v, dict):

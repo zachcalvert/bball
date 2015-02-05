@@ -31,21 +31,19 @@ def todays_game_status(player_id):
 			return game.tipoff
 
 
-def calculate_recent_totals(player, num_days):
+def calculate_totals(player, start_day, end_day):
 	"""
 	Returns a dictionary with average stats and total stats for the given time period.
 	"""
-	now = datetime.now()
-	today = now.day
-	then = now - timedelta(days=num_days)
-	that_day = then.date()
+	start_day = start_day
+	end_day = end_day
 
 	games_played = 0
 	total_stats = {"games_played": 0, "minutes": 0, "fgm": 0, "fga": 0, "ftm": 0, "fta": 0, 
 		"threes": 0, "rebounds": 0, "assists": 0, "steals": 0, "blocks": 0, "turnovers": 0, "points": 0} 
 
 	games = Game.objects.filter(Q(home_team=player.nba_team)| Q(away_team=player.nba_team))
-	games = games.filter(date__gte=that_day)
+	games = games.filter(Q(date__gte=start_day) & Q(date__lte=end_day))
 
 	for game in games:
 		try:
@@ -80,7 +78,7 @@ def calculate_recent_totals(player, num_days):
 
 	return total_stats
 
-def calculate_recent_avgs(total_stats):
+def calculate_avgs(total_stats):
 	games_played = total_stats.pop('games_played')
 	fgpct = total_stats.pop('fgpct')
 	ftpct = total_stats.pop('ftpct')

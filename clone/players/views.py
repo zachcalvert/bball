@@ -5,12 +5,13 @@ from django.conf import settings
 
 from players.models import Player
 from datetime import datetime, timedelta, date
-from players.utils import get_image_url, calculate_recent_totals, calculate_recent_avgs
+from players.utils import get_image_url, calculate_totals, calculate_avgs
 
 today = datetime.today()
 season_start = datetime(2014, 10, 28)
-delta = today - season_start
-days_since_season_start = delta.days
+thirty = timedelta(days=30)
+fifteen = timedelta(days=15)
+seven = timedelta(days=7)
 
 def index(request):
 	return render(request, "players/index.html")
@@ -26,32 +27,32 @@ def free_agents(request):
 def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)
 	url = get_image_url(player.name)
-	total_stats = calculate_recent_totals(player, days_since_season_start)
-	avg_stats = calculate_recent_avgs(total_stats)
+	total_stats = calculate_totals(player, start_day=season_start, end_day=today)
+	avg_stats = calculate_avgs(total_stats)
 	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'total_stats': total_stats, 'avg_stats': avg_stats})
 
 def last_month(request, player_id):
-	num_days=30
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
-	total_stats = calculate_recent_totals(player, num_days)
-	avg_stats = calculate_recent_avgs(total_stats)
+	start_day = today - thirty
+	total_stats = calculate_totals(player, start_day=start_day, end_day=today)
+	avg_stats = calculate_avgs(total_stats)
 	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'total_stats': total_stats, 'avg_stats': avg_stats})
 
 def last_fifteen(request, player_id):
-	num_days=15
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
-	total_stats = calculate_recent_totals(player, num_days)
-	avg_stats = calculate_recent_avgs(total_stats)
+	start_day = today - fifteen
+	total_stats = calculate_totals(player, start_day=start_day, end_day=today)
+	avg_stats = calculate_avgs(total_stats)
 	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'total_stats': total_stats, 'avg_stats': avg_stats})
 
 def last_week(request, player_id):
-	num_days=7
 	player = Player.objects.get(id=player_id)
 	url = get_image_url(player.name)
-	total_stats = calculate_recent_totals(player, num_days)
-	avg_stats = calculate_recent_avgs(total_stats)
+	start_day = today - seven
+	total_stats = calculate_totals(player, start_day=start_day, end_day=today)
+	avg_stats = calculate_avgs(total_stats)
 	return render(request, 'players/player_profile.html', {'player':player, 'image_url': url, 'total_stats': total_stats, 'avg_stats': avg_stats})
 
 

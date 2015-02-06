@@ -13,7 +13,7 @@ class PlayerInline(admin.TabularInline):
     ]
 
 class TeamAdmin(admin.ModelAdmin):
-	list_display = ('name', 'record')
+	list_display = ('first_name', 'last_name', 'record')
 
 	# fields = ('players',)
 	inlines = [PlayerInline,]

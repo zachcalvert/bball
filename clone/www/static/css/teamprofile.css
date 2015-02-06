@@ -4,7 +4,7 @@ html {
 	padding:0;
 	color:#000;
 	height: 100%;
-	background: #fff;
+	background: #000;
     font-family: Verdana;
 }
 
@@ -87,7 +87,7 @@ table {
 	margin-bottom: 50px;
 }
 th {
-	font-size:10px;
+	font-size:9px;
 }
 td {
 	font-size:10px;
@@ -163,4 +163,3 @@ td {
 	display: inline; 
 	float: left; 
 }
-

@@ -27,7 +27,7 @@
 			<td style="text-align:right">SCORE</td>
 		</tr>
 		<tr id="matchup_table_row_0">
-			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id %}">{{ matchup.home_team.name }}</a></td>
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id %}">{{ matchup.home_team }}</a></td>
 			<td class="sectionLeadingSpacer"></td>
 			<td style="text-align:right">{{ home_totals.fgpct|format_pct }}</td>
 			<td style="text-align:right">{{ home_totals.ftpct|format_pct }}</td>
@@ -42,7 +42,7 @@
 			<td style="text-align:right">{{ home_totals.result }}</td>
 		</tr>
 		<tr id="matchup_table_row_0">
-			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id %}">{{ matchup.away_team.name }}</a></td>
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id %}">{{ matchup.away_team }}</a></td>
 			<td class="sectionLeadingSpacer"></td>
 			<td style="text-align:right">{{ away_totals.fgpct|format_pct }}</td>
 			<td style="text-align:right">{{ away_totals.ftpct|format_pct }}</td>
@@ -63,7 +63,7 @@
 <table class="home_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="FFFFFF">
 	<tbody>
 		<tr id="table_row_head_0">
-			<td colspan="100">{{ matchup.home_team.name }} BOX SCORE</td>
+			<th colspan="100">{{ matchup.home_team }} BOX SCORE</th>
 		</tr>
 		<tr id="table_subrow_head_0">
 			<th colspan="1" class="home_section_header_first">PLAYERS</td>
@@ -94,7 +94,7 @@
 		<tr class="home_stats_player_row">
 			<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 				{{ player.1.position }}</td>
-			<td>Games here</td>
+			<td>games here</td>
 			<td class="sectionLeadingSpacer"></td>
 			<td class="player_table_stat">{{ player.1.games_played }}</td>
 			<td class="player_table_stat">{{ player.1.minutes }}</td>
@@ -135,7 +135,7 @@
 <table class="away_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="FFFFFF">
 	<tbody>
 		<tr id="table_row_head_0">
-			<td colspan="100">{{ matchup.away_team.name }} BOX SCORE</td>
+			<th colspan="100">{{ matchup.away_team }} BOX SCORE</th>
 		</tr>
 		<tr id="table_subrow_head_0">
 			<th colspan="1" class="home_section_header_first">PLAYERS</td>

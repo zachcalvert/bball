@@ -24,12 +24,12 @@
 			<ul>
 				<li class="matchup-thisweek">
 					<strong>Current Matchup: </strong>vs 
-					<a href={% url 'team_profile' team.current_opponent.id %}>{{ team.current_opponent.name }}</a> 
+					<a href={% url 'team_profile' team.current_opponent.id %}>{{ team.current_opponent }}</a> 
 					(<a href={% url 'matchup' team.current_matchup.id %}>Box<a>)
 				</li>
 				<li class="matchup-lastweek">
 					<strong>Previous: </strong>vs 
-					<a href={% url 'team_profile' team.last_weeks_opponent.id %}>{{ team.last_weeks_opponent.name }}</a> 
+					<a href={% url 'team_profile' team.last_weeks_opponent.id %}>{{ team.last_weeks_opponent }}</a> 
 					(<a href={% url 'matchup' team.last_weeks_matchup.id %}>Box<a>)
 				</li>
 			</ul>

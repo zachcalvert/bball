@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static "css/matchup-tables.css" %}" />
 
-<table cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="FFFFFF">
+<table cellpadding="0" cellspacing="1" border="1" id="totals_table_0" bordercolor="FFFFFF">
 	<tbody>
 		<tr id="table_row_head_0">
 			<td style="text-align:left"colspan="1">TEAM</td>
@@ -203,3 +203,66 @@
   		</tr>
 	</tbody>
 </table>
+<script>
+	String.prototype.format = function() {
+    var s = this,
+        i = arguments.length;
+
+    while (i--) {
+        s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+    }
+    return s;
+	};
+
+
+	var table = document.getElementById("totals_table_0");
+	for (var i = 0, row; row = table.rows[i]; i++) {
+		var away_wins = 0;
+     	var home_wins = 0;
+     	var ties = 0;
+	   //iterate through rows
+	   //rows would be accessed using the "row" variable assigned in the for loop
+		if (i==3) {   
+		   for (var j = 0, col; col = row.cells[j]; j++) {
+			    var row_above = table.rows[i-1]
+			    var cell_above = row_above.cells[j]
+			    if (j==0){}
+			    // fuckin turnovers, reverse the operators
+			    else if (j==9) {
+			    	if (col.textContent < cell_above.textContent) {
+				    	col.fontWeight = 'bold';
+				    	home_wins++;
+
+				    } else if (col.textContent > cell_above.textContent){
+				    	cell_above.fontWeight = 'bold';
+				    	away_wins += 1;
+				    	console.log(away_wins)
+				    } else{
+				    	ties = ties + 1;
+				    }
+			    } else {
+				    if (col.textContent > cell_above.textContent) {
+				    	col.fontWeight = 'bold';
+				    	home_wins++;
+
+				    } else if (col.textContent < cell_above.textContent){
+				    	cell_above.fontWeight = 'bold';
+				    	away_wins += 1;
+				    	console.log(away_wins)
+				    } else{
+				    	ties = ties + 1;
+				    }
+				}
+			}
+		var home_result = row_above.cells[12];
+		var away_result = row.cells[12];
+		home_result.innerHTML="{0}-{1}".format(away_wins, home_wins);
+	   	away_result.innerHTML="{0}-{1}".format(home_wins, away_wins);
+	   	if (away_result.innerHTML > home_result.innerHTML) {
+	   		// boldify
+	   	} else {
+	   		// boldify
+	   	}
+	   }
+	}
+</script>

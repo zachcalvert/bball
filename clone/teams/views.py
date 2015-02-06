@@ -13,6 +13,7 @@ seven = timedelta(days=7)
 today_day = today.date()
 
 template_name = "teams/team_profile.html"
+
 def home(request):
 	return render(request, "teams/site_base.html")
 

@@ -4,7 +4,7 @@ html {
 	padding:0;
 	color:#000;
 	height: 100%;
-	background: #000;
+	background: #fff;
     font-family: Verdana;
 }
 
@@ -34,7 +34,13 @@ li {
 	padding-bottom:10px;
 	margin-left:10%;
 }
-
+#totals_table_0 {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	text-align: left;
+	padding: 5px;
+}
 #teamtable_0 {
 	width: 98%;
 	margin-left: 1%;
@@ -75,7 +81,7 @@ tr:nth-child(odd) {
     background-color: #F8F8F2;
 }
 td.sectionLeadingSpacer {
-	width: 6px;
+	width: 3px;
 	height: 24px;
 	background: #E7E7D5;
 }

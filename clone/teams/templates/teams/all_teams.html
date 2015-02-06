@@ -26,7 +26,7 @@
 	<tbody>
 		{% for team in teams %}
 		<tr>
-			<td><a href="{% url 'team_profile' team.id %}">{{ team.name }}</a></td>
+			<td><a href="{% url 'team_profile' team.id %}">{{ team }}</a></td>
 			<td>{{ team.record }}</td>
 			<td>{{ team.fgpct }}</td>
 			<td>{{ team.ftpct }}</td>

@@ -90,6 +90,77 @@ th {
 	font-size:10px;
 }
 td {
-	font-size:9px;
+	font-size:10px;
 	padding: 5px;
 }
+
+
+/* matchup stuff */
+#homeTeamProfileContainer {
+	float:left; 
+	border: 1px solid #DDDDDD; 
+	padding: 0px; 
+	width:455px; 
+	background:#EFEFEF; 
+	margin-left: 5%;
+	margin-bottom: 3%;
+}
+#awayTeamProfileContainer {
+	float:right; 
+	border: 1px solid #DDDDDD; 
+	padding: 0px; 
+	width:455px; 
+	background:#EFEFEF; 
+	margin-right: 5%;
+	margin-bottom: 3%;
+}
+#teamLogo {
+	float:left; 
+	border-right:1px solid #dddddd; 
+	line-height:0px;
+}
+#teamLogo a {
+	border:none; 
+	width:151; 
+	height:129.0;
+}
+#teamLogo img {
+	border:none; 
+	background-color:white; 
+}
+#teamProfileInnerContainer {
+	text-align:left; 
+	padding:5px; 
+	float:left; 
+	width:285px; 
+	line-height:18px;
+}
+#teamProfileInnerContainerName {
+	font-size:18px;
+	font-weight: bold; 
+	margin-bottom:14px; 
+	font-family:Helvetica,sans-serif;
+}
+#teamProfileInfo { 
+	width: 290px; 
+	height: 48px; 
+	display: block; 
+	margin-top: -2px; 
+	margin-bottom: 3px; 
+}
+#teamProfileOwnerMug { 
+	width: 35px; 
+	height: 48px; 
+	display:inline; 
+	float: left; 
+	padding: 0; 
+}
+#teamProfileOwnerData { 
+	width: 104px; 
+	padding: 3px; 
+	overflow: hidden; 
+	height: 42px; 
+	display: inline; 
+	float: left; 
+}
+

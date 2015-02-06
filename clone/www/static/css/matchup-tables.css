@@ -4,9 +4,22 @@ body {
 	font-family: Verdana;
 	font-size: 10px;
 }
+
+a:link {
+    color: #000000;
+}
+a:visited {
+	color: #000000;
+}
+a:hover {
+    color: #D18603;
+}
 #teamtable_0 {
 	width:90%;
 	margin-left: 5%;
+}
+#team_table_0 a {
+	color: black;
 }
 #table_row_head_0 {
 	background:#BA4F00;

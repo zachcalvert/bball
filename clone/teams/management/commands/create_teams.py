@@ -16,7 +16,7 @@ class Command(BaseCommand):
     	team1 = Team.objects.create(name='Stairway to Kevin', wins=73, losses=35)
 
     	team1_players = ('Kevin Durant', 'Rajon Rondo', 'Eric Gordon', 'Dirk Nowitzki',
-    		'Andrew Bogut', 'Mo Williams', 'Kyle Korver', 'Roy Hibbert', 'Draymond Green',
+    		'Andrew Bogut', 'Brian Roberts', 'Kyle Korver', 'Roy Hibbert', 'Draymond Green',
     		'Hassan Whiteside', 'Mike Conley', 'Kevin Martin', 'Pau Gasol',)
 
     	for team1_player in team1_players:

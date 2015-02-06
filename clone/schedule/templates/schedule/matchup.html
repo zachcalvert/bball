@@ -7,6 +7,38 @@
 	<h4>Record: {{ team.record }}</h4>
 {% endblock %}
 
+{% block team-profiles %}
+	<div id="homeTeamProfileContainer">
+		<div id="teamLogo" href="{% url 'team_profile' matchup.home_team.id %}">
+			<img src="http://g.espncdn.com/s/fbalm/15/images/clubhouse/noLogoSilo.gif" width="151" height="129.0">
+		</div>
+		<div id="teamProfileInnerContainer">
+		<div id="teamProfileInnerContainerName">Stairway to Kevin</div>
+
+	<div id="teamProfileInfo">
+		<div id="teamProfileOwnerMug">
+			<img src="http://assets.espn.go.com/i/profile/default/silo2_guy_35.jpg" width="35" height="48">
+		</div>
+		<div id="teamProfileOwnerData"><a href="{% url 'team_profile' matchup.home_team.id %}">Zach Calvert</a></div>
+		</div><b>Record:</b>{{ matchup.home_team.record }}<br><b>Standing:</b> tbd<br></div>
+	</div>
+
+	<div id="awayTeamProfileContainer">
+		<div id="teamLogo" href="{% url 'team_profile' matchup.away_team.id %}">
+			<img src="http://g.espncdn.com/s/fbalm/15/images/clubhouse/noLogoSilo.gif" width="151" height="129.0">
+		</div>
+		<div id="teamProfileInnerContainer">
+		<div id="teamProfileInnerContainerName">{{ matchup.away_team.name }}</div>
+
+	<div id="teamProfileInfo">
+		<div id="teamProfileOwnerMug">
+			<img src="http://assets.espn.go.com/i/profile/default/silo2_guy_35.jpg" width="35" height="48">
+		</div>
+		<div id="teamProfileOwnerData"><a href="{% url 'team_profile' matchup.away_team.id %}">Daniel Calero</a></div>
+		</div><b>Record:</b>{{ matchup.away_team.record }}<br><b>Standing:</b> tbd<br></div>
+	</div>
+{% endblock%}
+
 {% block main-content %}
 	{% include 'matchup_tables.html' %}
 {% endblock %}

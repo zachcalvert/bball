@@ -226,7 +226,7 @@
 		   for (var j = 0, col; col = row.cells[j]; j++) {
 			    var row_above = table.rows[i-1]
 			    var cell_above = row_above.cells[j]
-			    if (j==0){}
+			    if (j==0 || j==1 || j==11 || j==12){}
 			    // fuckin turnovers, reverse the operators
 			    else if (j==9) {
 			    	if (col.textContent < cell_above.textContent) {
@@ -236,7 +236,6 @@
 				    } else if (col.textContent > cell_above.textContent){
 				    	cell_above.style.fontWeight = 'bold';
 				    	away_wins += 1;
-				    	console.log(away_wins)
 				    } else{
 				    	ties = ties + 1;
 				    }

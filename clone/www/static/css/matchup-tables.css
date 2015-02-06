@@ -6,6 +6,7 @@ body {
 }
 #teamtable_0 {
 	width:90%;
+	margin-left: 5%;
 }
 #table_row_head_0 {
 	background:#BA4F00;
@@ -26,6 +27,9 @@ body {
 	background: #D1D1BB;
 	font-weight: bold;
 }
+#matchup_table_row_0 {
+	background: #F2F2E8;
+}
 tr:nth-child(even) {
     background-color: #F8F8F2;
 }
@@ -38,5 +42,8 @@ td.sectionLeadingSpacer {
 	background:#fff;
 }
 td {
+	padding: 5px;
+}
+th {
 	padding: 5px;
 }

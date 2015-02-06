@@ -2,6 +2,64 @@
 
 <link rel="stylesheet" type="text/css" href="{% static "css/matchup-tables.css" %}" />
 
+<table cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="FFFFFF">
+	<tbody>
+		<tr id="table_row_head_0">
+			<td style="text-align:left"colspan="1">TEAM</td>
+			<td class="sectionLeadingSpacer"></td>
+			<th colspan="9">STATISTICS</th>
+			<td class="sectionLeadingSpacer"></td>
+			<th style="text-align:right">TOTAL</th>
+		</tr>
+		<tr id="table_subrow_head_0">
+			<td style="text-align:left">NAME</td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">FG%</td>
+			<td style="text-align:right">FT%</td>
+			<td style="text-align:right">3PM</td>
+			<td style="text-align:right">REB</td>
+			<td style="text-align:right">AST</td>
+			<td style="text-align:right">STL</td>
+			<td style="text-align:right">BLK</td>
+			<td style="text-align:right">TO</td>
+			<td style="text-align:right">PTS</td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">SCORE</td>
+		</tr>
+		<tr id="matchup_table_row_0">
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id %}">{{ matchup.home_team.name }}</a></td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">{{ home_totals.fgpct|format_pct }}</td>
+			<td style="text-align:right">{{ home_totals.ftpct|format_pct }}</td>
+			<td style="text-align:right">{{ home_totals.threes }}</td>
+			<td style="text-align:right">{{ home_totals.rebounds }}</td>
+			<td style="text-align:right">{{ home_totals.assists }}</td>
+			<td style="text-align:right">{{ home_totals.steals }}</td>
+			<td style="text-align:right">{{ home_totals.blocks }}</td>
+			<td style="text-align:right">{{ home_totals.turnovers }}</td>
+			<td style="text-align:right">{{ home_totals.points }}</td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">{{ home_totals.result }}</td>
+		</tr>
+		<tr id="matchup_table_row_0">
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id %}">{{ matchup.away_team.name }}</a></td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">{{ away_totals.fgpct|format_pct }}</td>
+			<td style="text-align:right">{{ away_totals.ftpct|format_pct }}</td>
+			<td style="text-align:right">{{ away_totals.threes }}</td>
+			<td style="text-align:right">{{ away_totals.rebounds }}</td>
+			<td style="text-align:right">{{ away_totals.assists }}</td>
+			<td style="text-align:right">{{ away_totals.steals }}</td>
+			<td style="text-align:right">{{ away_totals.blocks }}</td>
+			<td style="text-align:right">{{ away_totals.turnovers }}</td>
+			<td style="text-align:right">{{ away_totals.points }}</td>
+			<td class="sectionLeadingSpacer"></td>
+			<td style="text-align:right">{{ away_totals.result }}</td>
+		</tr>
+	</tbody>
+
+</table>
+
 <table class="home_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="FFFFFF">
 	<tbody>
 		<tr id="table_row_head_0">

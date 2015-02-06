@@ -4,10 +4,7 @@ html {
 	padding:0;
 	color:#000;
 	height: 100%;
-    background: -webkit-linear-gradient(#D8D8D8, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#D8D8D8, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#D8D8D8, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#D8D8D8, white); /* Standard syntax (must be last) */
+	background: #fff;
     font-family: Verdana;
 }
 
@@ -17,99 +14,31 @@ html {
 }
 #navigation {
 	padding:5px 10px;
-	background:#c99;
 	font-size: 10px;
 }
-#navigation ul {
-	margin:0;
-	padding:0;
+ul {
+	margin-left:5%;
 	list-style:none;
+	margin-bottom: 10px;
 }
-#navigation li {
+li {
 	display:inline;
 	margin:0;
 	padding:20px;
-}
-#current-matchup {
-	padding:20px;
-	font-size: 10px;
 }
 #main-content {
 	float:left;
 	width:100%;
 	font-size: 10px;
 	background: #E7E7D5;
-}
-#main-content h3 {
-	margin-left:20px;
-}
-#main-content img {
-	margin-left:20px;
-	width: 35%;
-}
-#main-content ul {
-	margin-left:6%;
-	padding-top:20px;
-	list-style:none;
-	text-align: left;
-}
-#main-content li {
-	display:inline;
-	margin:0;
-	padding:20px;
-}
-
-#footer {
-    font-family: "Neue Helvetica W01", Helvetica, Arial, sans-serif;
-    display: inline-block;
-    width: 100%;
-	margin-left:20%;
-	margin-right:20%;
-}
-
-#footer .footer-block {
-    width: 160px;
-    margin: 45px 15px;
-    float: left;
-}
-
-#footer .footer-block p {
-    margin: 0px;
-    padding: 0px;
-    color: #000000;
-}
-
-#footer .footer-block ul {
-    margin: 0px;
-    padding: 0px;
-    font-size: 12px;
-    line-height: 19px;
-    list-style-type: none;
-}
-#main-content textarea {
-	float:right;
-	margin-right:7%;
-	resize: none;
-	overflow-y: scroll;
-	width: 50%;
-	height: 150px;
-	background: none;
-	border: 0;
+	padding-top:10px;
 }
 
 #teamtable_0 {
-	width: 75%;
+	width: 85%;
 	margin-left: 5%;
 	text-align: left;
-}
-
-#teamtable_1 {
-	width: 10%;
-	margin-left: 10px;
-}
-#teamtable_2 {
-	width: 40%;
-	margin-left: 10px;
+	padding: 5px;
 }
 .player_row {
 	width:5px;
@@ -152,18 +81,13 @@ td.sectionLeadingSpacer {
 table {
 	width: 90%;
 	border-collapse: collapse;
-/*	line-height: 15px;*/
 	font-size: 10px;
 	margin-bottom: 50px;
 }
 th {
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	font-size: 90%;
-	border-bottom: 2px solid #111111;
-	border-top: 1px solid #999;
-	text-align: center;
+	font-size:10px;
 }
 td {
+	font-size:9px;
 	padding: 5px;
 }

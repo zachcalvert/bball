@@ -1,6 +1,6 @@
 from __future__ import division
 from django.db import models
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from django.db.models import Q
 
 from schedule.models import Matchup
@@ -40,95 +40,40 @@ class Team(models.Model):
 		return Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
 
 	@property
-	def points(self):
-		points = 0
-		for player in self.players:
-			points += player.points
-		return points
+	def current_opponent(self):
+		matchups = Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self))) 
+		matchups = matchups.filter(Q(start_date__lte=datetime.today()) & (Q(end_date__gte=datetime.today())))
+		matchup = matchups[0]
+		if matchup.home_team == self:
+			return matchup.away_team
+		return matchup.home_team
 
 	@property
-	def assists(self):
-		assists = 0
-		for player in self.players:
-			assists += player.assists
-		return assists
+	def current_matchup(self):
+		matchups = Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
+		matchups = matchups.filter(Q(start_date__lte=datetime.today()) & (Q(end_date__gte=datetime.today())))
+		matchup = matchups[0]
+		return matchup
 
 	@property
-	def rebounds(self):
-		rebounds = 0
-		for player in self.players:
-			rebounds += player.rebounds
-		return rebounds
+	def last_weeks_opponent(self):
+		seven = timedelta(days=7)
+		last_week = datetime.today() - seven
+		matchups = Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
+		matchups = matchups.filter(Q(start_date__lte=last_week))
+		matchup = matchups.last()
+		if matchup.home_team == self:
+			return matchup.away_team
+		return matchup.home_team
 
 	@property
-	def steals(self):
-		steals = 0
-		for player in self.players:
-			steals += player.steals
-		return steals
-
-	@property
-	def blocks(self):
-		blocks = 0
-		for player in self.players:
-			blocks += player.blocks
-		return blocks
-
-	@property
-	def threes(self):
-		threes = 0
-		for player in self.players:
-			threes += player.threes
-		return threes
-
-	@property
-	def turnovers(self):
-		turnovers = 0
-		for player in self.players:
-			turnovers += player.turnovers
-		return turnovers
-
-	@property
-	def fgm(self):
-		fgm = 0
-		for player in self.players:
-			fgm += player.fgm
-		return fgm
-
-	@property
-	def fga(self):
-		fga = 0
-		for player in self.players:
-			fga += player.fga
-		return fga
-
-	@property
-	def fgpct(self):
-		if self.fga == 0:
-			return 0.00
-		fgpct = self.fgm/self.fga
-		return round(fgpct, 4) * 100
-
-	@property
-	def ftm(self):
-		ftm = 0
-		for player in self.players:
-			ftm += player.ftm
-		return ftm
-
-	@property
-	def fta(self):
-		fta = 0
-		for player in self.players:
-			fta += player.fta
-		return fta
-
-	@property
-	def ftpct(self):
-		if self.fta == 0:
-			return 0.00
-		ftpct = self.ftm/self.fta
-		return round(ftpct, 4) * 100
+	def last_weeks_matchup(self):
+		seven = timedelta(days=7)
+		last_week = datetime.today() - seven
+		matchups = Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
+		matchups = matchups.filter(Q(start_date__lte=last_week))
+		matchup = matchups.last()
+		return matchup
 
 class LineUp(models.Model):
 	team = models.ForeignKey(Team)

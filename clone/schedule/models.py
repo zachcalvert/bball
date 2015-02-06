@@ -65,28 +65,3 @@ class Matchup(models.Model):
 	start_date = models.DateField(auto_now=False)
 	end_date = models.DateField(auto_now=False)
 	week = models.IntegerField(default=22)
-
-	@property
-	def home_stats(self):
-		home_stats = {"FG%":0, "FT%":0, "3PM":0, "REB":0, "AST":0, "STL":0, "BLK":0, "TO":0, "PTS":0,}
-		for player in self.home_team.players:
-			games = Game.objects.filter(Q(date__gte=self.start_date) & Q(date__lte=self.end_date))
-			print(games.count())
-			# why does filter this work in the shell but not here???
-			statlines = StatLine.objects.filter(game__in=games).filter(player_id=player.id)
-			print(statlines.count())
-			for statline in statlines:
-				home_stats["3PM"] += statline.threesm
-				home_stats["REB"] += statline.trbs
-				home_stats["AST"] += statline.asts
-				home_stats["STL"] += statline.stls
-				home_stats["BLK"] += statline.tos
-				home_stats["TO"] += statline.tos
-				home_stats["PTS"] += statline.pts
-
-		return home_stats
-
-
-	@property
-	def away_stats(self):
-		return True

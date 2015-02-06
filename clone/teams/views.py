@@ -12,7 +12,7 @@ fifteen = timedelta(days=15)
 seven = timedelta(days=7)
 today_day = today.date()
 
-
+template_name = "teams/team_profile.html"
 def home(request):
 	return render(request, "teams/site_base.html")
 
@@ -25,8 +25,8 @@ def team_profile(request, team_id):
 	total_stats = calculate_totals(team, start_day=season_start, end_day=today)
 	stats = calculate_avgs(total_stats)
 	stats.pop('totals')
-	return render(request, "teams/team_profile.html", {'team': team, 'total_stats': total_stats, 'stats': stats, 
-		'date': today_day})
+	return render(request, template_name, {'team': team, 'total_stats': total_stats, 
+		'stats': stats})
 
 def team_last_month(request, team_id):
 	team = Team.objects.get(id=team_id)
@@ -34,8 +34,8 @@ def team_last_month(request, team_id):
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
 	stats.pop('totals')
-	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
-		'date': today_day})
+	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
+		'stats': stats})
 
 def team_last_fifteen(request, team_id):
 	team = Team.objects.get(id=team_id)
@@ -43,8 +43,8 @@ def team_last_fifteen(request, team_id):
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
 	stats.pop('totals')
-	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
-		'date': today_day})
+	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
+		'stats': stats})
 
 def team_last_week(request, team_id):
 	team = Team.objects.get(id=team_id)
@@ -52,6 +52,6 @@ def team_last_week(request, team_id):
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
 	stats.pop('totals')
-	return render(request, 'teams/team_profile.html', {'team':team, 'total_stats': total_stats, 'stats': stats, 
-		'date': today_day})
+	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
+		'stats': stats})
 	

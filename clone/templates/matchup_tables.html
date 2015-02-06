@@ -230,11 +230,11 @@
 			    // fuckin turnovers, reverse the operators
 			    else if (j==9) {
 			    	if (col.textContent < cell_above.textContent) {
-				    	col.fontWeight = 'bold';
+				    	col.style.fontWeight = 'bold';
 				    	home_wins++;
 
 				    } else if (col.textContent > cell_above.textContent){
-				    	cell_above.fontWeight = 'bold';
+				    	cell_above.style.fontWeight = 'bold';
 				    	away_wins += 1;
 				    	console.log(away_wins)
 				    } else{
@@ -242,11 +242,11 @@
 				    }
 			    } else {
 				    if (col.textContent > cell_above.textContent) {
-				    	col.fontWeight = 'bold';
+				    	col.style.fontWeight = 'bold';
 				    	home_wins++;
 
 				    } else if (col.textContent < cell_above.textContent){
-				    	cell_above.fontWeight = 'bold';
+				    	cell_above.style.fontWeight = 'bold';
 				    	away_wins += 1;
 				    	console.log(away_wins)
 				    } else{
@@ -256,13 +256,18 @@
 			}
 		var home_result = row_above.cells[12];
 		var away_result = row.cells[12];
-		home_result.innerHTML="{0}-{1}".format(away_wins, home_wins);
-	   	away_result.innerHTML="{0}-{1}".format(home_wins, away_wins);
-	   	if (away_result.innerHTML > home_result.innerHTML) {
-	   		// boldify
-	   	} else {
-	   		// boldify
-	   	}
+		if (ties == 0) {
+			home_result.innerHTML="{0}-{1}".format(away_wins, home_wins);
+		   	away_result.innerHTML="{0}-{1}".format(home_wins, away_wins);
+		   	if (away_result.innerHTML > home_result.innerHTML) {
+		   		away_result.style.fontWeight = 'bold';
+		   	} else {
+		   		home_result.style.fontWeight = 'bold';
+		   	}
+		   	// to do
+		} else {
+
+		}
 	   }
 	}
 </script>

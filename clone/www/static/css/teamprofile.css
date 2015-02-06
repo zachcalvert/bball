@@ -70,6 +70,10 @@ li {
 	background:#EEC49A;
 	font-weight: bold;
 }
+#table_subrow_head_1 td {
+	font-size:9px;
+	padding: 5px;
+}
 #team_stats_total_row {
 	background: #D1D1BB;
 	font-weight: bold;

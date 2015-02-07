@@ -36,18 +36,18 @@
 				</tr>
 			</thead>
 			<tbody>
-			{% for player_id in avg_stats.iteritems %}
+			{% for player_id in all_player_stats.iteritems %}
 				<tr>
 					<td>
-						<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.player_info.name }}</a>,
-						{{ player_id.1.player_info.nba_team }} {{ player_id.1.player_info.position }}
+						<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.name }}</a>,
+						{{ player_id.1.nba_team }} {{ player_id.1.position }}
 					</td>
-					<td>{{ player_id.1.minutes }}</td>
-				    <td>{{ player_id.1.points }}</td>
-				    <td>{{ player_id.1.assists }}</td>		
-				    <td>{{ player_id.1.rebounds }}</td>
-				    <td>{{ player_id.1.steals }}</td>		
-				    <td>{{ player_id.1.blocks }}</td>
+					<td>{{ player_id.1.stats.minutes }}</td>
+				    <td>{{ player_id.1.stats.points }}</td>
+				    <td>{{ player_id.1.stats.assists }}</td>		
+				    <td>{{ player_id.1.stats.rebounds }}</td>
+				    <td>{{ player_id.1.stats.steals }}</td>		
+				    <td>{{ player_id.1.stats.blocks }}</td>
 		  		</tr>
 		  	{% endfor %}
 		  	</tbody>
@@ -58,7 +58,7 @@
 <script>
 	$(document).ready(function() 
 	    { 
-	        $("#averages_table").tablesorter({ 
+	        $("#teamtable_0").tablesorter({ 
             	sortInitialOrder: 'desc',
             	sortList: [[2,1]] // etc.
     		}); 

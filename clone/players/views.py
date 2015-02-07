@@ -21,8 +21,17 @@ def all_averages(request):
 	return render(request, "players/all/all_averages.html", {"today": today, "players": players})
 
 def free_agents(request):
-	players = Player.objects.filter(team__isnull=True)
-	return render(request, "players/all/all_averages.html", {"today": today, "players": players})
+	all_player_stats = {}
+	players = Player.objects.filter(team__isnull=True)[:50]
+	for player in players:
+		all_player_stats[player.id] = {}
+		total_stats = calculate_totals(player, start_day=season_start, end_day=today)
+		avg_stats = calculate_avgs(total_stats)
+		all_player_stats[player.id]['name'] = player.name
+		all_player_stats[player.id]['nba_team'] = player.nba_team
+		all_player_stats[player.id]['position'] = player.position
+		all_player_stats[player.id]['stats'] = avg_stats
+	return render(request, "players/all/all_averages.html", {"today": today, "all_player_stats": all_player_stats})
 
 def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)

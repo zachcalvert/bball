@@ -2,12 +2,12 @@
 <head>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
-	<link rel="stylesheet" type="text/css" href="{% static "css/all-players.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}" />
 </head>
 
-<h3>Season averages as of {{ today }}</h3>
+<h3>Season averages as of {% now "M d" %}</h3>
     {% block navigation %}
-		<div id="navigation">
+		<div id="top-navigation-bar">
 			<ul>
 				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
 				<li><a href={% url 'all_teams' %}>League Home</a></li>
@@ -23,7 +23,7 @@
 				<li><a href={% url 'free_agents' %}>Free Agents</a></li>
 			</ul>
 
-		<table id="averages_table" class="tablesorter">
+		<table id="teamtable_0" class="tablesorter">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -36,15 +36,18 @@
 				</tr>
 			</thead>
 			<tbody>
-			{% for player in players %}
+			{% for player_id in avg_stats.iteritems %}
 				<tr>
-					<td><a href="{% url 'player_profile' player.id %}">{{ player.name }}</a></td>
-					<td>{{ player.mpg }}</td>
-				    <td>{{ player.ppg }}</td>
-				    <td>{{ player.apg }}</td>		
-				    <td>{{ player.rpg }}</td>
-				    <td>{{ player.spg }}</td>		
-				    <td>{{ player.bpg }}</td>
+					<td>
+						<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.player_info.name }}</a>,
+						{{ player_id.1.player_info.nba_team }} {{ player_id.1.player_info.position }}
+					</td>
+					<td>{{ player_id.1.minutes }}</td>
+				    <td>{{ player_id.1.points }}</td>
+				    <td>{{ player_id.1.assists }}</td>		
+				    <td>{{ player_id.1.rebounds }}</td>
+				    <td>{{ player_id.1.steals }}</td>		
+				    <td>{{ player_id.1.blocks }}</td>
 		  		</tr>
 		  	{% endfor %}
 		  	</tbody>

@@ -27,7 +27,7 @@
 			<td style="text-align:right">SCORE</td>
 		</tr>
 		<tr id="matchup_table_row_0">
-			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id %}">{{ matchup.home_team }}</a></td>
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a></td>
 			<td class="sectionLeadingSpacer"></td>
 			<td style="text-align:right">{{ home_totals.fgpct|format_pct }}</td>
 			<td style="text-align:right">{{ home_totals.ftpct|format_pct }}</td>
@@ -42,7 +42,7 @@
 			<td style="text-align:right">{{ home_totals.result }}</td>
 		</tr>
 		<tr id="matchup_table_row_0">
-			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id %}">{{ matchup.away_team }}</a></td>
+			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a></td>
 			<td class="sectionLeadingSpacer"></td>
 			<td style="text-align:right">{{ away_totals.fgpct|format_pct }}</td>
 			<td style="text-align:right">{{ away_totals.ftpct|format_pct }}</td>

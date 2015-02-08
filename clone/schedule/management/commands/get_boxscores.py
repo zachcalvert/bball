@@ -129,6 +129,10 @@ class Command(BaseCommand):
 							player = Player.objects.get(name=player_name)
 						except Player.DoesNotExist:
 							player = Player.objects.create(name=player_name)
+						if player.nba_team == 'FA':
+							player.nba_team = game.home_team
+							player.save()
+							print("added {0} to {1} roster".format(player.name, game.home_team))
 					elif i == 1:
 						mp = cell.text
 					elif i == 2:

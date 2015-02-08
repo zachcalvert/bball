@@ -9,7 +9,7 @@ from teams.utils import calculate_totals, calculate_avgs
 today = datetime.today()
 season_start = datetime(2014, 10, 28)
 delta = today - season_start
-days_since_season_start = delta.days
+days_since_start = delta.days
 date = today.date()
 
 this_weeks_matchups = Matchup.objects.filter(start_date__lte=today, end_date__gte=today)
@@ -39,5 +39,5 @@ def matchup(request, matchup_id):
 	away_totals = away_stats.pop('totals')
 
 	return render(request, "schedule/matchup.html", {"matchup": matchup, "home_stats": home_stats, 
-		"away_stats": away_stats, "date": date, "home_totals": home_totals, "away_totals": away_totals})	
+		"away_stats": away_stats, "date": date, "home_totals": home_totals, "away_totals": away_totals, "days_since_start": days_since_start})	
 

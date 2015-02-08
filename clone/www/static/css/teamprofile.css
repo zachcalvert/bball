@@ -16,34 +16,108 @@ a:visited {
 a:hover {
     color: #D18603;
 }
-
-#header {
-	padding:5px 10px;
-	background:#ddd;
-}
 #top-navigation-bar {
 	padding:5px 10px;
 	font-size: 10px;
+	margin-top: 20px;
 }
 #top-navigation-bar a {
 	color: #fff;
 	font-weight: bold;
 	background: #000;
-	padding: 8px 10px;
+	padding: 15px 10px;
 	text-decoration: none;
 }
-#top-navigation-bar li {
-	padding: 10px;
-}
-ul {
-	margin-left:5%;
+#top-navigation-bar ul {
+	margin-left:6%;
 	list-style:none;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
-li {
+#top-navigation-bar li {
 	display:inline;
 	margin:0;
-	padding:20px;
+	padding:3px;
+}
+/* matchup stuff */
+#teamProfileContainer {
+	float:left; 
+	border: 1px solid #DDDDDD; 
+	padding: 0px; 
+	width:600px; 
+	background:#EFEFEF; 
+	margin-left: 10%;
+	margin-bottom: 50px;
+	margin-top: 15px;
+	font-size:10px;
+}
+#teamLogo {
+	float:left; 
+	border-right:1px solid #dddddd; 
+	line-height:0px;
+}
+#teamLogo a {
+	border:none; 
+	width:151; 
+	height:129.0;
+}
+#teamLogo img {
+	border:none; 
+	background-color:white; 
+}
+#teamProfileInnerContainer {
+	text-align:left; 
+	padding:5px; 
+	float:left; 
+	width:200px; 
+	line-height:18px;
+}
+#teamProfileInnerContainerName {
+	font-size:18px;
+	font-weight: bold; 
+	margin-bottom:14px; 
+	font-family:Helvetica,sans-serif;
+}
+#teamProfileInfo { 
+	width: 205px; 
+	height: 48px; 
+	display: block; 
+	margin-top: -2px; 
+	margin-bottom: 3px; 
+}
+#teamProfileOwnerMug { 
+	width: 35px; 
+	height: 48px; 
+	display:inline; 
+	float: left; 
+	padding: 0; 
+}
+#teamProfileOwnerData { 
+	width: 104px; 
+	padding: 3px; 
+	overflow: hidden; 
+	height: 42px; 
+	display: inline; 
+	float: left; 
+}
+#matchup-home {
+	font-size:10px;
+/*	background: #6D7172;*/
+}
+#matchup-home ul {
+	margin-left:5px;
+	list-style:none;
+	margin-bottom: 0px;
+}
+#matchup-home li {
+	margin:0;
+	padding:3px;
+}
+#team-profile-info {
+	margin-left:6;
+}
+#stat_filter_links {
+	/*display: inline-block;*/
+	float: left;
 }
 #main-content {
 	width:80%;
@@ -52,6 +126,15 @@ li {
 	padding-top:10px;
 	padding-bottom:10px;
 	margin-left:10%;
+}
+#main-content ul {
+	margin-left:6%;
+	list-style:none;
+}
+#main-content li {
+	display:inline;
+	margin:0;
+	padding:3px;
 }
 #totals_table_0 {
 	width: 90%;
@@ -108,7 +191,6 @@ td.sectionLeadingSpacer {
 	height: 24px;
 	background: #E7E7D5;
 }
-
 table {
 	width: 90%;
 	border-collapse: collapse;
@@ -123,8 +205,7 @@ td {
 	padding: 5px;
 }
 
-
-/* matchup stuff */
+/*matchup stuff */
 #homeTeamProfileContainer {
 	float:left; 
 	border: 1px solid #DDDDDD; 
@@ -144,6 +225,7 @@ td {
 	margin-right: 5%;
 	margin-bottom: 3%;
 }
+/*
 #teamLogo {
 	float:left; 
 	border-right:1px solid #dddddd; 
@@ -199,3 +281,4 @@ td {
 #team-profile-info {
 	margin-left:6%;
 }
+*/*/

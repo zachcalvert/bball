@@ -19,39 +19,41 @@
 	{% block main-content %}
 		<div id="main-content">
 			<ul class="stat_filter_links">
-				<li><a href={% url 'all_averages' %}>All Players</a></li>
-				<li><a href={% url 'free_agents' %}>Free Agents</a></li>
+				<li><a href={% url 'free_agents' 7 %}>Last 7</a></li>
+				<li><a href={% url 'free_agents' 15%}>Last 15</a></li>
+				<li><a href={% url 'free_agents' 30 %}>Last 30</a></li>	
+				<li><a href={% url 'free_agents' days_since_start %}>Season</a></li>
 			</ul>
 
-		<table id="teamtable_0" class="tablesorter">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>MPG</th>
-					<th>Points</th>
-					<th>Assists</th>
-					<th>Rebounds</th>
-					<th>Steals</th>
-					<th>Blocks</th>
-				</tr>
-			</thead>
-			<tbody>
-			{% for player_id in all_player_stats.iteritems %}
-				<tr>
-					<td>
-						<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.name }}</a>,
-						{{ player_id.1.nba_team }} {{ player_id.1.position }}
-					</td>
-					<td>{{ player_id.1.stats.minutes }}</td>
-				    <td>{{ player_id.1.stats.points }}</td>
-				    <td>{{ player_id.1.stats.assists }}</td>		
-				    <td>{{ player_id.1.stats.rebounds }}</td>
-				    <td>{{ player_id.1.stats.steals }}</td>		
-				    <td>{{ player_id.1.stats.blocks }}</td>
-		  		</tr>
-		  	{% endfor %}
-		  	</tbody>
-		</table>
+			<table id="teamtable_0" class="tablesorter">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>MPG</th>
+						<th>Points</th>
+						<th>Assists</th>
+						<th>Rebounds</th>
+						<th>Steals</th>
+						<th>Blocks</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for player_id in all_player_stats.iteritems %}
+					<tr>
+						<td>
+							<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.name }}</a>,
+							{{ player_id.1.nba_team }} {{ player_id.1.position }}
+						</td>
+						<td>{{ player_id.1.stats.minutes }}</td>
+					    <td>{{ player_id.1.stats.points }}</td>
+					    <td>{{ player_id.1.stats.assists }}</td>		
+					    <td>{{ player_id.1.stats.rebounds }}</td>
+					    <td>{{ player_id.1.stats.steals }}</td>		
+					    <td>{{ player_id.1.stats.blocks }}</td>
+			  		</tr>
+			  	{% endfor %}
+			  	</tbody>
+			</table>
 		</div>
 	{% endblock %}
 

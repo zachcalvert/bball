@@ -11,6 +11,7 @@ thirty = timedelta(days=30)
 fifteen = timedelta(days=15)
 seven = timedelta(days=7)
 today_day = today.date()
+days_since_start = (today-season_start).days
 
 template_name = "teams/team_profile.html"
 
@@ -19,40 +20,13 @@ def home(request):
 
 def all_teams(request):
 	teams = Team.objects.all()
-	return render(request, "teams/all_teams.html", {'teams': teams})
+	return render(request, "teams/all_teams.html", {'days_since_start': days_since_start, 'teams': teams})
 
-def team_profile(request, team_id):
+def team_profile(request, team_id, num_days=days_since_start):
 	team = Team.objects.get(id=team_id)
-	total_stats = calculate_totals(team, start_day=season_start, end_day=today)
-	stats = calculate_avgs(total_stats)
-	stats.pop('totals')
-	return render(request, template_name, {'team': team, 'total_stats': total_stats, 
-		'stats': stats})
-
-def team_last_month(request, team_id):
-	team = Team.objects.get(id=team_id)
-	start_day = today - thirty
+	delta = timedelta(days=int(num_days))
+	start_day = today - delta
 	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
 	stats = calculate_avgs(total_stats)
 	stats.pop('totals')
-	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
-		'stats': stats})
-
-def team_last_fifteen(request, team_id):
-	team = Team.objects.get(id=team_id)
-	start_day = today - fifteen
-	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
-	stats = calculate_avgs(total_stats)
-	stats.pop('totals')
-	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
-		'stats': stats})
-
-def team_last_week(request, team_id):
-	team = Team.objects.get(id=team_id)
-	start_day = today - seven
-	total_stats = calculate_totals(team, start_day=start_day, end_day=today)
-	stats = calculate_avgs(total_stats)
-	stats.pop('totals')
-	return render(request, template_name, {'team':team, 'total_stats': total_stats, 
-		'stats': stats})
-	
+	return render(request, template_name, {'team': team, 'stats': stats, 'days_since_start': days_since_start, "num_days": num_days})

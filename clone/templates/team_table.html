@@ -8,7 +8,7 @@
 				<th colspan="2" class="team_table_section_header">{% now "M d" %}</th>
 				<td class="sectionLeadingSpacer"></td>
 				<th colspan="13" class="team_table_section_header">
-					{% if num_days %}
+					{% if num_days != days_since_start %}
 						LAST {{ num_days }} DAYS STATS
 					{% else %}
 						2015 SEASON STATS

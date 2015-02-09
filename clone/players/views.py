@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 from players.models import Player
 from datetime import datetime, timedelta, date
@@ -21,6 +22,7 @@ def all_averages(request):
 	players = Player.objects.all()
 	return render(request, "players/all/all_averages.html", {"today": today, "players": players})
 
+@cache_page(60*30)
 def free_agents(request, num_days=days_since_start):
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta

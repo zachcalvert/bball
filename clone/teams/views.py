@@ -16,7 +16,7 @@ days_since_start = (today-season_start).days
 template_name = "teams/team_profile.html"
 
 def home(request):
-	return render(request, "teams/site_base.html")
+	return render(request, "teams/site_base.html", {"days_since_start": days_since_start})
 
 def all_teams(request):
 	teams = Team.objects.all()

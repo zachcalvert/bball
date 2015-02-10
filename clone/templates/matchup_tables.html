@@ -258,15 +258,15 @@
 		if (ties == 0) {
 			home_result.innerHTML="{0}-{1}".format(away_wins, home_wins);
 		   	away_result.innerHTML="{0}-{1}".format(home_wins, away_wins);
-		   	if (away_result.innerHTML > home_result.innerHTML) {
-		   		away_result.style.fontWeight = 'bold';
-		   	} else {
-		   		home_result.style.fontWeight = 'bold';
-		   	}
-		   	// to do
 		} else {
-
+			home_result.innerHTML="{0}-{1}-{2}".format(away_wins, home_wins, ties);
+		   	away_result.innerHTML="{0}-{1}-{2}".format(home_wins, away_wins, ties);
 		}
+		if (away_result.innerHTML > home_result.innerHTML) {
+	   		away_result.style.fontWeight = 'bold';
+	   	} else {
+	   		home_result.style.fontWeight = 'bold';
+	   	}
 	   }
 	}
 </script>

@@ -4,7 +4,7 @@ from datetime import datetime
 
 from schedule.models import Matchup
 from teams.models import Team
-from teams.utils import calculate_totals, calculate_avgs
+from teams.utils import calculate_team_totals, calculate_team_avgs
 
 today = datetime.today()
 season_start = datetime(2014, 10, 28)
@@ -33,8 +33,8 @@ def all_team_matchups(request, team_id):
 
 def matchup(request, matchup_id):
 	matchup = get_object_or_404(Matchup, pk=matchup_id)
-	home_stats = calculate_totals(matchup.home_team, start_day=matchup.start_date, end_day=matchup.end_date)
-	away_stats = calculate_totals(matchup.away_team, start_day=matchup.start_date, end_day=matchup.end_date)
+	home_stats = calculate_team_totals(matchup.home_team, start_day=matchup.start_date, end_day=matchup.end_date)
+	away_stats = calculate_team_totals(matchup.away_team, start_day=matchup.start_date, end_day=matchup.end_date)
 	home_totals = home_stats.pop('totals')
 	away_totals = away_stats.pop('totals')
 

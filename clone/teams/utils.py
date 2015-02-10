@@ -7,7 +7,7 @@ from players import utils
 
 IGNORE_KEYS = ('name', 'nba_team', 'position')
 
-def calculate_totals(team, start_day, end_day):
+def calculate_team_totals(team, start_day, end_day):
 	"""
 	Returns a dictionary with average stats and total stats for the given time period.
 	"""
@@ -25,12 +25,18 @@ def calculate_totals(team, start_day, end_day):
 		player_stats['position'] = player.position
 		team_stats[player.id] = player_stats
 
-	team_stats['totals']['fgpct'] = round(team_stats['totals'].get('fgm')/team_stats['totals'].get('fga'), 3)
-	team_stats['totals']['ftpct'] = round(team_stats['totals'].get('ftm')/team_stats['totals'].get('fta'), 3)
+	try:
+		team_stats['totals']['fgpct'] = round(team_stats['totals'].get('fgm')/team_stats['totals'].get('fga'), 3)
+	except ZeroDivisionError:
+		team_stats['totals']['fgpct'] = .000
+	try:
+		team_stats['totals']['ftpct'] = round(team_stats['totals'].get('ftm')/team_stats['totals'].get('fta'), 3)
+	except ZeroDivisionError:
+		team_stats['totals']['ftpct'] = .000
 
 	return team_stats
 
-def calculate_avgs(team_stats):
+def calculate_team_avgs(team_stats):
 	team_averages = {}
 	for k,v in team_stats.iteritems():
 		if isinstance(v, dict):

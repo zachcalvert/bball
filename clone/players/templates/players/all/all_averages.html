@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles stat_filters %}
 <head>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
@@ -25,16 +25,44 @@
 				<li><a href={% url 'free_agents' days_since_start %}>Season</a></li>
 			</ul>
 
-			<table id="teamtable_0" class="tablesorter">
+			<table id="teamtable_0" class="tablesorter" bordercolor="E7E7D5">
 				<thead>
-					<tr>
-						<th>Name</th>
-						<th>MPG</th>
-						<th>Points</th>
-						<th>Assists</th>
-						<th>Rebounds</th>
-						<th>Steals</th>
-						<th>Blocks</th>
+					<tr id="table_row_head_0">
+						<th>PLAYERS</th>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="2">STATUS</td>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="2">{% now "M d" %}</td>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="12">
+							{% if days_since_start != num_days %}
+								LAST {{ num_days }} DAYS STATS
+							{% else %}
+								2015 SEASON STATS
+							{% endif %}
+						</th>
+					</tr>
+					<tr id="table_subrow_head_0">
+						<td>PLAYER, TEAM POS</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td>TYPE</td>
+						<td>ACTION</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td title="Opponent">OPP</td>
+						<td title="Game Status">STATUS ET</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+						<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+						<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<td class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<td class="team_table_stat"><span title="Assists">AST</span></td>
+						<td class="team_table_stat"><span title="Steals">STL</span></td>
+						<td class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<td class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<td class="team_table_stat"><span title="Points">PTS</span></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,12 +72,30 @@
 							<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.name }}</a>,
 							{{ player_id.1.nba_team }} {{ player_id.1.position }}
 						</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td>FA</td>
+						<td><a href="{% url 'add_player_page' player_id.0 %}"><img src="{{ STATIC_URL }}images/add_player_button.png"></a></td>
+						<td class="sectionLeadingSpacer"></td>
+						<td>
+							{% if player_id.0|get_todays_opponent %}
+								{{ player_id.0|get_todays_opponent }}</td>
+							{% else %}
+								&nbsp;
+							{% endif %}
+						<td>{{ player_id.0|get_tipoff }}</td>
+						<td class="sectionLeadingSpacer"></td>
 						<td>{{ player_id.1.stats.minutes }}</td>
-					    <td>{{ player_id.1.stats.points }}</td>
-					    <td>{{ player_id.1.stats.assists }}</td>		
-					    <td>{{ player_id.1.stats.rebounds }}</td>
-					    <td>{{ player_id.1.stats.steals }}</td>		
-					    <td>{{ player_id.1.stats.blocks }}</td>
+						<td class="player_table_stat"><span>{{ player_id.1.stats.fgm }}</span>/<span>{{ player_id.1.stats.fga }}</span></td>
+						<td class="player_table_stat">{{ player_id.1.stats.fgpct|format_pct }}</td>
+						<td class="player_table_stat"><span>{{ player_id.1.stats.ftm }}</span>/<span>{{ player_id.1.stats.fta }}</span></td>
+						<td class="player_table_stat">{{ player_id.1.stats.ftpct|format_pct }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.threes }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.rebounds }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.assists }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.steals }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.blocks }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.turnovers }}</td>
+						<td class="player_table_stat">{{ player_id.1.stats.points }}</td>
 			  		</tr>
 			  	{% endfor %}
 			  	</tbody>

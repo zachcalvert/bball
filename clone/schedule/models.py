@@ -65,4 +65,3 @@ class Matchup(models.Model):
 	start_date = models.DateField(auto_now=False)
 	end_date = models.DateField(auto_now=False)
 	week = models.IntegerField(default=22)
-

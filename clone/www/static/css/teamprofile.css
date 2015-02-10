@@ -38,6 +38,10 @@ a:hover {
 	margin:0;
 	padding:3px;
 }
+#stats_table_header li {
+	float:right;
+	margin-right: 10%;
+}
 /* matchup stuff */
 #teamProfileContainer {
 	float:left; 

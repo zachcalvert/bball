@@ -22,12 +22,17 @@
 	{% endblock %}
 
     {% block navigation %}
+        {% if user.is_authenticated %}
 		<div id="navigation">
 			<ul>
 				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
 				<li><a href={% url 'all_teams' %}>League Home</a></li>
+                <li><a href={% url 'team_profile' user_team.id  days_since_start %}>My Team</a></li>
 			</ul>
 		</div>
+        {% else %}
+            user is not authed
+        {% endif %}
 		<!-- end navigation -->
 	{% endblock %}
 

@@ -20,6 +20,12 @@ context_data['days_since_start'] = days_since_start
 template_name = "teams/team_profile.html"
 
 def home(request):
+	if request.user.is_authenticated():
+		user_team = Team.objects.get(owner=request.user.id)
+	else:
+		user_team = Team.objects.first()
+	context_data['user_team'] = user_team
+	context_data['num_days'] = days_since_start
 	return render(request, "teams/site_base.html", context_data)
 
 def all_teams(request):

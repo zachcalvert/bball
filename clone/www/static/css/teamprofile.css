@@ -195,6 +195,11 @@ td.sectionLeadingSpacer {
 	height: 24px;
 	background: #E7E7D5;
 }
+#sectionLeadingSpacer {
+	width: 3px;
+	height: 24px;
+	background: #E7E7D5;
+}
 table {
 	width: 90%;
 	border-collapse: collapse;

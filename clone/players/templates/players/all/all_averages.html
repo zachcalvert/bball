@@ -28,13 +28,13 @@
 			<table id="teamtable_0" class="tablesorter" bordercolor="E7E7D5">
 				<thead>
 					<tr id="table_row_head_0">
-						<th>PLAYERS</th>
-						<td class="sectionLeadingSpacer"></td>
-						<th colspan="2">STATUS</td>
-						<td class="sectionLeadingSpacer"></td>
-						<th colspan="2">{% now "M d" %}</td>
-						<td class="sectionLeadingSpacer"></td>
-						<th colspan="12">
+						<th class="sorter-false">PLAYERS</th>
+						<td id="sectionLeadingSpacer" class="sorter-false"></td>
+						<th class="sorter-false" colspan="2">STATUS</td>
+						<td id="sectionLeadingSpacer" class="sorter-false"></td>
+						<th class="sorter-false" colspan="2">{% now "M d" %}</td>
+						<td id="sectionLeadingSpacer" class="sorter-false"></td>
+						<th class="sorter-false" colspan="12">
 							{% if days_since_start != num_days %}
 								LAST {{ num_days }} DAYS STATS
 							{% else %}
@@ -44,13 +44,13 @@
 					</tr>
 					<tr id="table_subrow_head_0">
 						<td>PLAYER, TEAM POS</td>
-						<td class="sectionLeadingSpacer"></td>
+						<td id="sectionLeadingSpacer"></td>
 						<td>TYPE</td>
 						<td>ACTION</td>
-						<td class="sectionLeadingSpacer"></td>
+						<td id="sectionLeadingSpacer"></td>
 						<td title="Opponent">OPP</td>
 						<td title="Game Status">STATUS ET</td>
-						<td class="sectionLeadingSpacer"></td>
+						<td id="sectionLeadingSpacer"></td>
 						<td class="team_table_stat"><span title="Minutes">MIN</span></td>
 						<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
 						<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
@@ -108,7 +108,7 @@
 	    { 
 	        $("#teamtable_0").tablesorter({ 
             	sortInitialOrder: 'desc',
-            	sortList: [[2,1]] // etc.
+            	sortList: [[10,0]] // etc.
     		}); 
 		} 
 	); 

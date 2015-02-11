@@ -34,7 +34,7 @@ def free_agents(request, num_days=days_since_start):
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta
 	all_player_stats = {}
-	players = Player.objects.filter(team__isnull=True)
+	players = Player.objects.filter(team__isnull=True)[:100]
 	for player in players:
 		all_player_stats[player.id] = {}
 		total_stats = calculate_totals(player, start_day=start_day, end_day=today)

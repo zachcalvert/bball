@@ -42,6 +42,9 @@ class Player(models.Model):
 	roto_id = models.IntegerField(default=0)
 	recent_notes = models.CharField(max_length=2000, default='No recent notes.')
 
+	class Meta:
+		ordering = ['-points']
+
 	@property
 	def recent_statlines(self):
 		now = datetime.now()

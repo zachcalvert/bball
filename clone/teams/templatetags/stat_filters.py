@@ -30,3 +30,30 @@ def format_pct(value):
 	while len(retval) < 4:
 		retval += '0'
 	return retval
+
+@register.filter(name='format_standing')
+def format_standing(value):
+	if value == 1:
+		return '1st'
+	elif value == 2:
+		return '2nd'
+	elif value == 3:
+		return '3rd'
+	elif value == 4:
+		return '4th'
+	elif value == 5:
+		return '5th'
+	elif value == 6:
+		return '6th'
+	elif value == 7:
+		return '7th'
+	elif value == 8:
+		return '8th'
+	elif value == 9:
+		return '9th'
+	elif value == 10:
+		return '10th'
+	elif value == 11:
+		return '11th'
+	elif value == 12:
+		return '12th'

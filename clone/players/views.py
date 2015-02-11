@@ -10,6 +10,7 @@ from datetime import datetime, timedelta, date
 from players.utils import get_image_url, calculate_totals, calculate_avgs
 from teams.utils import calculate_team_totals, calculate_team_avgs
 
+context_data = {}
 today = datetime.today()
 season_start = datetime(2014, 10, 28)
 thirty = timedelta(days=30)
@@ -17,19 +18,23 @@ fifteen = timedelta(days=15)
 seven = timedelta(days=7)
 days_since_start = (today-season_start).days
 
+context_data['days_since_start'] = days_since_start
+
 def index(request):
 	return render(request, "players/index.html")
 
 def all_averages(request):
 	players = Player.objects.all()
-	return render(request, "players/all/all_averages.html", {"today": today, "players": players})
+	context_data['players'] = players
+	return render(request, "players/all/all_averages.html", context_data)
 
 @cache_page(60*30)
 def free_agents(request, num_days=days_since_start):
+	context_data['num_days'] = num_days
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta
 	all_player_stats = {}
-	players = Player.objects.filter(team__isnull=True)[:150]
+	players = Player.objects.filter(team__isnull=True)
 	for player in players:
 		all_player_stats[player.id] = {}
 		total_stats = calculate_totals(player, start_day=start_day, end_day=today)
@@ -38,31 +43,48 @@ def free_agents(request, num_days=days_since_start):
 		all_player_stats[player.id]['nba_team'] = player.nba_team
 		all_player_stats[player.id]['position'] = player.position
 		all_player_stats[player.id]['stats'] = avg_stats
-	return render(request, "players/all/all_averages.html", {"days_since_start": days_since_start, "num_days": num_days, "all_player_stats": all_player_stats})
+
+	context_data['all_player_stats'] = all_player_stats
+
+	return render(request, "players/all/all_averages.html", context_data)
 
 def add_player(request, player_id, num_days=days_since_start):
+	context_data['num_days'] = num_days
+
 	player = get_object_or_404(Player, pk=player_id)
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta
 	player_stats = calculate_totals(player, start_day=start_day, end_day=today)
 	player_avg_stats = calculate_avgs(player_stats)
+	context_data['player_avg_stats'] = player_avg_stats
 
 	team = Team.objects.first()
 	team_total_stats = calculate_team_totals(team, start_day=start_day, end_day=today)
 	team_avg_stats = calculate_team_avgs(team_total_stats)
 	team_avg_stats.pop('totals')
+	context_data['team_avg_stats'] = team_avg_stats
 
-	return render(request, "players/add_player.html", {"days_since_start": days_since_start, "num_days": num_days, 
-		"player_avg_stats": player_avg_stats, "team_avg_stats": team_avg_stats})
+	return render(request, "players/add_player.html", context_data)
 
 
+def player_profile(request, player_id, num_days=days_since_start):
+	context_data['num_days'] = num_days
 
-def player_profile(request, player_id):
 	player = get_object_or_404(Player, pk=player_id)
+	context_data['player'] = player
+
 	url = get_image_url(player.name)
-	total_stats = calculate_totals(player, start_day=season_start, end_day=today)
+	context_data['image_url'] = url
+
+	delta = timedelta(days=int(num_days))
+	start_day = today - delta
+	total_stats = calculate_totals(player, start_day=start_day, end_day=today)
+	context_data['total_stats'] = total_stats
+	
 	avg_stats = calculate_avgs(total_stats)
-	return render(request, 'players/player_profile.html', {'player': player, 'image_url': url, 'total_stats': total_stats, 'avg_stats': avg_stats})
+	context_data['avg_stats'] = avg_stats
+
+	return render(request, 'players/player_profile.html', context_data)
 
 
 

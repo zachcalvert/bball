@@ -41,7 +41,7 @@
 		{% for player in stats.iteritems %}
 			<tr class="player_row">
 				<td id="starters_table_slot">PG</td>
-				<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+				<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 					{{ player.1.position }}</td>
 				<td>MOVE</td>
 				<td class="sectionLeadingSpacer"></td>

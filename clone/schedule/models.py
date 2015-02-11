@@ -65,3 +65,8 @@ class Matchup(models.Model):
 	start_date = models.DateField(auto_now=False)
 	end_date = models.DateField(auto_now=False)
 	week = models.IntegerField(default=22)
+	finalized = models.BooleanField(default=False)
+	result = models.CharField(max_length=10, null=True, blank=True)
+
+	def __unicode__(self):
+		return "matchup between: {0} and {1} starting {2}".format(self.home_team, self.away_team, self.start_date)

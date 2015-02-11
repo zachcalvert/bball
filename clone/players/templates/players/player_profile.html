@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'teams/site_base.html' %}
 {% load staticfiles %}
 {% load stat_filters player_filters %}
 
@@ -19,10 +19,10 @@
 		<textarea disabled>{{ player.recent_notes }}</textarea>
 		{% block recent_games %}
 			<ul>
-				<li><a href={% url 'player_profile' player.id %}>Season</a></li>
-				<li><a href={% url 'player_last_month' player.id %}>Last 30</a></li>
-				<li><a href={% url 'player_last_fifteen' player.id %}>Last 15</a></li>
-				<li><a href={% url 'player_last_week' player.id %}>Last 7</a></li>	
+				<li><a href={% url 'player_profile' player.id 7 %}>Last 7</a></li>
+				<li><a href={% url 'player_profile' player.id 15 %}>Last 15</a></li>
+				<li><a href={% url 'player_profile' player.id 30 %}>Last 30</a></li>
+				<li><a href={% url 'player_profile' player.id days_since_start %}>Season</a></li>
 			</ul>
 			<br>
 			<table class="averages" cellpadding="2" cellspacing="2" border="1" id="teamtable_0" align="center">

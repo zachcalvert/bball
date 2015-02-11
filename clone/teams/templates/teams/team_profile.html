@@ -29,7 +29,7 @@
 				<div id="teamProfileOwnerData">
 					<a href="{% url 'team_profile' team.id days_since_start %}">{{ team.owner }}</a>
 				</div>
-				</div><b>Record: </b>{{ team.record }}<br><b>Standing: </b> tbd<br>
+				</div><b>Record: </b>{{ team.record }}<br><b>Standing: </b>{{ team.standing | format_standing }}<br>
 			</div>
 			<div id="matchup-home">
 				<ul>

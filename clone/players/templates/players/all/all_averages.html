@@ -69,7 +69,7 @@
 				{% for player_id in all_player_stats.iteritems %}
 					<tr>
 						<td>
-							<a href="{% url 'player_profile' player_id.0 %}">{{ player_id.1.name }}</a>,
+							<a href="{% url 'player_profile' player_id.0 days_since_start %}">{{ player_id.1.name }}</a>,
 							{{ player_id.1.nba_team }} {{ player_id.1.position }}
 						</td>
 						<td class="sectionLeadingSpacer"></td>

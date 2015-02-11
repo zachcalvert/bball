@@ -1,5 +1,14 @@
+#recent_league_activity {
+	float: left;
+	margin-left: 25px;
+	width: 50%;
+}
+
+
 table {
-	width: 70%;
+	width: 20%;
+	float: right;
+	margin-right: 10%;
 	border-collapse: collapse;
 	empty-cells: show;
 	line-height: 15px;

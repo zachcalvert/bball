@@ -20,6 +20,9 @@ class Team(models.Model):
 	losses = models.IntegerField(default=0)
 	ties = models.IntegerField(default=0)
 
+	class Meta:
+           ordering = ['-wins', 'losses']
+
 	@property
 	def record(self):
 		if not self.ties:
@@ -77,6 +80,14 @@ class Team(models.Model):
 		matchups = matchups.filter(Q(start_date__lte=last_week))
 		matchup = matchups.last()
 		return matchup
+
+	@property
+	def standing(self):
+		teams = Team.objects.all()
+		teams = list(teams)
+		# because first place has index of 0
+		return teams.index(self) + 1
+
 
 class LineUp(models.Model):
 	team = models.ForeignKey(Team)

@@ -34,7 +34,7 @@
 						<td id="sectionLeadingSpacer" class="sorter-false"></td>
 						<th class="sorter-false" colspan="2">{% now "M d" %}</td>
 						<td id="sectionLeadingSpacer" class="sorter-false"></td>
-						<th class="sorter-false" colspan="12">
+						<th class="{sorter: false}" colspan="12">
 							{% if days_since_start != num_days %}
 								LAST {{ num_days }} DAYS STATS
 							{% else %}
@@ -62,7 +62,7 @@
 						<td class="team_table_stat"><span title="Steals">STL</span></td>
 						<td class="team_table_stat"><span title="Blocks">BLK</span></td>
 						<td class="team_table_stat"><span title="Turnovers">TO</span></td>
-						<td class="team_table_stat"><span title="Points">PTS</span></td>
+						<td class="sorter-false"><span title="Points">PTS</span></td>
 					</tr>
 				</thead>
 				<tbody>

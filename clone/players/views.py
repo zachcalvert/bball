@@ -1,13 +1,16 @@
+from datetime import datetime, timedelta, date
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.conf import settings
 from django.views.decorators.cache import cache_page
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from players.models import Player
-from teams.models import Team
-from datetime import datetime, timedelta, date
 from players.utils import get_image_url, calculate_totals, calculate_avgs
+from teams.models import Team
 from teams.utils import calculate_team_totals, calculate_team_avgs
 
 context_data = {}
@@ -26,7 +29,7 @@ def index(request):
 def all_averages(request):
 	players = Player.objects.all()
 	context_data['players'] = players
-	return render(request, "players/all/all_averages.html", context_data)
+	return render(request, "players/free_agents.html", context_data)
 
 @cache_page(60*30)
 def free_agents(request, num_days=days_since_start):
@@ -34,7 +37,7 @@ def free_agents(request, num_days=days_since_start):
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta
 	all_player_stats = {}
-	players = Player.objects.filter(team__isnull=True)[:100]
+	players = Player.objects.filter(team__isnull=True)[:20]
 	for player in players:
 		all_player_stats[player.id] = {}
 		total_stats = calculate_totals(player, start_day=start_day, end_day=today)
@@ -46,8 +49,9 @@ def free_agents(request, num_days=days_since_start):
 
 	context_data['all_player_stats'] = all_player_stats
 
-	return render(request, "players/all/all_averages.html", context_data)
+	return render(request, "players/free_agents.html", context_data)
 
+@login_required(login_url='login')
 def add_player(request, player_id, num_days=days_since_start):
 	context_data['num_days'] = num_days
 
@@ -58,11 +62,14 @@ def add_player(request, player_id, num_days=days_since_start):
 	player_avg_stats = calculate_avgs(player_stats)
 	context_data['player_avg_stats'] = player_avg_stats
 
-	team = Team.objects.first()
-	team_total_stats = calculate_team_totals(team, start_day=start_day, end_day=today)
-	team_avg_stats = calculate_team_avgs(team_total_stats)
-	team_avg_stats.pop('totals')
-	context_data['team_avg_stats'] = team_avg_stats
+	if request.user.is_authenticated():
+		team = Team.objects.get(owner=request.user.id)
+		team_total_stats = calculate_team_totals(team, start_day=start_day, end_day=today)
+		team_avg_stats = calculate_team_avgs(team_total_stats)
+		team_avg_stats.pop('totals')
+		context_data['stats'] = team_avg_stats
+	else:
+		return HttpResponseRedirect('all_teams')
 
 	return render(request, "players/add_player.html", context_data)
 

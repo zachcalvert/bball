@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import Q
 from datetime import datetime, timedelta
 
-from schedule.models import Game, StatLine, NBA_TEAMS
+from schedule.models import Game, StatLine, Matchup, NBA_TEAMS
 
 POSITIONS = (
 	('PG', 'Point Guard'),
@@ -64,8 +64,11 @@ class Player(models.Model):
 
 	@property
 	def games(self):
-		games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
+		return Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
 
+	def matchup_games(self, matchup):
+		# games = Game.objects.filter(Q(home_team=self.nba_team)| Q(away_team=self.nba_team))
+		return self.games.filter(Q(date__gte=matchup.start_date) & Q(date__lte=matchup.end_date))
 
 	def __unicode__(self):
 		return self.name

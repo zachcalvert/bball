@@ -54,20 +54,27 @@ def matchup(request, matchup_id):
 
 	home_stats = calculate_team_totals(matchup.home_team, start_day=matchup.start_date, end_day=matchup.end_date)
 	away_stats = calculate_team_totals(matchup.away_team, start_day=matchup.start_date, end_day=matchup.end_date)
-	context_data['home_stats'] = home_stats
-	context_data['away_stats'] = away_stats
-
 	home_totals = home_stats.pop('totals')
 	away_totals = away_stats.pop('totals')
 	context_data['home_totals'] = home_totals
 	context_data['away_totals'] = away_totals
+
+	# attach matchup games for each player
+	for player in matchup.home_team.players:
+		home_stats[player.id]['matchup_games'] = player.matchup_games(matchup)
+	for player in matchup.away_team.players:
+		away_stats[player.id]['matchup_games'] = player.matchup_games(matchup)
+
+	context_data['home_stats'] = home_stats
+	context_data['away_stats'] = away_stats
+
 
 	return render(request, "schedule/matchup.html", context_data)	
 
 @login_required(login_url='login')
 def standings(request):
 	context_data['user_team'] = Team.objects.get(owner=request.user.id)
-	
+
 	teams = Team.objects.all()
 	context_data['teams'] = teams
 	return render(request, "schedule/standings.html", context_data)

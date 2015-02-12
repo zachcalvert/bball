@@ -10,7 +10,6 @@ def get_image_url(player_name):
 	name = player_name.replace(' ','_').lower()
 	return "{0}{1}.png".format(ROOT_IMAGE_URL,name)
 
-
 def todays_opponent(player_id):
 	player = Player.objects.get(id=player_id)
 	now = datetime.now()

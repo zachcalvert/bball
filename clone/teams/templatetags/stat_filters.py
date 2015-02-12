@@ -47,6 +47,20 @@ def format_date(value):
 
 	return '{0} {1} - {2}'.format(day, date_object.strftime('%b %d, %Y'), value.tipoff)
 
+@register.filter(name='format_matchup_games')
+def format_matchup_games(games):
+	matchup_games = ''
+	num_games = str(games.count()) + ': '
+	for game in games:
+		# if game.away_team == player.nba_team:
+		# 	g = '@{}'.format(game.home_team)
+		# elif game.home_team == player.nba_team:
+		g = game.away_team
+		matchup_games += '{},'.format(g)
+	num_games += matchup_games
+	num_games = num_games[:-1]
+	return num_games
+
 
 @register.filter(name='format_standing')
 def format_standing(value):

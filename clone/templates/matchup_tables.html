@@ -94,7 +94,7 @@
 		<tr class="home_stats_player_row">
 			<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 				{{ player.1.position }}</td>
-			<td>games here</td>
+			<td>{{ player.1.matchup_games | format_matchup_games }}</td>
 			<td class="sectionLeadingSpacer"></td>
 			<td class="player_table_stat">{{ player.1.games_played }}</td>
 			<td class="player_table_stat">{{ player.1.minutes }}</td>
@@ -166,7 +166,7 @@
 		<tr class="home_stats_player_row">
 			<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 				{{ player.1.position }}</td>
-			<td>Games here</td>
+			<td>{{ player.1.matchup_games | format_matchup_games }}</td>
 			<td class="sectionLeadingSpacer"></td>
 			<td class="player_table_stat">{{ player.1.games_played }}</td>
 			<td class="player_table_stat">{{ player.1.minutes }}</td>

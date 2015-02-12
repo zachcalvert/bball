@@ -129,18 +129,19 @@ a:hover {
 	float: left;
 }
 #main-content {
-	width:80%;
+	width:90%;
+	margin-left:5%;
+	margin-right:5%;
 	font-size: 10px;
 	background: #E7E7D5;
-	padding-top:10px;
-	padding-bottom:10px;
-	margin-left:10%;
+	margin-top:175px;
 }
 #main-content ul {
-	margin-left:6%;
 	list-style:none;
+	float:left;
 }
 #main-content li {
+	float:left;
 	display:inline;
 	margin:0;
 	padding:3px;

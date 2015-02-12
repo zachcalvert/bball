@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main-content %}
+<table id="teamtable_0" class="tablesorter">
+	<caption>Standings</caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Record</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for team in teams %}
+		<tr>
+			<td><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></td>
+			<td>{{ team.record }}</td>
+  		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+<script>
+	$(document).ready(function() 
+	    { 
+	        $("#teamtable_0").tablesorter({ 
+            	sortInitialOrder: 'desc'
+            	// sortList: [[1,1]] // etc.
+    		}); 
+	} ); 
+
+</script>

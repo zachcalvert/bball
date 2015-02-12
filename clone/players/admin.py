@@ -10,17 +10,17 @@ class PlayerAdminForm(forms.ModelForm):
 
 
 class PlayerAdmin(admin.ModelAdmin):
-	list_display = ('name', 'nba_team', 'ppg', 'apg', 'rpg', 'spg', 'bpg', 'mpg')
-	search_fields = ['name', 'position']
+	list_display = ('name', 'nba_team', 'points', 'assists', 'rebounds', 'steals', 'blocks', 'minutes')
+	search_fields = ['name', 'position', 'nba_team']
 
 	form = PlayerAdminForm
 	fieldsets = [
         (None, {'fields': ['name', 'nba_team', 'position']}),
         ('Recent notes', {'fields': ['recent_notes']}),
-        ('Season averages', {'fields': ['ppg','rpg','apg','spg',
-        	'bpg','mpg','threespg'],}),
+        ('Season stats', {'fields': ['points','rebounds','assists','steals',
+        	'blocks','minutes'],}),
     ]
 
-	readonly_fields = ('ppg','rpg','apg','bpg','spg','mpg','threespg')
+	readonly_fields = ('points','rebounds','assists','blocks','steals','minutes')
 
 admin.site.register(Player, PlayerAdmin)

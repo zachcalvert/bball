@@ -6,32 +6,23 @@
             Fantasy Basketball
         {% endblock %}
     </title>
-	<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static "css/teamprofile.css" %}"/>
 </head>
 
 <body>
-	{% block header %}
-        <div id="header">
-            <div id="main-logo">
-                <a href="{% url 'site_home' %}">
-                    <img src="" alt="Fantasy Basketball Home" />
-                </a>
-            </div>
-        </div>
-    	<!-- end header -->
-	{% endblock %}
-
     {% block navigation %}
         {% if user.is_authenticated %}
-		<div id="navigation">
+		<div id="top-navigation-bar">
 			<ul>
-				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
-				<li><a href={% url 'all_teams' %}>League Home</a></li>
+				<li><a href={% url 'all_teams' %}>League</a></li>
                 <li><a href={% url 'team_profile' user_team.id  days_since_start %}>My Team</a></li>
+                <li><a href={% url 'free_agents' days_since_start %}>Players</a></li>
 			</ul>
 		</div>
         {% else %}
-            user is not authed
+        <div id="login">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
         {% endif %}
 		<!-- end navigation -->
 	{% endblock %}
@@ -46,14 +37,7 @@
 		</div>
         <!-- end main-content -->
 	{% endblock %}	
-
-	{% block sidebar %}
-		<div id="sidebar-content">
-			<p>test testerson</p>
-		</div>
-        <!-- end sidebar -->
-	{% endblock %}
-
+<!-- 
 	{% block footer %}
         <div id="footer" align="center">
             <div id="footer-block" class="footer-block">
@@ -82,5 +66,5 @@
             </div>
         </div>
         <!-- end #footer -->
-    {% endblock %}
+<!--     {% endblock %} -->
 </body>

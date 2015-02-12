@@ -9,9 +9,11 @@
     {% block navigation %}
 		<div id="top-navigation-bar">
 			<ul>
-				<li><a href={% url 'site_home' %}>Basketball Home</a></li>
-				<li><a href={% url 'all_teams' %}>League Home</a></li>
-                <li><a href={% url 'all_averages' %}>Players</a></li>
+				<li><a href={% url 'all_teams' %}>League</a></li>
+				{% if user.is_authenticated %}
+                	<li><a href={% url 'team_profile' user_team.id  days_since_start %}>My Team</a></li>
+                {% endif %}
+                <li><a href={% url 'free_agents' days_since_start %}>Players</a></li>
 			</ul>
 		</div>
 		<!-- end navigation -->
@@ -35,10 +37,11 @@
 						<th class="sorter-false" colspan="2">{% now "M d" %}</td>
 						<td id="sectionLeadingSpacer" class="sorter-false"></td>
 						<th class="{sorter: false}" colspan="12">
-							{% if days_since_start != num_days %}
-								LAST {{ num_days }} DAYS STATS
+							{% if days_since_start == num_days %}
+								2015 SEASON STATS							
 							{% else %}
-								2015 SEASON STATS
+							{{ num_days }} - {{ days_since_start }}
+								<!-- LAST {{ num_days }} DAYS STATS -->
 							{% endif %}
 						</th>
 					</tr>

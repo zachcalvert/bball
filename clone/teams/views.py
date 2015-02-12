@@ -1,6 +1,8 @@
+from datetime import datetime, timedelta
+
 from django.shortcuts import get_object_or_404, render
 from django.conf import settings
-from datetime import datetime, timedelta
+from django.contrib.auth.decorators import login_required
 
 from teams.models import Team
 from teams.utils import calculate_team_totals, calculate_team_avgs
@@ -23,16 +25,18 @@ def home(request):
 	if request.user.is_authenticated():
 		user_team = Team.objects.get(owner=request.user.id)
 	else:
-		user_team = Team.objects.first()
+		return render(request, "registration/login.html", context_data)
 	context_data['user_team'] = user_team
 	context_data['num_days'] = days_since_start
 	return render(request, "teams/site_base.html", context_data)
 
+@login_required(login_url='login')
 def all_teams(request):
 	teams = Team.objects.all()
 	context_data['teams'] = teams
 	return render(request, "teams/all_teams.html", context_data)
 
+@login_required(login_url='login')
 def team_profile(request, team_id, num_days=days_since_start):
 	team = Team.objects.get(id=team_id)
 	context_data['team'] = team
@@ -45,5 +49,7 @@ def team_profile(request, team_id, num_days=days_since_start):
 	stats = calculate_team_avgs(total_stats)
 	stats.pop('totals')
 	context_data['stats'] = stats
+
+	context_data['user_team'] = Team.objects.get(owner=request.user.id)
 
 	return render(request, template_name, context_data)

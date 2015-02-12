@@ -16,6 +16,11 @@ a:visited {
 a:hover {
     color: #D18603;
 }
+#login {
+	width: 30%;
+	margin-top: 20px;
+	margin-left:10px;
+}
 #top-navigation-bar {
 	padding:5px 10px;
 	font-size: 10px;

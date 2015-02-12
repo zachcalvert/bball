@@ -31,6 +31,7 @@ def all_averages(request):
 	context_data['players'] = players
 	return render(request, "players/free_agents.html", context_data)
 
+@login_required(login_url='login')
 @cache_page(60*30)
 def free_agents(request, num_days=days_since_start):
 	context_data['num_days'] = num_days
@@ -47,6 +48,9 @@ def free_agents(request, num_days=days_since_start):
 		all_player_stats[player.id]['position'] = player.position
 		all_player_stats[player.id]['stats'] = avg_stats
 
+
+	context_data['user_team'] = Team.objects.get(owner=request.user.id)
+
 	context_data['all_player_stats'] = all_player_stats
 
 	return render(request, "players/free_agents.html", context_data)
@@ -62,18 +66,15 @@ def add_player(request, player_id, num_days=days_since_start):
 	player_avg_stats = calculate_avgs(player_stats)
 	context_data['player_avg_stats'] = player_avg_stats
 
-	if request.user.is_authenticated():
-		team = Team.objects.get(owner=request.user.id)
-		team_total_stats = calculate_team_totals(team, start_day=start_day, end_day=today)
-		team_avg_stats = calculate_team_avgs(team_total_stats)
-		team_avg_stats.pop('totals')
-		context_data['stats'] = team_avg_stats
-	else:
-		return HttpResponseRedirect('all_teams')
+	team = Team.objects.get(owner=request.user.id)
+	team_total_stats = calculate_team_totals(team, start_day=start_day, end_day=today)
+	team_avg_stats = calculate_team_avgs(team_total_stats)
+	team_avg_stats.pop('totals')
+	context_data['stats'] = team_avg_stats
 
 	return render(request, "players/add_player.html", context_data)
 
-
+@login_required(login_url='login')
 def player_profile(request, player_id, num_days=days_since_start):
 	context_data['num_days'] = num_days
 
@@ -90,6 +91,9 @@ def player_profile(request, player_id, num_days=days_since_start):
 	
 	avg_stats = calculate_avgs(total_stats)
 	context_data['avg_stats'] = avg_stats
+
+	context_data['user_team'] = Team.objects.get(owner=request.user.id)
+
 
 	return render(request, 'players/player_profile.html', context_data)
 

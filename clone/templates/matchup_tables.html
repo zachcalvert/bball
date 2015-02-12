@@ -92,7 +92,7 @@
 
 		{% for player in home_stats.iteritems %}
 		<tr class="home_stats_player_row">
-			<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+			<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 				{{ player.1.position }}</td>
 			<td>games here</td>
 			<td class="sectionLeadingSpacer"></td>
@@ -164,7 +164,7 @@
 
 		{% for player in away_stats.iteritems %}
 		<tr class="home_stats_player_row">
-			<td><a href="{% url 'player_profile' player.0 %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+			<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
 				{{ player.1.position }}</td>
 			<td>Games here</td>
 			<td class="sectionLeadingSpacer"></td>

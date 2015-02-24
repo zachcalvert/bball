@@ -1,0 +1,189 @@
+{% extends 'site_base.html' %}
+{% load staticfiles stat_filters %}
+<head>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script> 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
+</head>
+
+<h3>Season averages as of {% now "M d" %}</h3>
+	{% block main-content %}
+		<div id="main-content">
+			<div id="sub-main-content-0">
+				<h2>Free Agents</h2>
+				<div id="free-agents-search-container">
+					<strong>Position: </strong>
+					<ul id="free-agents-position-filter">
+						<li><a href='#'>All</a></li> |
+						<li><a href='#'>PG</a></li> |
+						<li><a href='#'>SG</a></li> |
+						<li><a href='#'>SF</a></li>	|
+						<li><a href='#'>PF</a></li> |
+						<li><a href='#'>C</a></li> |
+						<li><a href='#'>G</a></li> |
+						<li><a href='#'>F</a></li> |
+						<li><a href='#'>UTIL</a></li>
+					</ul>
+					<br>
+					<br>
+					<strong>Availability: </strong>
+					<ul id="free-agents-availability-filter">
+						<li><a href='#'>All</a></li> |
+						<li><a href='#'>Available</a></li> |
+						<li><a href='#'>On Waivers</a></li> |
+						<li><a href='#'>Free Agents</a></li> |
+						<li><a href='#'>On Rosters</a></li>
+					</ul>
+					<br>
+					<br>
+					<strong>Watch List: </strong>
+					<ul id="free-agents-watchlist-filter">
+						<li><a href='#'>All</a></li> |
+						<li><a href='#'>On Watch List</a></li> |
+						<li><a href='#'>Not On Watch List</a></li>
+					</ul>
+					<br>
+					<br>
+					<strong>Playing: </strong>
+					<ul id="free-agents-playing-filter">
+						<li><a href='#'>All</a></li> |
+						<li><a href='#'>Tomorrow's Games</a></li>
+					</ul>
+					<br>
+					<br>
+					<strong>Stat Qualifier: </strong>
+					<ul id="free-agents-statqualifier-filter">
+						<li><a href='#'>All</a></li> |
+						<li><a href='#'>Filter By</a></li>
+						<li>
+							<select>
+	  							<option value="gp">GP</option>
+								<option value="min">MIN</option>
+								<option value="pts">PTS</option>
+								<option value="ast">AST</option>
+								<option value="reb">REB</option>
+								<option value="stl">STL</option>
+								<option value="blk">BLK</option>
+								<option value="to">TO</option>
+							</select>
+						</li>
+						<li>At least</li>
+						<li></li>
+					</ul>
+					<br>
+					<br>
+					<strong>Last Name: </strong>
+					<ul id="free-agents-statqualifier-filter">
+						<li><input type="text" name="lastname"></li>
+						<li><button>Search</button></li>
+						<li><button input="disabled">Clear</button></li>
+						<li id="team-selector"><strong>Team: </strong></li>
+						<li>
+							<select>
+								<option value="all">All</option>
+								{% for team in nba_teams %}
+									<option value="a">{{ team.0 }}</option>
+								{% endfor %}
+							</select>
+						</li>
+					</ul>
+					<br>
+					<br>
+				</div>
+			</div>
+			<div id="sub-main-content-1">
+				<ul class="stat_filter_links">
+					<li><a href={% url 'free_agents' 7 %}>Last 7</a></li>
+					<li><a href={% url 'free_agents' 15 %}>Last 15</a></li>
+					<li><a href={% url 'free_agents' 30 %}>Last 30</a></li>	
+					<li><a href={% url 'free_agents' days_since_start %}>Season</a></li>
+				</ul>
+
+				<table id="teamtable_0" class="tablesorter" bordercolor="E7E7D5">
+					<thead>
+						<tr id="table_row_head_0">
+							<th class="sorter-false">PLAYERS</th>
+							<td class="sectionLeadingSpacer" class="sorter-false"></td>
+							<th class="sorter-false" colspan="2">STATUS</td>
+							<td class="sectionLeadingSpacer" class="sorter-false"></td>
+							<th class="sorter-false" colspan="2">{% now "M d" %}</td>
+							<td class="sectionLeadingSpacer" class="sorter-false"></td>
+							<th class="{sorter: false}" colspan="12">
+								{% if days_since_start == num_days %}
+									2015 SEASON STATS							
+								{% else %}
+									LAST {{ num_days }} DAYS STATS
+								{% endif %}
+							</th>
+						</tr>
+						<tr id="table_subrow_head_0">
+							<td>PLAYER, TEAM POS</td>
+							<td class="sectionLeadingSpacer"></td>
+							<td>TYPE</td>
+							<td>ACTION</td>
+							<td class="sectionLeadingSpacer"></td>
+							<td title="Opponent">OPP</td>
+							<td title="Game Status">STATUS ET</td>
+							<td class="sectionLeadingSpacer"></td>
+							<td class="team_table_stat"><span title="Minutes">MIN</span></td>
+							<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+							<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+							<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+							<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+							<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+							<td class="team_table_stat"><span title="Rebounds">REB</span></td>
+							<td class="team_table_stat"><span title="Assists">AST</span></td>
+							<td class="team_table_stat"><span title="Steals">STL</span></td>
+							<td class="team_table_stat"><span title="Blocks">BLK</span></td>
+							<td class="team_table_stat"><span title="Turnovers">TO</span></td>
+							<td class="sorter-false"><span title="Points">PTS</span></td>
+						</tr>
+					</thead>
+					<tbody>
+					{% for player_id in all_player_stats.iteritems %}
+						<tr>
+							<td>
+								<a href="{% url 'player_profile' player_id.0 days_since_start %}">{{ player_id.1.name }}</a>,
+								{{ player_id.1.nba_team }} {{ player_id.1.position }}
+							</td>
+							<td class="sectionLeadingSpacer"></td>
+							<td>FA</td>
+							<td><a href="{% url 'add_player_page' player_id.0 %}"><img src="{{ STATIC_URL }}images/add_player_button.png"></a></td>
+							<td class="sectionLeadingSpacer"></td>
+							<td>
+								{% if player_id.0|get_todays_opponent %}
+									{{ player_id.0|get_todays_opponent }}</td>
+								{% else %}
+									&nbsp;
+								{% endif %}
+							<td>{{ player_id.0|get_tipoff }}</td>
+							<td class="sectionLeadingSpacer"></td>
+							<td>{{ player_id.1.stats.minutes }}</td>
+							<td class="player_table_stat"><span>{{ player_id.1.stats.fgm }}</span>/<span>{{ player_id.1.stats.fga }}</span></td>
+							<td class="player_table_stat">{{ player_id.1.stats.fgpct|format_pct }}</td>
+							<td class="player_table_stat"><span>{{ player_id.1.stats.ftm }}</span>/<span>{{ player_id.1.stats.fta }}</span></td>
+							<td class="player_table_stat">{{ player_id.1.stats.ftpct|format_pct }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.threes }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.rebounds }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.assists }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.steals }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.blocks }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.turnovers }}</td>
+							<td class="player_table_stat">{{ player_id.1.stats.points }}</td>
+				  		</tr>
+				  	{% endfor %}
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+	{% endblock %}
+
+<script>
+	$(document).ready(function() 
+	    { 
+	        $("#teamtable_0").tablesorter({ 
+            	sortInitialOrder: 'desc',
+            	sortList: [[10,0]] // etc.
+    		}); 
+		} 
+	); 
+</script>

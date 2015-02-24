@@ -1,0 +1,58 @@
+td {
+	font-size:10px;
+	padding: 5px;
+}
+
+#teamtable_0 {
+	width: 98%;
+	margin-left: 1%;
+	margin-right: 1%;
+	font-size: 9px;
+	text-align: left;
+	padding: 5px;
+	border-collapse: collapse;
+}
+.player_row {
+	width:5px;
+	overflow:hidden; 
+	white-space: nowrap;
+	text-align: left; 
+	resize: none;
+}
+#table_row_head_0 {
+	background:#BA4F00;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+#table_subrow_head_0 {
+	background:#DF8F41;
+	font-weight: bold;
+}
+#table_subrow_head_1 {
+	background:#EEC49A;
+	font-weight: bold;
+}
+#table_subrow_head_1 td {
+	font-size:9px;
+	padding: 5px;
+}
+#team_stats_total_row {
+	background: #D1D1BB;
+	font-weight: bold;
+}
+#todays-game {
+	text-align: center;
+}
+tr:nth-child(even) {
+    background-color: #F2F2E8;
+}
+tr:nth-child(odd) {
+    background-color: #F8F8F2;
+}
+td.sectionLeadingSpacer {
+	width: 3px;
+	height: 24px;
+	background: #E7E7D5;
+}

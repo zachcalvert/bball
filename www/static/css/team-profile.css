@@ -1,0 +1,90 @@
+#sub-main-content-0 {
+	height: 225px;
+}
+#profile-menu-row {
+	padding-left: 0px;
+	margin-left: 0px;
+	font-size: 9px;
+}
+#profile-menu-row ul {
+	list-style:none;
+}
+#profile-menu-row li {
+	float:left;
+	display:inline;
+	padding:5px;
+}
+#profile-menu-row a {
+	text-decoration:none;
+	font-weight: bold;
+}
+#profile-menu-row a:hover {
+	text-decoration:underline;
+	color: #000;
+}
+#section {
+	width: 350px;
+	padding: 10px;
+	overflow: hidden;
+}
+#profile-team-name {
+	margin-left:175;
+}
+#profile-team-name h2 {
+	margin-left:0;
+}
+#profile-team-name a {
+	font-size: 9px;
+	margin: 0px;
+	padding: 0px;
+}
+#profile-image {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 151px;
+	float: left;
+}
+#profile-settings {
+	background: #CED7D9;
+	width: 151px;
+	margin-left: 10px;
+	text-align: center ;
+	margin-bottom: 5px;
+	margin-top: 139px;
+	padding-bottom: 5px;
+	position:absolute;
+	height: 15px;
+}
+#profile-settings a {
+	color: #475EB2;
+	font-weight: bold;
+	font-size: 9px;
+}
+#profile-settings a:hover {
+	text-decoration: underline;
+}
+#profile-matchup-container {
+	width: 246px;
+	height:104px;
+	background: #D7DEDF;
+}
+#current-matchup {
+	background:#6D7172;
+	color: #FFF;
+	padding: 5px;
+	font-size: 9px;
+	width: 220px;
+	margin-left:8px;
+	margin-top: 5px;
+}
+#current-matchup a {
+	color: #FFF;
+}
+#previous-matchup {
+	background:#BBC4C5;
+	padding: 5px;
+	font-size: 9px;
+	width: 220px;
+	margin-left:8px;
+}

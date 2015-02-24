@@ -1,0 +1,136 @@
+{% extends 'site_base.html' %}
+{% load staticfiles stat_filters %}
+
+{% block main-content %}
+	<div id="main-content">
+		<div id="sub-main-content-0">
+			{% if team == user_team %}
+				<div id="profile-menu-row">
+					<ul id="profile-menu-row-links">
+						<li><a href="#">Roster</a></li>
+						<li><a href="#">Add Player</a></li>
+						<li><a href="#">Drop Players</a></li>	
+						<li><a href="#">Watch List</a></li>
+						<li><a href="#">Trading Block</a></li>
+						<li><a href="#">Team Settings</a></li>
+						<li><a href="#">Trophies</a></li>
+						<li><a href="#">More</a></li>
+					</ul>
+				</div>
+			{% else %}
+				<div id="profile-menu-row">
+					<ul id="profile-menu-row-links">
+						<li><a href="#">{{ team }}</a></li>
+						<li><a href="#">Propose Trade</a></li>
+						<li><a href="#">Trophies</a></li>	
+						<li><a href="#">Schedule</a></li>
+						<li><a href="#">TranLog</a></li>
+						<li><a href="#">Active Stats</a></li>
+					</ul>
+				</div>
+			{% endif %}
+			<section>
+				<div id="profile-image">
+					<img src="{{ STATIC_URL }}images/team_image.png">
+				</div>
+				<div id="profile-settings">
+					{% if team == user_team %}
+						<a href="#">Team Settings</a>
+						<img src="{{ STATIC_URL }}images/wheel_icon.png"/>
+					{% endif %}
+				</div>
+				<div id="profile-team-name">
+					<h2>{{ team }}</h2>
+					<a href="{% url 'site_home' %}">Barely Leaguel</a>
+				</div>
+				<div id="profile-matchup-container">
+					<div id="current-matchup">
+						<strong>Current Matchup: </strong>vs 
+						<a href={% url 'team_profile' team.current_opponent.id days_since_start %}>{{ team.current_opponent }}</a> 
+						(<a href={% url 'matchup' team.current_matchup.id %}>Box<a>)
+					</div>
+					<div id="previous-matchup">
+						<strong>Previous: </strong>vs 
+						<a href={% url 'team_profile' team.last_weeks_opponent.id days_since_start %}>{{ team.last_weeks_opponent }}</a> 
+						(<a href={% url 'matchup' team.last_weeks_matchup.id %}>Box<a>)
+					</div>
+				</div>
+			</section>
+		</div>
+		<div id="sub-main-content-1">
+			<ul id="stat_filter_links">
+				<li><a href={% url 'team_profile' team.id 7 %}>Last 7</a></li>
+				<li><a href={% url 'team_profile' team.id 15 %}>Last 15</a></li>
+				<li><a href={% url 'team_profile' team.id 30 %}>Last 30</a></li>	
+				<li><a href={% url 'team_profile' team.id days_since_start %}>Season</a></li>
+			</ul>
+
+			<table class="team_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="E7E7D5">
+				<tbody>
+					<tr id="table_row_head_0">
+						<th colspan="3" class="team_table_section_header">STARTERS</th>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="2" class="team_table_section_header">{% now "M d" %}</th>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="13" class="team_table_section_header">
+							{% if num_days != days_since_start %}
+								LAST {{ num_days }} DAYS STATS
+							{% else %}
+								2015 SEASON STATS
+							{% endif %}
+						</th>
+					</tr>
+					<tr id="table_subrow_head_0">
+						<td id="starters_table_slot">SLOT</td>
+						<td>PLAYER, TEAM POS</td>
+						<td width="50px">ACTION</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td title="Opponent">OPP</td>
+						<td title="Game Status">STATUS ET</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+						<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+						<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<td class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<td class="team_table_stat"><span title="Assists">AST</span></td>
+						<td class="team_table_stat"><span title="Steals">STL</span></td>
+						<td class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<td class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<td class="team_table_stat"><span title="Points">PTS</span></td>
+					</tr>
+					
+				{% for player in stats.iteritems %}
+					<tr class="player_row">
+						<td id="starters_table_slot">UTIL</td>
+						<td>{{ player.1.name }}</td>
+						<td id="move-player-cell"><img src="{{ STATIC_URL }}images/move_player.png"></td>
+						<td class="sectionLeadingSpacer"></td>
+						<td id="todays-game">
+							{% if player.0|get_todays_opponent %}
+								{{ player.0|get_todays_opponent }}</td>
+							{% else %}
+								&nbsp;
+							{% endif %}
+						<td id="todays-game">{{ player.0|get_tipoff }}</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td class="player_table_stat">{{ player.1.minutes }}</td>
+						<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
+						<td class="player_table_stat">{{ player.1.fgpct|format_pct }}</td>
+						<td class="player_table_stat"><span>{{ player.1.ftm }}</span>/<span>{{ player.1.fta }}</span></td>
+						<td class="player_table_stat">{{ player.1.ftpct|format_pct }}</td>
+						<td class="player_table_stat">{{ player.1.threes }}</td>
+						<td class="player_table_stat">{{ player.1.rebounds }}</td>
+						<td class="player_table_stat">{{ player.1.assists }}</td>
+						<td class="player_table_stat">{{ player.1.steals }}</td>
+						<td class="player_table_stat">{{ player.1.blocks }}</td>
+						<td class="player_table_stat">{{ player.1.turnovers }}</td>
+						<td class="player_table_stat">{{ player.1.points }}</td>
+			  		</tr>
+				{% endfor %}
+			</table>	
+		</div>
+	</div>
+{% endblock %}

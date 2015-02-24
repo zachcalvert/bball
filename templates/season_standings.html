@@ -1,0 +1,30 @@
+<!-- <table id="recent_league_activity" >
+    <caption>Recent League Activity</caption>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Transaction</th>
+        </tr>
+    </thead>
+
+    </tbody>
+</table>
+ -->
+
+<table id="all_teams" class="tablesorter">
+    <caption>Standings</caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Record</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in teams %}
+        <tr>
+            <td><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></td>
+            <td>{{ team.record }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

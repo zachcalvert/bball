@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/team-profile.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/matchups.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/free-agents.css' %}"/>
+	<title> 
+        {% block page_title %} 
+            Fantasy Basketball
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    {% block logout %}
+        <div id="logout">
+            {% if user.is_authenticated %}
+                Welcome, {{ user.username }} | <a href={% url 'logout' %}>Logout</a>
+            {% endif %}
+        </div>
+    {% endblock %}
+    
+    {% block navigation %}
+		<div id="top-navigation-bar">
+			<ul>
+				<li><a href="{% url 'site_home' %}">League</a></li>
+                <li><a href="{% url 'team_profile' user_team.id days_since_start %}">My Team</a></li>
+                <li><a href="{% url 'free_agents' days_since_start %}">Players</a></li>
+                <li><a href="#">Standings</a></li>
+                <li><a href="#">Scoreboard</a></li>
+			</ul>
+		</div>
+		<!-- end navigation -->
+	{% endblock %}
+
+	{% block main-content %}
+		<div id="main-content">
+            <div id="sub-main-content-0">
+            </div>
+            <div id="sub-main-content-1">
+                {% include 'season_standings.html' %}
+            </div>
+		</div>
+        <!-- end main-content -->
+	{% endblock %}	
+
+</body>

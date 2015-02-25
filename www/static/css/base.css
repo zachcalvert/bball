@@ -63,13 +63,20 @@ a:hover {
 }
 #sub-main-content-1 ul {
 	list-style:none;
+	margin-left: -20px;
 }
 #sub-main-content-1 li {
 	float:left;
 	display:inline;
 	margin:0;
 	padding:3px;
+	padding-right: 12px;
+	padding-bottom: 8px;
 }
-#sub-main-content-0 h2 {
+h2 {
 	margin-left: 15px;
 } 
+#league-home-photo {
+	margin-top: 5px;
+	margin-left: 15px;
+}

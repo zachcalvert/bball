@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/team-profile.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/matchups.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/free-agents.css' %}"/>
-    <script src="/js/jquery-1.11.2.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add-player.css' %}"/>
+    <script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="application/javascript"></script>
 	<title> 
         {% block page_title %} 
             Fantasy Basketball
@@ -28,7 +29,7 @@
 				<li><a href="{% url 'site_home' %}">League</a></li>
                 <li><a href="{% url 'team_profile' user_team.id days_since_start %}">My Team</a></li>
                 <li><a href="{% url 'free_agents' days_since_start %}">Players</a></li>
-                <li><a href="#">Standings</a></li>
+                <li><a href="{% url 'standings' %}">Standings</a></li>
                 <li><a href="#">Scoreboard</a></li>
 			</ul>
 		</div>
@@ -37,10 +38,30 @@
 
 	{% block main-content %}
 		<div id="main-content">
+            <div id="profile-menu-row">
+                <ul id="profile-menu-row-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Members</a></li>   
+                    <li><a href="#">Rosters</a></li>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">TranCounter</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Draft Recap</a></li>
+                    <li><a href="#">Email League</a></li>
+                    <li><a href="#">History</a></li>
+                </ul>
+            </div>
+            <h2>Post Your LM Note Here!</h2>
+            <img id="league-home-photo" src="{{ STATIC_URL }}images/league_home.jpg">
+            <p>
+                Welcome to ESPN Fantasy Basketball 2015! As the League Manager, use this section of the League Office to communicate with your owners. You can post information about your draft, highlight big matchups, or write a weekly column. What you do with the LM Note is up to you!
+
+                Click the "Edit" link above or click here to edit your LM Note.
+            </p>
             <div id="sub-main-content-0">
             </div>
             <div id="sub-main-content-1">
-                {% include 'season_standings.html' %}
             </div>
 		</div>
         <!-- end main-content -->

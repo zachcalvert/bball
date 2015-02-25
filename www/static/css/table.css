@@ -56,3 +56,13 @@ td.sectionLeadingSpacer {
 	height: 24px;
 	background: #E7E7D5;
 }
+#standingstable_0 {
+	width: 400px;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-bottom: 30px;
+	font-size: 9px;
+	text-align: left;
+	padding: 5px;
+	border-collapse: collapse;
+}

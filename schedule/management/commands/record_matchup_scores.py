@@ -80,6 +80,7 @@ class Command(BaseCommand):
 
 			# save the matchup
 			matchup.result = result
+			matchup.finalized = True
 			matchup.save()
 
 			# save the respective teams records

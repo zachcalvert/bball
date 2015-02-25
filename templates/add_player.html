@@ -60,93 +60,96 @@
 						{% endif %}
 					<td>{{ player.id|get_tipoff }}</td>
 					<td class="sectionLeadingSpacer"></td>
-					<td class="player_table_stat">{{ player_avg_stats.1.minutes }}</td>
-					<td class="player_table_stat"><span>{{ player_avg_stats.1.fgm }}</span>/<span>{{ player_avg_stats.1.fga }}</span></td>
-					<td class="player_table_stat">{{ player_avg_stats.1.fgpct|format_pct }}</td>
-					<td class="player_table_stat"><span>{{ player_avg_stats.1.ftm }}</span>/<span>{{ player_avg_stats.1.fta }}</span></td>
-					<td class="player_table_stat">{{ player_avg_stats.1.ftpct|format_pct }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.threes }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.rebounds }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.assists }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.steals }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.blocks }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.turnovers }}</td>
-					<td class="player_table_stat">{{ player_avg_stats.1.points }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.minutes }}</td>
+					<td class="player_table_stat"><span>{{ player_avg_stats.fgm }}</span>/<span>{{ player_avg_stats.fga }}</span></td>
+					<td class="player_table_stat">{{ player_avg_stats.fgpct|format_pct }}</td>
+					<td class="player_table_stat"><span>{{ player_avg_stats.ftm }}</span>/<span>{{ player_avg_stats.fta }}</span></td>
+					<td class="player_table_stat">{{ player_avg_stats.ftpct|format_pct }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.threes }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.rebounds }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.assists }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.steals }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.blocks }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.turnovers }}</td>
+					<td class="player_table_stat">{{ player_avg_stats.points }}</td>
 		  		</tr>
 			</table>
 
+			<table class="team_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="E7E7D5">
+				<tbody>
+					<tr id="table_row_head_0">
+						<th colspan="3" class="team_table_section_header">STARTERS</th>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="2" class="team_table_section_header">{% now "M d" %}</th>
+						<td class="sectionLeadingSpacer"></td>
+						<th colspan="13" class="team_table_section_header">
+							{% if num_days != days_since_start %}
+								LAST {{ num_days }} DAYS STATS
+							{% else %}
+								2015 SEASON STATS
+							{% endif %}
+						</th>
 
+					</tr>
+					<tr id="table_subrow_head_0">
+						<td id="starters_table_slot">DROP</td>
+						<td>SLOT</td>
+						<td width="88px">PLAYER, TEAM POS</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td title="Opponent">OPP</td>
+						<td title="Game Status">STATUS ET</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td class="team_table_stat"><span title="Minutes">MIN</span></td>
+						<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
+						<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
+						<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
+						<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
+						<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
+						<td class="team_table_stat"><span title="Rebounds">REB</span></td>
+						<td class="team_table_stat"><span title="Assists">AST</span></td>
+						<td class="team_table_stat"><span title="Steals">STL</span></td>
+						<td class="team_table_stat"><span title="Blocks">BLK</span></td>
+						<td class="team_table_stat"><span title="Turnovers">TO</span></td>
+						<td class="team_table_stat"><span title="Points">PTS</span></td>
+					</tr>
 
-		<table class="team_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="E7E7D5">
-			<tbody>
-				<tr id="table_row_head_0">
-					<th colspan="3" class="team_table_section_header">STARTERS</th>
-					<td class="sectionLeadingSpacer"></td>
-					<th colspan="2" class="team_table_section_header">{% now "M d" %}</th>
-					<td class="sectionLeadingSpacer"></td>
-					<th colspan="13" class="team_table_section_header">
-						{% if num_days != days_since_start %}
-							LAST {{ num_days }} DAYS STATS
-						{% else %}
-							2015 SEASON STATS
-						{% endif %}
-					</th>
-
-				</tr>
-				<tr id="table_subrow_head_0">
-					<td id="starters_table_slot">DROP</td>
-					<td>SLOT</td>
-					<td width="88px">PLAYER, TEAM POS</td>
-					<td class="sectionLeadingSpacer"></td>
-					<td title="Opponent">OPP</td>
-					<td title="Game Status">STATUS ET</td>
-					<td class="sectionLeadingSpacer"></td>
-					<td class="team_table_stat"><span title="Minutes">MIN</span></td>
-					<td class="team_table_stat"><span title="Field Goals Made">FGM</span>/<span title="Field Goals Attempted">FGA</span></td>
-					<td class="team_table_stat"><span title="Field Goal Percentage">FG%</span></td>
-					<td class="team_table_stat"><span title="Free Throws Made">FTM</span>/<span title="Free Throws Attempted">FTA</span></td>
-					<td class="team_table_stat"><span title="Free Throw Percentage">FT%</span></td>
-					<td class="team_table_stat"><span title="Three Pointers Made">3PM</span></td>
-					<td class="team_table_stat"><span title="Rebounds">REB</span></td>
-					<td class="team_table_stat"><span title="Assists">AST</span></td>
-					<td class="team_table_stat"><span title="Steals">STL</span></td>
-					<td class="team_table_stat"><span title="Blocks">BLK</span></td>
-					<td class="team_table_stat"><span title="Turnovers">TO</span></td>
-					<td class="team_table_stat"><span title="Points">PTS</span></td>
-				</tr>
-
-			{% for player in stats.iteritems %}
-				<tr class="player_row">
-					<td id="starters_table_slot"> 
-						<input type="checkbox" name="dropPlayerCheckBox" value="unchecked" /></td>
-					<td>SLOT</td>
-					<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
-						{{ player.1.position }}</td>
-					<td class="sectionLeadingSpacer"></td>
-					<td>
-						{% if player.0|get_todays_opponent %}
-							{{ player.0|get_todays_opponent }}</td>
-						{% else %}
-							&nbsp;
-						{% endif %}
-					<td>{{ player.0|get_tipoff }}</td>
-					<td class="sectionLeadingSpacer"></td>
-					<td class="player_table_stat">{{ player.1.minutes }}</td>
-					<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
-					<td class="player_table_stat">{{ player.1.fgpct|format_pct }}</td>
-					<td class="player_table_stat"><span>{{ player.1.ftm }}</span>/<span>{{ player.1.fta }}</span></td>
-					<td class="player_table_stat">{{ player.1.ftpct|format_pct }}</td>
-					<td class="player_table_stat">{{ player.1.threes }}</td>
-					<td class="player_table_stat">{{ player.1.rebounds }}</td>
-					<td class="player_table_stat">{{ player.1.assists }}</td>
-					<td class="player_table_stat">{{ player.1.steals }}</td>
-					<td class="player_table_stat">{{ player.1.blocks }}</td>
-					<td class="player_table_stat">{{ player.1.turnovers }}</td>
-					<td class="player_table_stat">{{ player.1.points }}</td>
-		  		</tr>
-			{% endfor %}
+				{% for player in stats.iteritems %}
+					<tr class="player_row">
+						<td id="starters_table_slot"> 
+							<input type="checkbox" name="dropPlayerCheckBox" value="unchecked" /></td>
+						<td>SLOT</td>
+						<td><a href="{% url 'player_profile' player.0 days_since_start %}">{{ player.1.name }}</a>, {{ player.1.nba_team}} 
+							{{ player.1.position }}</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td>
+							{% if player.0|get_todays_opponent %}
+								{{ player.0|get_todays_opponent }}</td>
+							{% else %}
+								&nbsp;
+							{% endif %}
+						<td>{{ player.0|get_tipoff }}</td>
+						<td class="sectionLeadingSpacer"></td>
+						<td class="player_table_stat">{{ player.1.minutes }}</td>
+						<td class="player_table_stat"><span>{{ player.1.fgm }}</span>/<span>{{ player.1.fga }}</span></td>
+						<td class="player_table_stat">{{ player.1.fgpct|format_pct }}</td>
+						<td class="player_table_stat"><span>{{ player.1.ftm }}</span>/<span>{{ player.1.fta }}</span></td>
+						<td class="player_table_stat">{{ player.1.ftpct|format_pct }}</td>
+						<td class="player_table_stat">{{ player.1.threes }}</td>
+						<td class="player_table_stat">{{ player.1.rebounds }}</td>
+						<td class="player_table_stat">{{ player.1.assists }}</td>
+						<td class="player_table_stat">{{ player.1.steals }}</td>
+						<td class="player_table_stat">{{ player.1.blocks }}</td>
+						<td class="player_table_stat">{{ player.1.turnovers }}</td>
+						<td class="player_table_stat">{{ player.1.points }}</td>
+			  		</tr>
+				{% endfor %}
+			</tbody>
 		</table>
 	</div>
+	<form action="{% url 'team_profile' user_team.id days_since_start %}" method="post">
+		{% csrf_token %}
+		<input id="submit-roster" type="submit" value="Submit Roster" />
+	</form>
 </div>
 {% endblock %}
 

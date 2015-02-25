@@ -51,8 +51,8 @@
 					</div>
 					<div id="previous-matchup">
 						<strong>Previous: </strong>vs 
-						<a href={% url 'team_profile' team.last_weeks_opponent.id days_since_start %}>{{ team.last_weeks_opponent }}</a> 
-						(<a href={% url 'matchup' team.last_weeks_matchup.id %}>Box<a>)
+						<a style="color:#2F63B8;" href={% url 'team_profile' team.last_weeks_opponent.id days_since_start %}>{{ team.last_weeks_opponent }}</a> 
+						(<a style="color:#2F63B8;" href={% url 'matchup' team.last_weeks_matchup.id %}>{{ team.last_weeks_matchup.result }}<a>)
 					</div>
 				</div>
 			</section>
@@ -62,7 +62,7 @@
 				<li><a href={% url 'team_profile' team.id 7 %}>Last 7</a></li>
 				<li><a href={% url 'team_profile' team.id 15 %}>Last 15</a></li>
 				<li><a href={% url 'team_profile' team.id 30 %}>Last 30</a></li>	
-				<li><a href={% url 'team_profile' team.id days_since_start %}>Season</a></li>
+				<li><a href={% url 'team_profile' team.id days_since_start %}>2015 Season</a></li>
 			</ul>
 
 			<table class="team_table" cellpadding="0" cellspacing="1" border="1" id="teamtable_0" bordercolor="E7E7D5">

@@ -9,8 +9,8 @@ from django.conf import settings
 from teams.models import Team
 from teams.utils import calculate_team_totals, calculate_team_avgs
 
-context_data = {}
 today = datetime.today()
+context_data = {}
 
 def logout(request, template_name='registration/logged_out.html'):
 	"""

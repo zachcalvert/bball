@@ -12,9 +12,6 @@ from schedule.models import NBA_TEAMS
 from teams.models import Team
 from teams.utils import calculate_team_totals, calculate_team_avgs
 
-thirty = timedelta(days=30)
-fifteen = timedelta(days=15)
-seven = timedelta(days=7)
 today = datetime.today()
 context_data = {}
 

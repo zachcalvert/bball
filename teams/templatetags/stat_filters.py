@@ -108,3 +108,16 @@ def format_standing(value):
 		return '11th'
 	elif value == 12:
 		return '12th'
+
+
+@register.filter(name='get_winning_pct')
+def get_winning_pct(value):
+	wins = value.wins
+	games = value.losses + value.wins + value.ties
+	pct = wins/games
+	pct = round(pct, 3)
+	pct = str(pct)
+	pct = pct.replace('0', '')
+	while len(pct) < 4:
+		pct += '0'
+	return pct

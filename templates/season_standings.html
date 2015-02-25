@@ -1,30 +1,44 @@
-<!-- <table id="recent_league_activity" >
-    <caption>Recent League Activity</caption>
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Transaction</th>
-        </tr>
-    </thead>
+{% extends 'site_base.html' %}
+{% load stat_filters %}
 
-    </tbody>
-</table>
- -->
-
-<table id="all_teams" class="tablesorter">
-    <caption>Standings</caption>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Record</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for team in teams %}
-        <tr>
-            <td><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></td>
-            <td>{{ team.record }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% block main-content %}
+<div id="main-content">
+    <h2>Barely Leaguel Standings</h2>
+    <table cellpadding="0" cellspacing="1" border="1" id="standingstable_0" bordercolor="E7E7D5">
+        <thead>
+            <tr id="table_row_head_0">
+                <th style="text-align:left"colspan="6">EAST</th>
+            </tr>
+            <tr id="table_subrow_head_0">
+                <th>NAME</th>
+                <th>W</th>
+                <th>L</th>
+                <th>T</th>
+                <th>PCT</th>
+                <th>GB</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+            <tr class="home_stats_player_row">
+                {% if team == user_team %}
+                    <td><b><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></b></td>
+                    <td><b>{{ team.wins }}</b></td>
+                    <td><b>{{ team.losses }}</b></td>
+                    <td><b>{{ team.ties }}</b></td>
+                    <td><b>{{ team | get_winning_pct }}</b></td>
+                    <td><b>N/A</b></td>
+                {% else %}
+                    <td><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></td>
+                    <td>{{ team.wins }}</td>
+                    <td>{{ team.losses }}</td>
+                    <td>{{ team.ties }}</td>
+                    <td>{{ team | get_winning_pct }}</td>
+                    <td>N/A</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

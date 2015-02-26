@@ -1,6 +1,10 @@
 from django.db import models
 from django.db.models import Q
 
+import teams
+
+# from teams.utils import calculate_team_totals
+
 NBA_TEAMS = (
 	('ATL', 'Atlanta Hawks'),('BRK', 'Brooklyn Nets'),('BOS', 'Boston Celtics'),
 	('CHO', 'Charlotte Hornets'),('CHI', 'Chicago Bulls'),('CLE', 'Cleveland Cavaliers'),
@@ -70,3 +74,19 @@ class Matchup(models.Model):
 
 	def __unicode__(self):
 		return "matchup between: {0} and {1} starting {2}".format(self.home_team, self.away_team, self.start_date)
+
+	@property
+	def home_totals(self):
+		home_stats = teams.utils.calculate_team_totals(self.home_team, start_day=self.start_date, end_day=self.end_date)
+		home_totals = home_stats.pop('totals')
+		return home_totals
+
+
+	@property
+	def away_totals(self):
+		away_stats = teams.utils.calculate_team_totals(self.away_team, start_day=self.start_date, end_day=self.end_date)
+		away_totals = away_stats.pop('totals')
+		return away_totals
+
+
+

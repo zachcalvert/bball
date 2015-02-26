@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from datetime import datetime, timedelta, date
+from dateutil import rrule
+
+from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
 
 from schedule.models import Matchup
 from teams.models import Team
@@ -27,6 +30,7 @@ def all_matchups(request):
 
 	return render(request, "schedule/full-schedule.html", context_data)
 
+
 @login_required(login_url='login')
 def all_team_matchups(request, team_id):
 	team = get_object_or_404(Team, pk=team_id)
@@ -34,6 +38,7 @@ def all_team_matchups(request, team_id):
 	context_data['matchups'] = matchups
 
 	return render(request, "schedule/all_team_matchups.html", context_data)
+
 
 @login_required(login_url='login')
 def matchup(request, matchup_id):
@@ -58,9 +63,35 @@ def matchup(request, matchup_id):
 
 	return render(request, "matchup.html", context_data)	
 
+
 @login_required(login_url='login')
 def standings(request):
 	teams = Team.objects.all()
 	context_data['teams'] = teams
 	return render(request, "season_standings.html", context_data)
+
+
+
+def current_week():
+	season_start = datetime(2014, 10, 27)
+	season_end = datetime(2015, 4, 15)
+
+	z = 1
+	for dt in rrule.rrule(rrule.WEEKLY, dtstart=season_start, until=season_end):
+		one_week = timedelta(days=6)
+		end_date = dt + one_week
+		if dt <= today <= end_date:
+			return z
+		elif z < 23:
+			z += 1
+			continue
+		else:
+			return 23
+
+@login_required(login_url='login')
+def scoreboard(request, week_id=1):
+	matchups = Matchup.objects.filter(week=current_week())
+	context_data['matchups'] = matchups
+	return render_to_response("scoreboard.html", context_data,
+		context_instance=RequestContext(request))
 

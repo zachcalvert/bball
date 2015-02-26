@@ -1,9 +1,10 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 from teams.models import Team
 
+today = datetime.today()
+
 def days_since_start(request):
-	today = datetime.today()
 	season_start = datetime(2014, 10, 28)
 	days_since_start = (today-season_start).days
 	return { 'days_since_start': days_since_start }

@@ -66,3 +66,8 @@ td.sectionLeadingSpacer {
 	padding: 5px;
 	border-collapse: collapse;
 }
+#matchup-column-one {
+	width:200px;
+	text-align: left;
+	font-size: 9px;
+}

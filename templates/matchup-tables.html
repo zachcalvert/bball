@@ -27,32 +27,32 @@
 		<tr id="matchup_table_row_0">
 			<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a></td>
 			<td class="matchupLeadingSpacer"></td>
-			<td style="text-align:right">{{ home_totals.fgpct|format_pct }}</td>
-			<td style="text-align:right">{{ home_totals.ftpct|format_pct }}</td>
-			<td style="text-align:right">{{ home_totals.threes }}</td>
-			<td style="text-align:right">{{ home_totals.rebounds }}</td>
-			<td style="text-align:right">{{ home_totals.assists }}</td>
-			<td style="text-align:right">{{ home_totals.steals }}</td>
-			<td style="text-align:right">{{ home_totals.blocks }}</td>
-			<td style="text-align:right">{{ home_totals.turnovers }}</td>
-			<td style="text-align:right">{{ home_totals.points }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.fgpct|format_pct }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.ftpct|format_pct }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.threes }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.rebounds }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.assists }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.steals }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.blocks }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.turnovers }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.points }}</td>
 			<td class="matchupLeadingSpacer"></td>
-			<td style="text-align:right">{{ home_totals.result }}</td>
+			<td style="text-align:right">{{ matchup.home_totals.result }}</td>
 		</tr>
 		<tr id="matchup_table_row_0">
 			<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a></td>
 			<td class="matchupLeadingSpacer"></td>
-			<td style="text-align:right">{{ away_totals.fgpct|format_pct }}</td>
-			<td style="text-align:right">{{ away_totals.ftpct|format_pct }}</td>
-			<td style="text-align:right">{{ away_totals.threes }}</td>
-			<td style="text-align:right">{{ away_totals.rebounds }}</td>
-			<td style="text-align:right">{{ away_totals.assists }}</td>
-			<td style="text-align:right">{{ away_totals.steals }}</td>
-			<td style="text-align:right">{{ away_totals.blocks }}</td>
-			<td style="text-align:right">{{ away_totals.turnovers }}</td>
-			<td style="text-align:right">{{ away_totals.points }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.fgpct|format_pct }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.ftpct|format_pct }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.threes }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.rebounds }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.assists }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.steals }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.blocks }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.turnovers }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.points }}</td>
 			<td class="matchupLeadingSpacer"></td>
-			<td style="text-align:right">{{ away_totals.result }}</td>
+			<td style="text-align:right">{{ matchup.away_totals.result }}</td>
 		</tr>
 	</tbody>
 
@@ -113,19 +113,19 @@
 			<td></td>
 			<td>TOTALS</td>
 			<td class="matchupLeadingSpacer"></td>
-			<td class="player_table_stat">{{ home_totals.games_played }}</td>
-			<td class="player_table_stat">{{ home_totals.minutes }}</td>
-			<td class="player_table_stat"><span>{{ home_totals.fgm }}</span>/<span>{{ home_totals.fga }}</span></td>
-			<td class="player_table_stat">{{ home_totals.fgpct|format_pct }}</td>
-			<td class="player_table_stat"><span>{{ home_totals.ftm }}</span>/<span>{{ home_totals.fta }}</span></td>
-			<td class="player_table_stat">{{ home_totals.ftpct|format_pct}}</td>
-			<td class="player_table_stat">{{ home_totals.threes }}</td>
-			<td class="player_table_stat">{{ home_totals.rebounds }}</td>
-			<td class="player_table_stat">{{ home_totals.assists }}</td>
-			<td class="player_table_stat">{{ home_totals.steals }}</td>
-			<td class="player_table_stat">{{ home_totals.blocks }}</td>
-			<td class="player_table_stat">{{ home_totals.turnovers }}</td>
-			<td class="player_table_stat">{{ home_totals.points }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.games_played }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.minutes }}</td>
+			<td class="player_table_stat"><span>{{ matchup.home_totals.fgm }}</span>/<span>{{ matchup.home_totals.fga }}</span></td>
+			<td class="player_table_stat">{{ matchup.home_totals.fgpct|format_pct }}</td>
+			<td class="player_table_stat"><span>{{ matchup.home_totals.ftm }}</span>/<span>{{ matchup.home_totals.fta }}</span></td>
+			<td class="player_table_stat">{{ matchup.home_totals.ftpct|format_pct}}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.threes }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.rebounds }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.assists }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.steals }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.blocks }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.turnovers }}</td>
+			<td class="player_table_stat">{{ matchup.home_totals.points }}</td>
   		</tr>
 	</tbody>
 </table>
@@ -185,19 +185,19 @@
 			<td></td>
 			<td>TOTALS</td>
 			<td class="matchupLeadingSpacer"></td>
-			<td class="player_table_stat">{{ away_totals.games_played }}</td>
-			<td class="player_table_stat">{{ away_totals.minutes }}</td>
-			<td class="player_table_stat"><span>{{ away_totals.fgm }}</span>/<span>{{ away_totals.fga }}</span></td>
-			<td class="player_table_stat">{{ away_totals.fgpct|format_pct }}</td>
-			<td class="player_table_stat"><span>{{ away_totals.ftm }}</span>/<span>{{ away_totals.fta }}</span></td>
-			<td class="player_table_stat">{{ away_totals.ftpct|format_pct}}</td>
-			<td class="player_table_stat">{{ away_totals.threes }}</td>
-			<td class="player_table_stat">{{ away_totals.rebounds }}</td>
-			<td class="player_table_stat">{{ away_totals.assists }}</td>
-			<td class="player_table_stat">{{ away_totals.steals }}</td>
-			<td class="player_table_stat">{{ away_totals.blocks }}</td>
-			<td class="player_table_stat">{{ away_totals.turnovers }}</td>
-			<td class="player_table_stat">{{ away_totals.points }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.games_played }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.minutes }}</td>
+			<td class="player_table_stat"><span>{{ matchup.away_totals.fgm }}</span>/<span>{{ matchup.away_totals.fga }}</span></td>
+			<td class="player_table_stat">{{ matchup.away_totals.fgpct|format_pct }}</td>
+			<td class="player_table_stat"><span>{{ matchup.away_totals.ftm }}</span>/<span>{{ matchup.away_totals.fta }}</span></td>
+			<td class="player_table_stat">{{ matchup.away_totals.ftpct|format_pct}}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.threes }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.rebounds }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.assists }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.steals }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.blocks }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.turnovers }}</td>
+			<td class="player_table_stat">{{ matchup.away_totals.points }}</td>
   		</tr>
 	</tbody>
 </table>

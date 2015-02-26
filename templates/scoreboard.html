@@ -1,0 +1,141 @@
+{% extends 'site_base.html' %}
+{% load stat_filters %}
+
+{% block main-content %}
+	<div id="main-content">
+
+	<br>
+	{% for matchup in matchups %}
+		<table cellpadding="0" cellspacing="1" border="1" id="totals_table_0" bordercolor="FFFFFF">
+			<tbody>
+			<tr id="table_row_head_0">
+				<td id="matchup-column-one" style="text-align:left"colspan="1">TEAM</td>
+				<td class="matchupLeadingSpacer"></td>
+				<th colspan="9">STATISTICS</th>
+				<td class="matchupLeadingSpacer"></td>
+				<th style="text-align:right">TOTAL</th>
+			</tr>
+			<tr id="table_subrow_head_0">
+				<td style="text-align:left">NAME</td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">FG%</td>
+				<td style="text-align:right">FT%</td>
+				<td style="text-align:right">3PM</td>
+				<td style="text-align:right">REB</td>
+				<td style="text-align:right">AST</td>
+				<td style="text-align:right">STL</td>
+				<td style="text-align:right">BLK</td>
+				<td style="text-align:right">TO</td>
+				<td style="text-align:right">PTS</td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">SCORE</td>
+			</tr>
+			<tr id="matchup_table_row_0">
+				<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a></td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">{{ matchup.home_totals.fgpct|format_pct }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.ftpct|format_pct }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.threes }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.rebounds }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.assists }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.steals }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.blocks }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.turnovers }}</td>
+				<td style="text-align:right">{{ matchup.home_totals.points }}</td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">{{ matchup.home_totals.result }}</td>
+			</tr>
+			<tr id="matchup_table_row_0">
+				<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a></td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">{{ matchup.away_totals.fgpct|format_pct }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.ftpct|format_pct }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.threes }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.rebounds }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.assists }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.steals }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.blocks }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.turnovers }}</td>
+				<td style="text-align:right">{{ matchup.away_totals.points }}</td>
+				<td class="matchupLeadingSpacer"></td>
+				<td style="text-align:right">{{ matchup.away_totals.result }}</td>
+			</tr>
+		</tbody>
+	</table>
+		<br>
+		<br>
+	{% endfor %}
+</div>
+{% endblock %}
+
+<script>
+	String.prototype.format = function() {
+    var s = this,
+        i = arguments.length;
+
+    while (i--) {
+        s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+    }
+    return s;
+	};
+
+
+	var tables = document.getElementsByTagName("table");
+	var count = tables.length;
+	for(var z = 0; z < count; z++) {
+    	var table = tables[z];
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			var away_wins = 0;
+	     	var home_wins = 0;
+	     	var ties = 0;
+		   //iterate through rows
+		   //rows would be accessed using the "row" variable assigned in the for loop
+			if (i==3) {   
+			   for (var j = 0, col; col = row.cells[j]; j++) {
+				    var row_above = table.rows[i-1]
+				    var cell_above = row_above.cells[j]
+				    if (j==0 || j==1 || j==11 || j==12){}
+				    // fuckin turnovers, reverse the operators
+				    else if (j==9) {
+				    	if (col.textContent < cell_above.textContent) {
+					    	col.style.fontWeight = 'bold';
+					    	home_wins++;
+
+					    } else if (col.textContent > cell_above.textContent){
+					    	cell_above.style.fontWeight = 'bold';
+					    	away_wins += 1;
+					    } else{
+					    	ties = ties + 1;
+					    }
+				    } else {
+					    if (col.textContent > cell_above.textContent) {
+					    	col.style.fontWeight = 'bold';
+					    	home_wins++;
+
+					    } else if (col.textContent < cell_above.textContent){
+					    	cell_above.style.fontWeight = 'bold';
+					    	away_wins += 1;
+					    	console.log(away_wins)
+					    } else{
+					    	ties = ties + 1;
+					    }
+					}
+				}
+			var home_result = row_above.cells[12];
+			var away_result = row.cells[12];
+			if (ties == 0) {
+				home_result.innerHTML="{0}-{1}".format(away_wins, home_wins);
+			   	away_result.innerHTML="{0}-{1}".format(home_wins, away_wins);
+			} else {
+				home_result.innerHTML="{0}-{1}-{2}".format(away_wins, home_wins, ties);
+			   	away_result.innerHTML="{0}-{1}-{2}".format(home_wins, away_wins, ties);
+			}
+			if (away_result.innerHTML > home_result.innerHTML) {
+		   		away_result.style.fontWeight = 'bold';
+		   	} else {
+		   		home_result.style.fontWeight = 'bold';
+		   	}
+		   }
+		}
+	}
+</script>

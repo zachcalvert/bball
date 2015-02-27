@@ -34,7 +34,7 @@ class Team(models.Model):
 
 	@property
 	def matchups(self):
-		return Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self)))
+		return Matchup.objects.filter(Q(home_team=self)|(Q(away_team=self))).order_by('week')
 
 	@property
 	def current_opponent(self):

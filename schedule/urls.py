@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     url(r'^matchups/(?P<team_id>\d+)/$', views.all_team_matchups, name='all_team_matchups'),
     url(r'^matchup/(?P<matchup_id>\d+)/$', views.matchup, name='matchup'),
     url(r'^standings/$', views.standings, name='standings'),
-    url(r'^scoreboard/$', views.scoreboard, name='scoreboard'),
+    url(r'^scoreboard/(?P<week_id>\d+)/$', views.scoreboard, name='scoreboard'),
 )

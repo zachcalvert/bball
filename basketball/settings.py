@@ -72,6 +72,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'basketball.context_processors.days_since_start',
     'basketball.context_processors.user_team',
     'basketball.context_processors.teams',
+    'basketball.context_processors.current_week',
 )
 
 # Database

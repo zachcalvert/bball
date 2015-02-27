@@ -3,7 +3,12 @@
 
 {% block main-content %}
 	<div id="main-content">
-
+	<strong>Regular Season: </strong>
+	<ul>
+		{% for matchup in matchup.home_team.matchups %}
+			<li><a href={% url 'matchup' matchup.id %}>{{ matchup.week }}</a> | </li>
+		{% endfor %}
+	</ul>
 	<br>
 	{% for matchup in matchups %}
 		<table cellpadding="0" cellspacing="1" border="1" id="totals_table_0" bordercolor="FFFFFF">

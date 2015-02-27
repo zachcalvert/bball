@@ -30,7 +30,7 @@
                 <li><a href="{% url 'team_profile' user_team.id days_since_start %}">My Team</a></li>
                 <li><a href="{% url 'free_agents' days_since_start %}">Players</a></li>
                 <li><a href="{% url 'standings' %}">Standings</a></li>
-                <li><a href="{% url 'scoreboard' %}">Scoreboard</a></li>
+                <li><a href="{% url 'scoreboard' current_week %}">Scoreboard</a></li>
             </ul>
 		</div>
 		<!-- end navigation -->

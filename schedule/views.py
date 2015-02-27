@@ -26,7 +26,6 @@ def all_matchups(request):
 		matchups_by_date.append(this_week)
 
 	context_data['matchups_by_date'] = matchups_by_date
-	print(matchups_by_date)
 
 	return render_to_response("full-schedule.html", context_data,
 		context_instance=RequestContext(request))

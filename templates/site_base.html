@@ -15,6 +15,9 @@
 </head>
 
 <body>
+    {% block top-image %}
+        <img id="league-home-photo" style="margin-left: -10px; margin-top:0px; margin-right:0px;" width="100%" src="{{ STATIC_URL }}images/header.png">
+    {% endblock %}
     {% block logout %}
         <div id="logout">
             {% if user.is_authenticated %}
@@ -44,7 +47,7 @@
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Members</a></li>   
                     <li><a href="#">Rosters</a></li>
-                    <li><a href="#">Schedule</a></li>
+                    <li><a href="{% url 'all_matchups' %}">Schedule</a></li>
                     <li><a href="#">TranCounter</a></li>
                     <li><a href="#">History</a></li>
                     <li><a href="#">Draft Recap</a></li>
@@ -53,12 +56,14 @@
                 </ul>
             </div>
             <h2>Post Your LM Note Here!</h2>
-            <img id="league-home-photo" src="{{ STATIC_URL }}images/league_home.jpg">
-            <p>
-                Welcome to ESPN Fantasy Basketball 2015! As the League Manager, use this section of the League Office to communicate with your owners. You can post information about your draft, highlight big matchups, or write a weekly column. What you do with the LM Note is up to you!
+            <div id="site-home-main">
+                <img id="league-home-photo" src="{{ STATIC_URL }}images/league_home.jpg">
+                <p>
+                    Welcome to ESPN Fantasy Basketball 2015! As the League Manager, use this section of the League Office to communicate with your owners. You can post information about your draft, highlight big matchups, or write a weekly column. What you do with the LM Note is up to you!
 
-                Click the "Edit" link above or click here to edit your LM Note.
-            </p>
+                    Click the "Edit" link above or click here to edit your LM Note.
+                </p>
+            </div>
             <div id="sub-main-content-0">
             </div>
             <div id="sub-main-content-1">

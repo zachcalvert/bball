@@ -3,77 +3,102 @@
 
 {% block main-content %}
 	<div id="main-content">
-	<br>
-	<h2>Barely Leaguel Scoreboard </h2><p>Matchup {{ matchups.0.week }} ({{ matchups.0.start_date }} - {{ matchups.0.end_date }})
-	<br>
-	<h4>Regular Season: </h4>
-	<ul>
-		{% for week in "" %}
-			<li><a href={% url 'matchup' matchup.id %}>{{ matchup.week }}</a> | </li>
+		<br>
+		<div id="scoreboard-header">
+			<h2 id="scoreboard-header">Barely Leaguel Scoreboard </h2>
+			<p id="scoreboard-header">Matchup {{ matchups.0.week }} ({{ matchups.0.start_date }} - {{ matchups.0.end_date }})</p>
+		</div>
+		<br>
+		<div id="scoreboard-subheader">
+			<h4>Regular Season: </h4>
+			<ul>
+				<li><a href={% url 'scoreboard' 1 %}>1</a> | </li>
+				<li><a href={% url 'scoreboard' 2 %}>2</a> | </li>
+				<li><a href={% url 'scoreboard' 3 %}>3</a> | </li>
+				<li><a href={% url 'scoreboard' 4 %}>4</a> | </li>
+				<li><a href={% url 'scoreboard' 5 %}>5</a> | </li>
+				<li><a href={% url 'scoreboard' 6 %}>6</a> | </li>
+				<li><a href={% url 'scoreboard' 7 %}>7</a> | </li>
+				<li><a href={% url 'scoreboard' 8 %}>8</a> | </li>
+				<li><a href={% url 'scoreboard' 9 %}>9</a> | </li>
+				<li><a href={% url 'scoreboard' 10 %}>10</a> | </li>
+				<li><a href={% url 'scoreboard' 11 %}>11</a> | </li>
+				<li><a href={% url 'scoreboard' 12 %}>12</a> | </li>
+				<li><a href={% url 'scoreboard' 13 %}>13</a> | </li>
+				<li><a href={% url 'scoreboard' 14 %}>14</a> | </li>
+				<li><a href={% url 'scoreboard' 15 %}>15</a> | </li>
+				<li><a href={% url 'scoreboard' 16 %}>16</a> | </li>
+				<li><a href={% url 'scoreboard' 17 %}>17</a> | </li>
+				<li><a href={% url 'scoreboard' 18 %}>18</a> | </li>
+				<li><a href={% url 'scoreboard' 19 %}>19</a> | </li>
+				<li><a href={% url 'scoreboard' 20 %}>20</a> | </li>
+				<li><a href={% url 'scoreboard' 21 %}>21</a> | </li>
+				<li><a href={% url 'scoreboard' 22 %}>22</a> | </li>
+				<li><a href={% url 'scoreboard' 23 %}>23</a></li>
+			</ul>
+		</div>
+		<br>
+		{% for matchup in matchups %}
+			<table cellpadding="0" cellspacing="1" border="1" id="totals_table_0" bordercolor="FFFFFF">
+				<tbody>
+				<tr id="table_row_head_0">
+					<td id="matchup-column-one" style="text-align:left"colspan="1">TEAM</td>
+					<td class="matchupLeadingSpacer"></td>
+					<th colspan="9">STATISTICS</th>
+					<td class="matchupLeadingSpacer"></td>
+					<th style="text-align:right">TOTAL</th>
+				</tr>
+				<tr id="table_subrow_head_0">
+					<td style="text-align:left">NAME</td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">FG%</td>
+					<td style="text-align:right">FT%</td>
+					<td style="text-align:right">3PM</td>
+					<td style="text-align:right">REB</td>
+					<td style="text-align:right">AST</td>
+					<td style="text-align:right">STL</td>
+					<td style="text-align:right">BLK</td>
+					<td style="text-align:right">TO</td>
+					<td style="text-align:right">PTS</td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">SCORE</td>
+				</tr>
+				<tr id="matchup_table_row_0">
+					<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a></td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">{{ matchup.home_totals.fgpct|format_pct }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.ftpct|format_pct }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.threes }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.rebounds }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.assists }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.steals }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.blocks }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.turnovers }}</td>
+					<td style="text-align:right">{{ matchup.home_totals.points }}</td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">{{ matchup.home_totals.result }}</td>
+				</tr>
+				<tr id="matchup_table_row_0">
+					<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a></td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">{{ matchup.away_totals.fgpct|format_pct }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.ftpct|format_pct }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.threes }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.rebounds }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.assists }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.steals }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.blocks }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.turnovers }}</td>
+					<td style="text-align:right">{{ matchup.away_totals.points }}</td>
+					<td class="matchupLeadingSpacer"></td>
+					<td style="text-align:right">{{ matchup.away_totals.result }}</td>
+				</tr>
+				</tbody>
+			</table>
+			<a id="full-box-score" href={% url 'matchup' matchup.id %}>Full Box Score</a>
+			<br>
+			<br>
 		{% endfor %}
-	</ul>
-	<br>
-	{% for matchup in matchups %}
-		<table cellpadding="0" cellspacing="1" border="1" id="totals_table_0" bordercolor="FFFFFF">
-			<tbody>
-			<tr id="table_row_head_0">
-				<td id="matchup-column-one" style="text-align:left"colspan="1">TEAM</td>
-				<td class="matchupLeadingSpacer"></td>
-				<th colspan="9">STATISTICS</th>
-				<td class="matchupLeadingSpacer"></td>
-				<th style="text-align:right">TOTAL</th>
-			</tr>
-			<tr id="table_subrow_head_0">
-				<td style="text-align:left">NAME</td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">FG%</td>
-				<td style="text-align:right">FT%</td>
-				<td style="text-align:right">3PM</td>
-				<td style="text-align:right">REB</td>
-				<td style="text-align:right">AST</td>
-				<td style="text-align:right">STL</td>
-				<td style="text-align:right">BLK</td>
-				<td style="text-align:right">TO</td>
-				<td style="text-align:right">PTS</td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">SCORE</td>
-			</tr>
-			<tr id="matchup_table_row_0">
-				<td style="text-align:left"><a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a></td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">{{ matchup.home_totals.fgpct|format_pct }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.ftpct|format_pct }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.threes }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.rebounds }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.assists }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.steals }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.blocks }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.turnovers }}</td>
-				<td style="text-align:right">{{ matchup.home_totals.points }}</td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">{{ matchup.home_totals.result }}</td>
-			</tr>
-			<tr id="matchup_table_row_0">
-				<td style="text-align:left"><a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a></td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">{{ matchup.away_totals.fgpct|format_pct }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.ftpct|format_pct }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.threes }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.rebounds }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.assists }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.steals }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.blocks }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.turnovers }}</td>
-				<td style="text-align:right">{{ matchup.away_totals.points }}</td>
-				<td class="matchupLeadingSpacer"></td>
-				<td style="text-align:right">{{ matchup.away_totals.result }}</td>
-			</tr>
-		</tbody>
-	</table>
-	<a id="full-box-score" href={% url 'matchup' matchup.id %}>Full Box Score</a>
-		<br>
-		<br>
-	{% endfor %}
 </div>
 {% endblock %}
 

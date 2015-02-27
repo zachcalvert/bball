@@ -87,6 +87,3 @@ class Matchup(models.Model):
 		away_stats = teams.utils.calculate_team_totals(self.away_team, start_day=self.start_date, end_day=self.end_date)
 		away_totals = away_stats.pop('totals')
 		return away_totals
-
-
-

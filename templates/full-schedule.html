@@ -1,0 +1,46 @@
+{% extends 'site_base.html' %}
+{% load stat_filters %}
+
+{% block main-content %}
+	<div id="main-content">
+		{% for matchups in matchups_by_date %}
+		<table id="teamtable_0" class="tablesorter" cellpadding="0" cellspacing="1" border="1" bordercolor="E7E7D5">
+			<thead>
+				<tr id="table_row_head_0">
+					<th style="text-align:left;" colspan="6">Matchup {{ matchups.0.week }} ({{ matchups.0.start_date }} - {{ matchups.0.end_date }})</th>
+				</tr>
+				<tr id="table_subrow_head_0">
+					<td>AWAY TEAM</td>
+					<td>OWNER(S)</td>
+					<td></td>
+					<td title="HOME TEAM">OPP</td>
+					<td title="Game Status">OWNER(S)</td>
+					<td class="team_table_stat">RESULT</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for matchup in matchups %}
+				<tr>
+					<td>
+						<a href="{% url 'team_profile' matchup.away_team.id days_since_start %}">{{ matchup.away_team }}</a> ({{ matchup.away_team.record }})
+					</td>
+					<td>{{ matchup.away_team.owner }}</td>
+					<td>at</td>
+					<td>
+						<a href="{% url 'team_profile' matchup.home_team.id days_since_start %}">{{ matchup.home_team }}</a> ({{ matchup.home_team.record }})
+					</td>
+					<td>{{ matchup.home_team.owner }}</td>
+					<td>
+						{% if matchup.finalized %}
+							<a href="{% url 'matchup' matchup.id %}">{{ matchup.result }}</a>
+						{% else %}
+							<a href="{% url 'matchup' matchup.id %}">Box</a>
+						{% endif %}
+					</td>
+		  		</tr>
+		  		{% endfor %}
+		  	</tbody>
+		</table>
+		{% endfor %}
+	</div>
+{% endblock %}

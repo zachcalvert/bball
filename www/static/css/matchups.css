@@ -6,6 +6,7 @@
 	background:#EFEFEF; 
 	margin-left: 10px;
 	margin-bottom: 3%;
+	margin-top:20px;
 	font-size:10px;
 	position: absolute;
 }
@@ -14,7 +15,8 @@
 	border: 1px solid #DDDDDD; 
 	padding: 0px; 
 	width:455px; 
-	background:#EFEFEF; 
+	background:#EFEFEF;
+	margin-top:20px; 
 	margin-left: 525px;
 	margin-bottom: 3%;
 	position: absolute;

@@ -32,10 +32,11 @@
 }
 #profile-team-name h2 {
 	margin-left:0;
+	margin-bottom:5px;
 }
 #profile-team-name a {
 	font-size: 9px;
-	margin: 0px;
+	margin-bottom: 5px;
 	padding: 0px;
 }
 #profile-image {
@@ -68,6 +69,7 @@
 	width: 246px;
 	height:104px;
 	background: #D7DEDF;
+	margin-top:9px;
 }
 #current-matchup {
 	background:#6D7172;

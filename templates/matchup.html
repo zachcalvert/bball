@@ -5,10 +5,10 @@
 <div id="main-content">
 	<div id="sub-main-content-0">
 		<div id="matchupMainContainer">
-			<h2 id="matchup-title">
-				{{ matchup.away_team.last_name }} at {{ matchup.home_team.last_name }} Box Score
-				<!-- <em>Matchup {{ matchup.week}} ({{ matchup.start_date }} - {{ matchup.end_date }})</em> -->
-			</h2>
+			<div id="scoreboard-header">
+				<h2 id="scoreboard-header">{{ matchup.away_team.last_name }} at {{ matchup.home_team.last_name }} Box Score</h2>
+				<p id="scoreboard-header">Matchup {{ matchup.week }} ({{ matchup.start_date }} - {{ matchup.end_date }})</p>
+			</div>
 			<div id="homeTeamProfileContainer">
 				<div id="teamLogo" href="{% url 'team_profile' matchup.home_team.id days_since_start %}">
 					<img src="http://g.espncdn.com/s/fbalm/15/images/clubhouse/noLogoSilo.gif" width="151" height="129.0">

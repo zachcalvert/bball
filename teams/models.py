@@ -1,7 +1,7 @@
 from __future__ import division
 from django.db import models
 from datetime import datetime, date, timedelta
-from django.db.models import Q
+from django.db.models import Q, Max
 from django.contrib.auth.models import User
 
 from players.models import Player
@@ -78,3 +78,13 @@ class Team(models.Model):
 		teams = list(teams)
 		# because first place has index of 0
 		return teams.index(self) + 1
+
+	@property
+	def games_behind(self):
+		max_wins = Team.objects.all().aggregate(Max('wins'))
+		first_place = Team.objects.get(wins=max_wins['wins__max'])
+
+		if self == first_place:
+			return '--'
+		else:
+			return ((first_place.wins - self.wins) + (first_place.losses - self.losses)/2)

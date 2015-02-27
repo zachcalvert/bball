@@ -27,14 +27,14 @@
                     <td><b>{{ team.losses }}</b></td>
                     <td><b>{{ team.ties }}</b></td>
                     <td><b>{{ team | get_winning_pct }}</b></td>
-                    <td><b>N/A</b></td>
+                    <td><b>{{ team.games_behind | format_games_behind }}</b></td>
                 {% else %}
                     <td><a href="{% url 'team_profile' team.id days_since_start %}">{{ team }}</a></td>
                     <td>{{ team.wins }}</td>
                     <td>{{ team.losses }}</td>
                     <td>{{ team.ties }}</td>
                     <td>{{ team | get_winning_pct }}</td>
-                    <td>N/A</td>
+                    <td>{{ team.games_behind | format_games_behind }}</td>
                 {% endif %}
             </tr>
             {% endfor %}

@@ -3,9 +3,12 @@
 
 {% block main-content %}
 	<div id="main-content">
-	<strong>Regular Season: </strong>
+	<br>
+	<h2>Barely Leaguel Scoreboard </h2><p>Matchup {{ matchups.0.week }} ({{ matchups.0.start_date }} - {{ matchups.0.end_date }})
+	<br>
+	<h4>Regular Season: </h4>
 	<ul>
-		{% for matchup in matchup.home_team.matchups %}
+		{% for week in "" %}
 			<li><a href={% url 'matchup' matchup.id %}>{{ matchup.week }}</a> | </li>
 		{% endfor %}
 	</ul>
@@ -67,6 +70,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<a id="full-box-score" href={% url 'matchup' matchup.id %}>Full Box Score</a>
 		<br>
 		<br>
 	{% endfor %}

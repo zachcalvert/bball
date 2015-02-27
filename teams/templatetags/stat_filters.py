@@ -109,7 +109,6 @@ def format_standing(value):
 	elif value == 12:
 		return '12th'
 
-
 @register.filter(name='get_winning_pct')
 def get_winning_pct(value):
 	wins = value.wins
@@ -121,3 +120,8 @@ def get_winning_pct(value):
 	while len(pct) < 4:
 		pct += '0'
 	return pct
+
+@register.filter(name='format_games_behind')
+def format_games_behind(value):
+	value = str(value)
+	return value.strip('.0')

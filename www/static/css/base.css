@@ -76,7 +76,20 @@ a:hover {
 h2 {
 	margin-left: 15px;
 } 
+h4 {
+	margin-left: 15px;
+} 
 #league-home-photo {
 	margin-top: 5px;
 	margin-left: 15px;
+}
+#scoreboard-header {
+	display: inline;
+}
+
+#full-box-score {
+	float:right;
+	margin-top: 5px;
+	margin-right:15px;
+	margin-bottom: 20px;
 }

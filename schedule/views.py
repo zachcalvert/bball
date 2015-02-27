@@ -42,6 +42,7 @@ def all_team_matchups(request, team_id):
 
 
 @login_required(login_url='login')
+@cache_page(60*30)
 def matchup(request, matchup_id):
 	matchup = get_object_or_404(Matchup, pk=matchup_id)
 	context_data['matchup'] = matchup
@@ -74,6 +75,7 @@ def standings(request):
 		context_instance=RequestContext(request))
 
 @login_required(login_url='login')
+@cache_page(60*30)
 def scoreboard(request, week_id=None):
 	matchups = Matchup.objects.filter(week=week_id)
 	context_data['matchups'] = matchups

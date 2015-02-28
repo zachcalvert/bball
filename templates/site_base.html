@@ -15,9 +15,6 @@
 </head>
 
 <body>
-    {% block top-image %}
-        <img id="league-home-photo" style="margin-left: -10px; margin-top:0px; margin-right:0px;" width="100%" src="{{ STATIC_URL }}images/header.png">
-    {% endblock %}
     {% block logout %}
         <div id="logout">
             {% if user.is_authenticated %}

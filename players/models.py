@@ -1,7 +1,9 @@
 from __future__ import division
+from decimal import Decimal
+from datetime import datetime, timedelta
+
 from django.db import models
 from django.db.models import Q
-from datetime import datetime, timedelta
 
 from schedule.models import Game, StatLine, Matchup, NBA_TEAMS
 
@@ -23,7 +25,7 @@ class Player(models.Model):
 	position = models.CharField(u'Position', choices=POSITIONS, default='PG', max_length=15)
 	nba_team = models.CharField(u'NBA Team', choices=NBA_TEAMS, default='FA', max_length=25)
 
-	# stats
+	# total stats
 	games_played = models.IntegerField(default=0)
 	minutes = models.IntegerField(default=0)
 	fgm = models.IntegerField(default=0)
@@ -38,12 +40,28 @@ class Player(models.Model):
 	blocks = models.IntegerField(default = 0)
 	turnovers = models.IntegerField(default = 0)
 
+	# store averages to aid with performance
+	mpg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	fgmpg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	fgapg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	ftmpg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	ftapg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	threespg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	rpg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	apg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	spg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	bpg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	topg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	ppg = models.DecimalField(max_digits=6, decimal_places=1, default=Decimal('0.0'))
+	fgpct = models.DecimalField(max_digits=6, decimal_places=3, default=Decimal('.000'))
+	ftpct = models.DecimalField(max_digits=6, decimal_places=3, default=Decimal('.000'))
+
 	# notes
 	roto_id = models.IntegerField(default=0)
 	recent_notes = models.CharField(max_length=2000, default='No recent notes.')
 
 	class Meta:
-		ordering = ['-points']
+		ordering = ['-ppg']
 
 	def __unicode__(self):
 		return self.name

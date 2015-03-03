@@ -2,13 +2,12 @@ from datetime import datetime, timedelta, date
 import json
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponse
 from django.template import RequestContext
-from django.template.loader import render_to_string
-from django.conf import settings
 from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 
 from players.models import Player
 from players.utils import get_image_url, calculate_totals, calculate_avgs
@@ -20,40 +19,25 @@ today = datetime.today()
 context_data = {}
 
 @login_required(login_url='login')
-@cache_page(60*30)
 def free_agents(request, num_days=15):
-	if request.is_ajax():
-		if request.GET.get('filter') == 'seven':
-			start_day = today - seven
-			new_list = []
-			for player in players:
-				all_player_stats[player.id] = {}
-				total_stats = calculate_totals(player, start_day=start_day, end_day=today)
-				avg_stats = calculate_avgs(total_stats)
-				all_player_stats[player.id]['name'] = player.name
-				all_player_stats[player.id]['nba_team'] = player.nba_team
-				all_player_stats[player.id]['position'] = player.position
-				all_player_stats[player.id]['stats'] = avg_stats
-			new_list.append(render_to_string('free_agents.html', {'all_player_stats': all_player_stats}))
-			json = json.dumps(new_list, cls=DjangoJSONEncoder)
-			return HttpResponse(json, mimetype='application/json')
-
 	all_player_stats = {}
-	players = Player.objects.filter(team__isnull=True)[:50]
+	all_players = Player.objects.filter(team__isnull=True)
+	paginator = Paginator(all_players, 50)
 
+	page = request.GET.get('page')
+	try:
+		players = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		players = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		players = paginator.page(paginator.num_pages)
+		
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta
 
-	for player in players:
-		all_player_stats[player.id] = {}
-		total_stats = calculate_totals(player, start_day=start_day, end_day=today)
-		avg_stats = calculate_avgs(total_stats)
-		all_player_stats[player.id]['name'] = player.name
-		all_player_stats[player.id]['nba_team'] = player.nba_team
-		all_player_stats[player.id]['position'] = player.position
-		all_player_stats[player.id]['stats'] = avg_stats
-
-	context_data['all_player_stats'] = all_player_stats
+	context_data['players'] = players
 	context_data['num_days'] = num_days
 	context_data['nba_teams'] = NBA_TEAMS
 

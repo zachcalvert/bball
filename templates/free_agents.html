@@ -139,42 +139,54 @@
 						</tr>
 					</thead>
 					<tbody>
-					{% for player_id in all_player_stats.iteritems %}
+					{% for player in players %}
 						<tr>
 							<td>
-								<a href="{% url 'player_profile' player_id.0 days_since_start %}">{{ player_id.1.name }}</a>,
-								{{ player_id.1.nba_team }} {{ player_id.1.position }}
+								<a href="{% url 'player_profile' player.id days_since_start %}">{{ player.name }}</a>,
+								{{ player.nba_team }} {{ player.position }}
 							</td>
 							<td class="sectionLeadingSpacer"></td>
 							<td>FA</td>
-							<td><a href="{% url 'add_player_page' player_id.0 %}"><img src="{{ STATIC_URL }}images/add_player_button.png"></a></td>
+							<td><a href="{% url 'add_player_page' player.id %}"><img src="{{ STATIC_URL }}images/add_player_button.png"></a></td>
 							<td class="sectionLeadingSpacer"></td>
 							<td>
-								{% if player_id.0|get_todays_opponent %}
-									{{ player_id.0|get_todays_opponent }}</td>
+								{% if player.id|get_todays_opponent %}
+									{{ player.id|get_todays_opponent }}</td>
 								{% else %}
 									&nbsp;
 								{% endif %}
-							<td>{{ player_id.0|get_tipoff }}</td>
+							<td>{{ player.id|get_tipoff }}</td>
 							<td class="sectionLeadingSpacer"></td>
-							<td>{{ player_id.1.stats.minutes }}</td>
-							<td class="player_table_stat"><span>{{ player_id.1.stats.fgm }}</span>/<span>{{ player_id.1.stats.fga }}</span></td>
-							<td class="player_table_stat">{{ player_id.1.stats.fgpct|format_pct }}</td>
-							<td class="player_table_stat"><span>{{ player_id.1.stats.ftm }}</span>/<span>{{ player_id.1.stats.fta }}</span></td>
-							<td class="player_table_stat">{{ player_id.1.stats.ftpct|format_pct }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.threes }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.rebounds }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.assists }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.steals }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.blocks }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.turnovers }}</td>
-							<td class="player_table_stat">{{ player_id.1.stats.points }}</td>
+							<td>{{ player.mpg }}</td>
+							<td class="player_table_stat"><span>{{ player.fgmpg }}</span>/<span>{{ player.fgapg }}</span></td>
+							<td class="player_table_stat">{{ player.fgpct|format_pct }}</td>
+							<td class="player_table_stat"><span>{{ player.ftmpg }}</span>/<span>{{ player.ftapg }}</span></td>
+							<td class="player_table_stat">{{ player.ftpct|format_pct }}</td>
+							<td class="player_table_stat">{{ player.threespg }}</td>
+							<td class="player_table_stat">{{ player.rpg }}</td>
+							<td class="player_table_stat">{{ player.apg }}</td>
+							<td class="player_table_stat">{{ player.spg }}</td>
+							<td class="player_table_stat">{{ player.bpg }}</td>
+							<td class="player_table_stat">{{ player.topg }}</td>
+							<td class="player_table_stat">{{ player.ppg }}</td>
 				  		</tr>
 				  	{% endfor %}
 				  	</tbody>
 				</table>
+				<div id="pagination">
+				    <span class="step-links">
+				        {% if players.has_previous %}
+				            <a href="?page={{ players.previous_page_number }}">PREVIOUS</a> | 
+				        {% endif %}
+
+				        {% if players.has_next %}
+				            <a href="?page={{ players.next_page_number }}">NEXT</a>
+				        {% endif %}
+				    </span>
+				</div>
 			</div>
 		</div>
+
 	{% endblock %}
 
 <script>

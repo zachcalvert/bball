@@ -123,3 +123,8 @@ h4 {
 #site-home-main {
 	display: inline;
 }
+#pagination {
+	float: right;
+	margin-right: 10px;
+	padding: 5px;
+}

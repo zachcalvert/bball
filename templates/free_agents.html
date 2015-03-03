@@ -173,6 +173,17 @@
 				  	{% endfor %}
 				  	</tbody>
 				</table>
+				<div id="pagination">
+				    <span class="step-links">
+				        {% if players.has_previous %}
+				            <a href="?page={{ players.previous_page_number }}">PREVIOUS</a> | 
+				        {% endif %}
+
+				        {% if players.has_next %}
+				            <a href="?page={{ players.next_page_number }}">NEXT</a>
+				        {% endif %}
+				    </span>
+				</div>
 			</div>
 		</div>
 	{% endblock %}

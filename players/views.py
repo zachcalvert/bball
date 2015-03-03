@@ -9,6 +9,7 @@ from django.conf import settings
 from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from players.models import Player
 from players.utils import get_image_url, calculate_totals, calculate_avgs
@@ -39,7 +40,20 @@ def free_agents(request, num_days=15):
 			return HttpResponse(json, mimetype='application/json')
 
 	all_player_stats = {}
-	players = Player.objects.filter(team__isnull=True)[:50]
+	all_players = Player.objects.filter(team__isnull=True)
+	paginator = Paginator(all_players, 50)
+
+	page = request.GET.get('page')
+	try:
+		players = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		players = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		players = paginator.page(paginator.num_pages)
+
+	context_data['players'] = players
 
 	delta = timedelta(days=int(num_days))
 	start_day = today - delta

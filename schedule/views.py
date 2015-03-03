@@ -76,7 +76,7 @@ def standings(request):
 		context_instance=RequestContext(request))
 
 @login_required(login_url='login')
-@cache_page(60*30)
+@cache_page(60*1440) # cache for 1 day
 def scoreboard(request, week_id=None):
 	matchups = Matchup.objects.filter(week=week_id)
 	context_data['matchups'] = matchups

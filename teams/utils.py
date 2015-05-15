@@ -1,7 +1,4 @@
 from __future__ import division
-from datetime import datetime, timedelta
-from players.models import Player
-from schedule.models import Game, StatLine
 
 from players import utils
 

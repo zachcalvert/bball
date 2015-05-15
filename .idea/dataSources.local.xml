@@ -5,5 +5,10 @@
       <first-sync>true</first-sync>
       <user-name>root</user-name>
     </data-source>
+    <data-source name="MySQL - basketball@localhost" uuid="62e149e6-6c60-4ea2-8561-3cde7f857c43">
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>

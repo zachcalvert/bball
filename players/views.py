@@ -1,19 +1,14 @@
 from datetime import datetime, timedelta, date
-import json
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponse
 from django.template import RequestContext
-from django.template.loader import render_to_string
-from django.conf import settings
 from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
-from django.core.serializers.json import DjangoJSONEncoder
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from players.models import Player
-from players.utils import get_image_url, calculate_totals, calculate_avgs
 from schedule.models import NBA_TEAMS
+from players.utils import get_image_url, calculate_totals, calculate_avgs
 from teams.models import Team
 from teams.utils import calculate_team_totals, calculate_team_avgs
 

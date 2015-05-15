@@ -47,9 +47,9 @@ a:hover {
 	margin:0;
 }
 #logout {
-	margin-top: -40px;
+	margin-top: 0px;
 	float: right;
-	margin-right: 130px;
+	margin-right: 150px;
 	font-size: 10px;
 	color: #FFFFFF;
 }

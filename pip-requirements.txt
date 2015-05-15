@@ -27,3 +27,7 @@ django_extensions<1.5
 # fast moving, stable API: don't peg to a specific version
 gunicorn
 gevent
+
+ipython
+Fabric
+hg+http://hg.darkhorse.com/cimmeria#egg=Cimmeria
